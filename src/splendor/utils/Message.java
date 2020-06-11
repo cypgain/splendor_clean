@@ -1,6 +1,6 @@
 package splendor.utils;
 
-import static splendor.Controleur.LANGUE;
+import static splendor.Controleur.langue;
 
 public enum Message
 {
@@ -33,7 +33,7 @@ public enum Message
     {
         String sRet;
 
-        switch ( LANGUE )
+        switch ( langue )
         {
             case "ENG" : sRet = this.libAnglais;   break;
             default    : sRet = this.libFrancais;  break;
@@ -52,7 +52,7 @@ public enum Message
         String sing, plur;
         int posDeb, posFin, posSlash;
 
-        switch ( LANGUE )
+        switch ( langue )
         {
             case "ENG" : sRet = this.libAnglais;  break;
             default    : sRet = this.libFrancais; break;

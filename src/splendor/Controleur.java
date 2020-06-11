@@ -2,6 +2,7 @@ package splendor;
 
 import splendor.ihm.FrameJoueur;
 import splendor.ihm.FramePlateau;
+import splendor.ihm.FrameLancement;
 import splendor.metier.Carte;
 import splendor.metier.Jeu;
 import splendor.metier.Joueur;
@@ -15,33 +16,59 @@ import java.util.List;
 public class Controleur
 {
 
-    public static final String LANGUE     = "FR";
-    public static final int    NB_JOUEURS = 2;
+    public static String langue;
 
     private Jeu metier;
 
     private FramePlateau      framePlateau;
     private List<FrameJoueur> tabFrameJoueurs;
 
+    private boolean changementMetier;
+
     public Controleur()
     {
-        this.metier       = new Jeu(Controleur.NB_JOUEURS);
-        this.framePlateau = new FramePlateau(this);
+        new FrameLancement(this);
+        while (true) 
+        {
+            try 
+            {
+                Thread.sleep(500);
+            } 
+            catch (Exception e) {}
 
-        this.tabFrameJoueurs = new ArrayList<>();
+            if (this.changementMetier) 
+            {
+                //this.visuel.initJoueurs();
+                this.updateGraphics();
+                this.changementMetier = false;
 
-        this.initJoueurs();
+                //this.nouvellePartie();
+            }
+
+        }
+        
     }
 
     /*-----------------------
              Init
     ---------------------- */
 
-    private void initJoueurs()
+    public void lancementPartie(String langue, Integer nbJoueurs) 
+    {
+        Controleur.langue=langue;
+        this.metier = new Jeu(nbJoueurs);
+        this.framePlateau = new FramePlateau(this);
+
+        this.tabFrameJoueurs = new ArrayList<>();
+
+        this.initJoueurs(nbJoueurs);
+    }
+
+    private void initJoueurs(int nbJoueurs)
     {
         Joueur joueurTemp;
 
-        for(int i = 0; i < Controleur.NB_JOUEURS; i++)
+        for(int i = 0; i < nbJoueurs; i++)
         {
             joueurTemp = new Joueur();
 
@@ -105,20 +132,21 @@ public class Controleur
 
     public void reposerJeton(Carte c)
     {
-        for (int i = 0; i < this.metier.getTabJetons().length-1; i++)
+        for (int i = 0; i < this.metier.getTabJetons().length-1; i++) 
         {
-            if (c.getPrix()[i] <= this.metier.getCurrentJoueur().getNbCarte(i))
-                continue;
+            Joueur j = this.getCurrentJoueur();
 
-            if (c.getPrix()[i] <= Math.abs(this.metier.getCurrentJoueur().getNbJetons(i) - this.metier.getCurrentJoueur().getNbCarte(i)))
+            if (c.getPrix()[i] <= j.getNbCarte(i))
+                continue;
+            if (c.getPrix()[i] - j.getNbCarte(i) <= j.getNbJetons(i)) 
             {
-                this.metier.getTabJetons()[i] += c.getPrix()[i] - this.getCurrentJoueur().getNbCarte(i);
+                this.metier.getTabJetons()[i] += c.getPrix()[i] - j.getNbCarte(i);
+            } else {
+                this.metier.getTabJetons()[i] += j.getNbJetons(i);
+
+                this.metier.getTabJetons()[5] += c.getPrix()[i] - j.getNbCarte(i) + j.getNbJetons(i);
             }
-            else
-            {
-                this.metier.getTabJetons()[i] += this.getCurrentJoueur().getNbJetons(i);
-                this.metier.getTabJetons()[5] += c.getPrix()[i] - this.getCurrentJoueur().getNbJetons(i);
-            }
+
         }
     }
 

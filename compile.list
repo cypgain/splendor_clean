@@ -2,6 +2,7 @@
 
 ./src/splendor/ihm/FramePlateau.java
 ./src/splendor/ihm/FrameJoueur.java
+./src/splendor/ihm/FrameLancement.java
 ./src/splendor/ihm/listeners/framejoueur/GererBoutons.java
 ./src/splendor/ihm/listeners/framejoueur/GererSouris.java
 ./src/splendor/ihm/listeners/frameplateau/GererBoutons.java

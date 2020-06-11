@@ -127,6 +127,7 @@ public class Jeu
 
         return amount;
     }
+    
 
     /*-----------------------
              Partie
