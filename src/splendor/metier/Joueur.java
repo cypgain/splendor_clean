@@ -53,6 +53,19 @@ public class Joueur
         return amount;
     }
 
+    public int getNbCarte(int coul)
+    {
+        int nbCarte = 0;
+
+        for (Carte carte : this.tabCartes)
+        {
+            if (carte.getCouleur().ordinal() == coul)
+                nbCarte++;
+        }
+
+        return nbCarte;
+    }
+
     public boolean ajouterJeton(int numJeton, int amount)
     {
         if(this.getNbJetons() + amount <= Joueur.MAX_JETONS)
@@ -62,6 +75,84 @@ public class Joueur
         }
 
         return false;
+    }
+
+    public int getNbJetons(int coul)
+    {
+        return this.tabJetons[coul];
+    }
+
+    public void retirerJeton(int numJeton)
+    {
+        this.tabJetons[numJeton]--;
+    }
+
+
+    public void ajouterCarte(Carte carte)
+    {
+        this.tabCartes.add(carte);
+
+        int[] tabPrix = carte.getPrix();
+        int coutJeton;
+        int jetonsJoueur;
+
+        for (int indexPrix = 0; indexPrix < tabPrix.length; indexPrix++)
+        {
+            if (this.getNbCarte(indexPrix) < tabPrix[indexPrix])
+            {
+                coutJeton = tabPrix[indexPrix] - this.getNbCarte(indexPrix);
+
+                if (coutJeton <= this.tabJetons[indexPrix])
+                {
+                    for (int i = 0; i < coutJeton; i++)
+                    {
+                        this.retirerJeton(indexPrix);
+                    }
+                }
+                else
+                {
+                    jetonsJoueur = this.tabJetons[indexPrix];
+
+                    for (int i = 0; i < jetonsJoueur ; i++)
+                    {
+                        this.retirerJeton(indexPrix);
+                        System.out.println(this.tabJetons[5]);
+                    }
+
+                    for (int i = 0; i < coutJeton - jetonsJoueur; i++)
+                    {
+                        this.retirerJeton(5);
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean peutPrendreCarte(Carte carte)
+    {
+        if (carte == null)
+            return false;
+
+        int[] tabPrix = carte.getPrix();
+        int jetonsOrUsed = 0;
+
+        for (int i = 0 ; i < tabPrix.length ; i++)
+        {
+            if (tabPrix[i] > (this.getNbCarte(i) + this.tabJetons[i] + this.tabJetons[5] - jetonsOrUsed))
+            {
+                return false;
+            }
+            if (jetonsOrUsed > this.tabJetons[5])
+            {
+                return false;
+            }
+            if (tabPrix[i] > (this.getNbCarte(i) + this.tabJetons[i]))
+            {
+                jetonsOrUsed += (tabPrix[i] - this.tabCartes.size() - this.tabJetons[i]);
+            }
+        }
+
+        return true;
     }
 
     public int         getNum      () { return this.num;       }

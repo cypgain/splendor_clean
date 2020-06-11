@@ -80,9 +80,47 @@ public class Controleur
             Partie
     ---------------------- */
 
+    public boolean acheterCarte(Joueur joueur, Carte carte)
+    {
+        if (!(joueur.peutPrendreCarte(carte)))
+            return false;
+
+        this.reposerJeton(carte);
+        joueur.ajouterCarte(carte);
+
+        int deck;
+        for (int index = 0 ; index < this.metier.getTabCartes().length ; index ++)
+        {
+            deck = 3 - ((int) (index / (this.metier.getTabCartes().length / 3)));
+            if (this.metier.getTabCartes()[index] == carte)
+                this.metier.getTabCartes()[index] = this.metier.tirerCarte(deck);
+        }
+
+        return true;
+    }
+
     /*-----------------------
             Jetons
     ---------------------- */
+
+    public void reposerJeton(Carte c)
+    {
+        for (int i = 0; i < this.metier.getTabJetons().length-1; i++)
+        {
+            if (c.getPrix()[i] <= this.metier.getCurrentJoueur().getNbCarte(i))
+                continue;
+
+            if (c.getPrix()[i] <= Math.abs(this.metier.getCurrentJoueur().getNbJetons(i) - this.metier.getCurrentJoueur().getNbCarte(i)))
+            {
+                this.metier.getTabJetons()[i] += c.getPrix()[i] - this.getCurrentJoueur().getNbCarte(i);
+            }
+            else
+            {
+                this.metier.getTabJetons()[i] += this.getCurrentJoueur().getNbJetons(i);
+                this.metier.getTabJetons()[5] += c.getPrix()[i] - this.getCurrentJoueur().getNbJetons(i);
+            }
+        }
+    }
 
     public boolean isJetonsSelectedFull()
     {

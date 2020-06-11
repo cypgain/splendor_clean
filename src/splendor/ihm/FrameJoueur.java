@@ -53,8 +53,8 @@ public class FrameJoueur extends JFrame
     private JLabel[] tabLblJetons;
 
     // Bonus
-    private JPanel   panelBonus;
-    private JPanel[] tabBonusCpnt;
+    private JPanel           panelBonus;
+    private BonusComponent[] tabBonusCpnt;
 
     // Nobles
     private JPanel   panelNobles;
@@ -194,6 +194,12 @@ public class FrameJoueur extends JFrame
         for(int i = 0; i < this.tabLblJetons.length; i++)
         {
             this.tabLblJetons[i].setText("" + this.joueur.getTabJetons()[i]);
+        }
+
+        for(int i = 0; i < this.tabBonusCpnt.length; i++)
+        {
+            this.tabBonusCpnt[i].setAmount(this.joueur.getNbCarte(i));
+            this.tabBonusCpnt[i].repaint();
         }
     }
 

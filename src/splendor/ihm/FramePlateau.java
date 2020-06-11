@@ -355,6 +355,11 @@ public class FramePlateau extends JFrame
         }
     }
 
+    public boolean acheterCarte(Joueur joueur, Carte carte)
+    {
+        return this.controleur.acheterCarte(joueur, carte);
+    }
+
     public void setCarteSelectionnee(int carteSelectionnee) { this.carteSelectionnee = carteSelectionnee; }
 
     /*-----------------------
@@ -405,12 +410,13 @@ public class FramePlateau extends JFrame
              Getters
     ---------------------- */
 
-    public JButton    getBtnAcheter          () { return this.btnAcheter;                           }
-    public JButton    getBtnReserve          () { return this.btnReserve;                           }
-    public Joueur     getCurrentJoueur       () { return this.controleur.getCurrentJoueur();        }
-    public int[]      getTabJetons           () { return this.controleur.getTabJetons();            }
-    public int        getAmountJetonsSelected() { return this.controleur.getAmountJetonsSelected(); }
-    public int[]      getTabJetonsChoisis    () { return this.controleur.getTabJetonsChoisis();     }
-    public JLabel[]   getTabLblJetons        () { return tabLblJetons;                              }
-
+    public JButton  getBtnAcheter          () { return this.btnAcheter;                           }
+    public JButton  getBtnReserve          () { return this.btnReserve;                           }
+    public Joueur   getCurrentJoueur       () { return this.controleur.getCurrentJoueur();        }
+    public int[]    getTabJetons           () { return this.controleur.getTabJetons();            }
+    public int      getAmountJetonsSelected() { return this.controleur.getAmountJetonsSelected(); }
+    public int[]    getTabJetonsChoisis    () { return this.controleur.getTabJetonsChoisis();     }
+    public JLabel[] getTabLblJetons        () { return tabLblJetons;                              }
+    public int      getCarteSelectionnee   () { return this.carteSelectionnee;                    }
+    public Carte[]  getTabCartes           () { return this.controleur.getTabCartes();            }
 }

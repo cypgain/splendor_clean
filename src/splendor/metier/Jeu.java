@@ -132,7 +132,7 @@ public class Jeu
              Partie
     ---------------------- */
 
-    private Carte tirerCarte(int level)
+    public Carte tirerCarte(int level)
     {
         List<Carte> deck;
 

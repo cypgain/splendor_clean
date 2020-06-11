@@ -1,7 +1,10 @@
 package splendor.ihm.listeners.frameplateau;
 
 import splendor.ihm.FramePlateau;
+import splendor.metier.Carte;
+import splendor.utils.Message;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +23,27 @@ public class GererBoutons implements ActionListener
     {
         if(e.getSource() == framePlateau.getBtnAcheter())
         {
-            System.out.println("ACHAT");
+            this.framePlateau.resetJetonsChoisis();
+
+            if(this.framePlateau.getCarteSelectionnee() != -1)
+            {
+                Carte carteSelectionnee = this.framePlateau.getTabCartes()[this.framePlateau.getCarteSelectionnee()];
+
+                if(carteSelectionnee != null)
+                {
+                    if (!(this.framePlateau.acheterCarte(this.framePlateau.getCurrentJoueur(), carteSelectionnee)))
+                    {
+                        JOptionPane.showMessageDialog(this.framePlateau, Message.ERR_NOT_ENOUGH_JETON.getLib() );
+                        return;
+                    }
+
+                    this.framePlateau.resetDosCarteSelectionnee();
+                    this.framePlateau.resetCarteSelectionnee();
+                    this.framePlateau.updateGraphics();
+
+                    // TODO - Fin du tour joueur
+                }
+            }
         }
         else if(e.getSource() == framePlateau.getBtnReserve())
         {

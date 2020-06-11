@@ -16,6 +16,8 @@ public enum Message
 
     ERR_JETON_FULL("Vous possédez déjà trop de jetons", "You already have max tokens"),
 
+    ERR_NOT_ENOUGH_JETON("Vous n'avez pas assez de jetons", "You do not have enough Tokens"),
+
     ;
 
     private String libFrancais;
