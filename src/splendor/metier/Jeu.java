@@ -1,6 +1,7 @@
 package splendor.metier;
 
 import splendor.utils.CarteUtils;
+import splendor.utils.Couleur;
 import splendor.utils.NobleUtils;
 
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.List;
 public class Jeu
 {
 
+    private int nbJoueurs;
+
     private List<Carte> deckLevelOne;
     private List<Carte> deckLevelTwo;
     private List<Carte> deckLevelThree;
@@ -16,20 +19,32 @@ public class Jeu
     private List<Noble>  tabNobles;
     private List<Joueur> tabJoueurs;
 
+    private int[] tabJetons;
+    private int[] tabJetonsChoisis;
+
     private Carte[] tabCartes;
 
-    public Jeu()
+    public Jeu(int nbJoueurs)
     {
-        this.deckLevelOne   = new ArrayList<>();
-        this.deckLevelTwo   = new ArrayList<>();
-        this.deckLevelThree = new ArrayList<>();
-        this.tabNobles      = new ArrayList<>();
-        this.tabJoueurs     = new ArrayList<>();
-        this.tabCartes      = new Carte[12];
+        this.nbJoueurs = nbJoueurs;
+
+        this.deckLevelOne     = new ArrayList<>();
+        this.deckLevelTwo     = new ArrayList<>();
+        this.deckLevelThree   = new ArrayList<>();
+        this.tabNobles        = new ArrayList<>();
+        this.tabJoueurs       = new ArrayList<>();
+        this.tabJetons        = new int[Couleur.values().length];
+        this.tabJetonsChoisis = new int[Couleur.values().length];
+        this.tabCartes        = new Carte[12];
 
         this.initDeck();
         this.initNobles();
         this.initCartes();
+    }
+
+    public void addJoueur(Joueur joueur)
+    {
+        this.tabJoueurs.add(joueur);
     }
 
     private void initDeck()
@@ -45,7 +60,7 @@ public class Jeu
 
         Noble nobleTemp;
 
-        for(int i = 0; i < (this.tabJoueurs.size() + 1); i++)
+        for(int i = 0; i < (this.nbJoueurs + 1); i++)
         {
             nobleTemp = nobles.get((int) (Math.random() * nobles.size()));
             nobles.remove(nobleTemp);
@@ -89,6 +104,9 @@ public class Jeu
         return carte;
     }
 
-    public Carte[]     getTabCartes() { return this.tabCartes; }
-    public List<Noble> getTabNobles() { return tabNobles;      }
+    public Carte[]     getTabCartes       () { return this.tabCartes;        }
+    public List<Noble> getTabNobles       () { return this.tabNobles;        }
+    public int[]       getTabJetons       () { return this.tabJetons;        }
+    public int[]       getTabJetonsChoisis() { return this.tabJetonsChoisis; }
+
 }

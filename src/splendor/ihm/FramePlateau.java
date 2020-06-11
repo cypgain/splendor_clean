@@ -1,9 +1,12 @@
 package splendor.ihm;
 
 import splendor.Controleur;
+import splendor.ihm.listeners.frameplateau.GererBoutons;
+import splendor.ihm.listeners.frameplateau.GererFenetre;
 import splendor.ihm.listeners.frameplateau.GererSouris;
 import splendor.metier.Carte;
 import splendor.metier.Noble;
+import splendor.utils.Couleur;
 import splendor.utils.ImageUtils;
 import splendor.utils.Message;
 import splendor.utils.SplendorFont;
@@ -21,8 +24,11 @@ public class FramePlateau extends JFrame
     private static final int TAILLE_IMAGE_CARTE_X = 130;
     private static final int TAILLE_IMAGE_CARTE_Y = 200;
 
-    private static final int TAILLE_IMAGE_NOBLE_X = 145;
-    private static final int TAILLE_IMAGE_NOBLE_Y = 145;
+    private static final int TAILLE_IMAGE_NOBLE_X = 125;
+    private static final int TAILLE_IMAGE_NOBLE_Y = 125;
+
+    private static final int TAILLE_IMAGE_JETON_X = 75;
+    private static final int TAILLE_IMAGE_JETON_Y = 75;
 
     /*----------------------
             Attributs
@@ -46,6 +52,16 @@ public class FramePlateau extends JFrame
     private JLabel[] tabLblDosCartes;
     private int      dosCarteSelectionnee;
 
+    // Jetons
+    private JPanel   panelJetons;
+    private JLabel[] tabLblJetons;
+    private JLabel[] tabLblNbJetons;
+    private JLabel[] tabLblNbJetonsChoisis;
+
+    // Bouttons
+    private JButton btnAcheter;
+    private JButton btnReserve;
+
     public FramePlateau(Controleur controleur)
     {
         this.controleur = controleur;
@@ -53,17 +69,72 @@ public class FramePlateau extends JFrame
         this.setTitle(Message.TITRE_FRAME_PLATEAU.getLib());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setFocusable(true);
+        this.addComponentListener(new GererFenetre(this));
 
         this.loadRegionNobles();
         this.loadRegionCartes();
         this.loadRegionDosCartes();
+        this.loadRegionJetons();
 
         this.add(this.panelNobles,    BorderLayout.NORTH);
         this.add(this.panelCartes,    BorderLayout.CENTER);
         this.add(this.panelDosCartes, BorderLayout.WEST);
+        this.add(this.panelJetons,    BorderLayout.SOUTH);
 
         this.pack();
         this.setVisible(true);
+    }
+
+    /*----------------------
+       Gestion des Jetons
+     -----------------------*/
+
+    private void loadRegionJetons()
+    {
+        this.panelJetons  = new JPanel(new BorderLayout());
+
+        JPanel panelJetonsTop    = new JPanel();
+        JPanel panelJetonsBottom = new JPanel();
+
+        // Jetons
+        this.tabLblJetons          = new JLabel[Couleur.values().length - 1];
+        this.tabLblNbJetons        = new JLabel[Couleur.values().length - 1];
+        this.tabLblNbJetonsChoisis = new JLabel[Couleur.values().length - 1];
+
+        JPanel panelTemp;
+
+        for(int i = 0; i < Couleur.values().length - 1; i++)
+        {
+            panelTemp = new JPanel(new GridLayout(2, 1, 10, 0));
+
+            this.tabLblJetons[i] = new JLabel();
+            this.tabLblJetons[i].setIcon(ImageUtils.resizeImage("ressources/jeton_" + Couleur.values()[i].toString().toLowerCase() + ".png", TAILLE_IMAGE_JETON_X, TAILLE_IMAGE_JETON_Y));
+
+            this.tabLblNbJetons       [i] = new JLabel("" + this.controleur.getTabJetons       ()[i] + " x ", JLabel.RIGHT);
+            this.tabLblNbJetonsChoisis[i] = new JLabel("" + this.controleur.getTabJetonsChoisis()[i] + " x ", JLabel.RIGHT);
+
+            this.tabLblNbJetonsChoisis[i].setForeground(Color.RED);
+
+            panelTemp.add(tabLblNbJetonsChoisis[i]);
+            panelTemp.add(tabLblNbJetons[i]);
+
+            panelJetonsTop.add(panelTemp);
+            panelJetonsTop.add(this.tabLblJetons[i]);
+        }
+
+        // Boutons
+        this.btnAcheter = new JButton(Message.BUTTON_BUY_CARD.getLib());
+        this.btnReserve = new JButton(Message.BUTTON_RESERVE_CARD.getLib());
+
+        this.btnAcheter.addActionListener(new GererBoutons(this));
+        this.btnReserve.addActionListener(new GererBoutons(this));
+
+        panelJetonsBottom.add(this.btnAcheter);
+        panelJetonsBottom.add(this.btnReserve);
+
+        // Ajout au panel
+        this.panelJetons.add(panelJetonsTop,    BorderLayout.NORTH);
+        this.panelJetons.add(panelJetonsBottom, BorderLayout.SOUTH);
     }
 
     /*----------------------
@@ -72,13 +143,13 @@ public class FramePlateau extends JFrame
 
     private void loadRegionNobles()
     {
-        JPanel panelNoblesIn = new JPanel(new GridLayout(1, this.controleur.getTabNobles().size()));
+        JPanel panelNoblesIn = new JPanel();
 
         this.panelNobles  = new JPanel(new BorderLayout());
         this.tabLblNobles = new JLabel[this.controleur.getTabNobles().size()];
         this.lblTitre     = new JLabel("Au tour du joueur 1", JLabel.CENTER);
 
-        this.lblTitre.setFont(SplendorFont.FRAME_PLATEAU_TITRE.getFont());
+        this.lblTitre.setFont(SplendorFont.SEGOE_BIG.getFont());
 
         int i = 0;
         for(Noble noble : this.controleur.getTabNobles())
@@ -106,6 +177,7 @@ public class FramePlateau extends JFrame
         for(int i = 0; i < this.tabLblDosCartes.length; i++)
         {
             this.tabLblDosCartes[i] = new JLabel();
+            this.tabLblDosCartes[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
             this.tabLblDosCartes[i].addMouseListener(new GererSouris(this));
             this.panelDosCartes.add(this.tabLblDosCartes[i]);
         }
@@ -138,7 +210,7 @@ public class FramePlateau extends JFrame
     {
         for(JLabel lbl : this.tabLblDosCartes)
         {
-            lbl.setBorder(null);
+            lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         }
     }
 
@@ -165,11 +237,14 @@ public class FramePlateau extends JFrame
         this.tabLblCartes      = new JLabel[12];
         this.carteSelectionnee = -1;
 
+        this.panelCartes.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
+
         Carte[] tabCartes = this.controleur.getTabCartes();
 
         for (int i = 0; i < tabCartes.length; i++)
         {
             this.tabLblCartes[i] = new JLabel();
+            this.tabLblCartes[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
             this.panelCartes.add(this.tabLblCartes[i]);
         }
 
@@ -206,7 +281,7 @@ public class FramePlateau extends JFrame
     {
         for(JLabel lbl : this.tabLblCartes)
         {
-            lbl.setBorder(null);
+            lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         }
     }
 
@@ -222,5 +297,18 @@ public class FramePlateau extends JFrame
     }
 
     public void setCarteSelectionnee(int carteSelectionnee) { this.carteSelectionnee = carteSelectionnee; }
+
+
+    public void updateFramesPosition()
+    {
+        this.controleur.updateFramesPosition();
+    }
+
+    /*-----------------------
+             Getters
+    ---------------------- */
+
+    public JButton    getBtnAcheter() { return this.btnAcheter; }
+    public JButton    getBtnReserve() { return this.btnReserve; }
 
 }

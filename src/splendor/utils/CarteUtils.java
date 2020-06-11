@@ -43,14 +43,14 @@ public class CarteUtils
             add(new Carte("ressources/dev_I_30.png", 0, Couleur.ROUGE, 1, 1, 1, 1, 0));
             add(new Carte("ressources/dev_I_31.png", 0, Couleur.ROUGE, 1, 2, 1, 1, 0));
             add(new Carte("ressources/dev_I_32.png", 1, Couleur.ROUGE, 0, 4, 0, 0, 0));
-            add(new Carte("ressources/dev_I_33.png", 0, Couleur.NOIR, 2, 0, 0, 0, 1));
-            add(new Carte("ressources/dev_I_34.png", 0, Couleur.NOIR, 3, 0, 0, 0, 0));
-            add(new Carte("ressources/dev_I_35.png", 0, Couleur.NOIR, 2, 2, 0, 0, 0));
-            add(new Carte("ressources/dev_I_36.png", 0, Couleur.NOIR, 1, 0, 0, 1, 3));
-            add(new Carte("ressources/dev_I_37.png", 0, Couleur.NOIR, 0, 2, 2, 0, 1));
-            add(new Carte("ressources/dev_I_38.png", 0, Couleur.NOIR, 1, 1, 1, 0, 1));
-            add(new Carte("ressources/dev_I_39.png", 0, Couleur.NOIR, 1, 1, 2, 0, 1));
-            add(new Carte("ressources/dev_I_40.png", 1, Couleur.NOIR, 0, 0, 4, 0, 0));
+            add(new Carte("ressources/dev_I_33.png", 0, Couleur.MARRON, 2, 0, 0, 0, 1));
+            add(new Carte("ressources/dev_I_34.png", 0, Couleur.MARRON, 3, 0, 0, 0, 0));
+            add(new Carte("ressources/dev_I_35.png", 0, Couleur.MARRON, 2, 2, 0, 0, 0));
+            add(new Carte("ressources/dev_I_36.png", 0, Couleur.MARRON, 1, 0, 0, 1, 3));
+            add(new Carte("ressources/dev_I_37.png", 0, Couleur.MARRON, 0, 2, 2, 0, 1));
+            add(new Carte("ressources/dev_I_38.png", 0, Couleur.MARRON, 1, 1, 1, 0, 1));
+            add(new Carte("ressources/dev_I_39.png", 0, Couleur.MARRON, 1, 1, 2, 0, 1));
+            add(new Carte("ressources/dev_I_40.png", 1, Couleur.MARRON, 0, 0, 4, 0, 0));
         }};
 
         return deckOne;
@@ -84,12 +84,12 @@ public class CarteUtils
             add(new Carte("ressources/dev_II_22.png", 2, Couleur.ROUGE, 0, 3, 0, 5, 0));
             add(new Carte("ressources/dev_II_23.png", 2, Couleur.ROUGE, 0, 0, 0, 5, 0));
             add(new Carte("ressources/dev_II_24.png", 2, Couleur.ROUGE, 0, 0, 0, 0, 6));
-            add(new Carte("ressources/dev_II_25.png", 1, Couleur.NOIR, 2, 3, 2, 0, 0));
-            add(new Carte("ressources/dev_II_26.png", 1, Couleur.NOIR, 3, 2, 0, 2, 0));
-            add(new Carte("ressources/dev_II_27.png", 2, Couleur.NOIR, 4, 0, 1, 0, 2));
-            add(new Carte("ressources/dev_II_28.png", 2, Couleur.NOIR, 5, 0, 0, 0, 3));
-            add(new Carte("ressources/dev_II_29.png", 2, Couleur.NOIR, 0, 5, 0, 0, 0));
-            add(new Carte("ressources/dev_II_30.png", 2, Couleur.NOIR, 0, 0, 0, 6, 0));
+            add(new Carte("ressources/dev_II_25.png", 1, Couleur.MARRON, 2, 3, 2, 0, 0));
+            add(new Carte("ressources/dev_II_26.png", 1, Couleur.MARRON, 3, 2, 0, 2, 0));
+            add(new Carte("ressources/dev_II_27.png", 2, Couleur.MARRON, 4, 0, 1, 0, 2));
+            add(new Carte("ressources/dev_II_28.png", 2, Couleur.MARRON, 5, 0, 0, 0, 3));
+            add(new Carte("ressources/dev_II_29.png", 2, Couleur.MARRON, 0, 5, 0, 0, 0));
+            add(new Carte("ressources/dev_II_30.png", 2, Couleur.MARRON, 0, 0, 0, 6, 0));
         }};
 
 
@@ -116,11 +116,11 @@ public class CarteUtils
             add(new Carte("ressources/dev_III_13.png", 3, Couleur.ROUGE, 3, 3, 5, 3, 0));
             add(new Carte("ressources/dev_III_14.png", 4, Couleur.ROUGE, 6, 0, 3, 0, 3));
             add(new Carte("ressources/dev_III_15.png", 4, Couleur.ROUGE, 7, 0, 0, 0, 0));
-            add(new Carte("ressources/dev_III_18.png", 4, Couleur.NOIR, 3, 0, 0, 3, 6));
-            add(new Carte("ressources/dev_III_19.png", 4, Couleur.NOIR, 0, 0, 0, 0, 7));
+            add(new Carte("ressources/dev_III_18.png", 4, Couleur.MARRON, 3, 0, 0, 3, 6));
+            add(new Carte("ressources/dev_III_19.png", 4, Couleur.MARRON, 0, 0, 0, 0, 7));
             add(new Carte("ressources/dev_III_16.png", 5, Couleur.ROUGE, 7, 0, 0, 0, 3));
-            add(new Carte("ressources/dev_III_17.png", 3, Couleur.NOIR, 5, 3, 3, 0, 3));
-            add(new Carte("ressources/dev_III_20.png", 5, Couleur.NOIR, 0, 0, 0, 3, 7));
+            add(new Carte("ressources/dev_III_17.png", 3, Couleur.MARRON, 5, 3, 3, 0, 3));
+            add(new Carte("ressources/dev_III_20.png", 5, Couleur.MARRON, 0, 0, 0, 3, 7));
         }};
 
         return deckThree;

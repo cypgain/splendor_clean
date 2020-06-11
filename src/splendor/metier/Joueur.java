@@ -1,6 +1,8 @@
 package splendor.metier;
 
+import splendor.ihm.FrameJoueur;
 import splendor.utils.Couleur;
+import splendor.utils.NobleUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +28,19 @@ public class Joueur
         this.tabCartes = new ArrayList<>();
     }
 
+    public int getNbCarte(Couleur couleur)
+    {
+        int amount = 0;
 
+        for(Carte carte : this.tabCartes)
+        {
+            if(carte.getCouleur() == couleur)
+                amount++;
+        }
+
+        return amount;
+    }
+
+    public int         getNum()       { return this.num;  }
+    public List<Noble> getTabNobles() { return tabNobles; }
 }

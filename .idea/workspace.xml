@@ -1,22 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a04d4a2-780d-4578-a286-cade7cdde259" name="Default Changelist" comment="" />
+    <list default="true" id="9a04d4a2-780d-4578-a286-cade7cdde259" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/splendor/ihm/FrameJoueur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/framejoueur/GererBoutons.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/framejoueur/GererSouris.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/frameplateau/GererBoutons.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/frameplateau/GererFenetre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/META-INF/Clean.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/Controleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/Controleur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FramePlateau.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FramePlateau.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/frameplateau/GererSouris.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/frameplateau/GererSouris.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Jeu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Jeu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Joueur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Joueur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/Couleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/utils/Couleur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/utils/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/SplendorFont.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/utils/SplendorFont.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/ihm/FramePlateau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/ihm/FramePlateau.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/ihm/listeners/frameplateau/GererSouris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/frameplateau/GererSouris.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/metier/Jeu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/metier/Jeu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/metier/Joueur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/metier/Joueur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/utils/CarteUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/utils/CarteUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/utils/Couleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/utils/Couleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/utils/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/utils/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/utils/SplendorFont.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/utils/SplendorFont.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/splendor_clean" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1d8NRoECPv3IHWAZaGNCITJU2ZY" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -29,6 +72,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -70,6 +114,7 @@
       <workItem from="1591811121725" duration="669000" />
       <workItem from="1591813814127" duration="1377000" />
       <workItem from="1591857434979" duration="3259000" />
+      <workItem from="1591860750442" duration="7487000" />
     </task>
     <servers />
   </component>
@@ -77,26 +122,30 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1591860697993">
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1591867738390">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591860697993" />
-    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1591860697993">
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591867738390" />
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1591868246892">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591860697993" />
-    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1591860697993">
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591868246892" />
+    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1591868246892">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591860697993" />
-    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1591860697993">
+    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591868246892" />
+    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1591868246892">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591860697993" />
-    <state x="440" y="95" key="SettingsEditor" timestamp="1591806454537">
+    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591868246892" />
+    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1591868246892">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="95" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591806454537" />
+    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591868246892" />
+    <state x="440" y="95" key="SettingsEditor" timestamp="1591860758042">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="95" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591860758042" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1591806979839">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

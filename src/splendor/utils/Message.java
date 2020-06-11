@@ -7,6 +7,11 @@ public enum Message
 
     TITRE_FRAME_PLATEAU("Splendor", "Splendor"),
 
+    BUTTON_BUY_CARD    ("Acheter la carte",  "Buy card"),
+    BUTTON_RESERVE_CARD("Reserver la carte", "Book card"),
+
+    PLAYER("Joueur n°{NUM}", "Player No {NUM}"),
+
     ;
 
     private String libFrancais;

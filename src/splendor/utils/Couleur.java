@@ -1,26 +1,29 @@
 package splendor.utils;
 
+
+import java.awt.*;
+
 public enum Couleur
 {
-    VERT(0),
-    BLANC(1),
-    BLEU(2),
-    NOIR(3),
-    ROUGE(4),
-    OR(5)
+
+    VERT  (Color.GREEN),
+    BLANC (Color.WHITE),
+    BLEU  (Color.BLUE),
+    MARRON(Color.BLACK),
+    ROUGE (Color.RED),
+    JAUNE (Color.YELLOW)
 
     ;
 
-    private int index;
+    private Color awtCouleur;
 
-    private Couleur(int index)
+    private Couleur(Color awtCouleur)
     {
-        this.index = index;
+        this.awtCouleur = awtCouleur;
     }
 
-    public int getIndex()
+    public Color getAwtCouleur()
     {
-        return this.index;
+        return this.awtCouleur;
     }
-
 }

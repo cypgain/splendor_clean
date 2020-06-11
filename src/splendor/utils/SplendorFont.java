@@ -4,7 +4,8 @@ import java.awt.*;
 
 public enum SplendorFont
 {
-    FRAME_PLATEAU_TITRE("segoe script", 60),
+    SEGOE_BIG("segoe script", 40),
+    SEGOE_SMALL("segoe script", 16),
 
     ;
 
