@@ -24,6 +24,10 @@ public class Jeu
 
     private Carte[] tabCartes;
 
+    /*-----------------------
+          Constructeur
+    ---------------------- */
+
     public Jeu(int nbJoueurs)
     {
         this.nbJoueurs = nbJoueurs;
@@ -41,6 +45,10 @@ public class Jeu
         this.initNobles();
         this.initCartes();
     }
+
+    /*-----------------------
+         initialisation
+    ---------------------- */
 
     public void addJoueur(Joueur joueur)
     {
@@ -78,6 +86,10 @@ public class Jeu
         }
     }
 
+    /*-----------------------
+             Partie
+    ---------------------- */
+
     private Carte tirerCarte(int level)
     {
         List<Carte> deck;
@@ -103,6 +115,10 @@ public class Jeu
 
         return carte;
     }
+
+    /*-----------------------
+             Getters
+    ---------------------- */
 
     public Carte[]     getTabCartes       () { return this.tabCartes;        }
     public List<Noble> getTabNobles       () { return this.tabNobles;        }

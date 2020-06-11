@@ -31,6 +31,10 @@ public class Controleur
         this.initJoueurs();
     }
 
+    /*-----------------------
+             Init
+    ---------------------- */
+
     private void initJoueurs()
     {
         Joueur joueurTemp;
@@ -44,13 +48,30 @@ public class Controleur
         }
     }
 
-    public void updateFramesPosition()
+
+    /*-----------------------
+            Updates
+    ---------------------- */
+
+    public void updateFramesPosition() 
     {
-        for(FrameJoueur frameJoueur : this.tabFrameJoueurs)
+        for (FrameJoueur frameJoueur : this.tabFrameJoueurs) 
         {
             frameJoueur.updateFramePosition();
         }
     }
+
+    /*-----------------------
+            Partie
+    ---------------------- */
+
+    /*-----------------------
+          Serialization
+    ---------------------- */
+
+    /*-----------------------
+             Getters
+    ---------------------- */
 
     public Carte[]     getTabCartes()        { return this.metier.getTabCartes();        }
     public List<Noble> getTabNobles()        { return this.metier.getTabNobles();        }
