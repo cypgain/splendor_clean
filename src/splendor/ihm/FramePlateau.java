@@ -109,6 +109,8 @@ public class FramePlateau extends JFrame
 
             this.tabLblJetons[i] = new JLabel();
             this.tabLblJetons[i].setIcon(ImageUtils.resizeImage("ressources/jeton_" + Couleur.values()[i].toString().toLowerCase() + ".png", TAILLE_IMAGE_JETON_X, TAILLE_IMAGE_JETON_Y));
+            this.tabLblJetons[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.tabLblJetons[i].addMouseListener(new GererSouris(this));
 
             this.tabLblNbJetons       [i] = new JLabel("" + this.controleur.getTabJetons       ()[i] + " x ", JLabel.RIGHT);
             this.tabLblNbJetonsChoisis[i] = new JLabel("" + this.controleur.getTabJetonsChoisis()[i] + " x ", JLabel.RIGHT);
@@ -135,6 +137,31 @@ public class FramePlateau extends JFrame
         // Ajout au panel
         this.panelJetons.add(panelJetonsTop,    BorderLayout.NORTH);
         this.panelJetons.add(panelJetonsBottom, BorderLayout.SOUTH);
+    }
+
+    public boolean isJeton(Object object)
+    {
+        if(object instanceof JLabel)
+        {
+            for(JLabel l : this.tabLblJetons)
+            {
+                if(l == object)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    public int getIndexOfLblJeton(JLabel lblJeton)
+    {
+        for(int i = 0; i < this.tabLblJetons.length; i++)
+        {
+            if(this.tabLblJetons[i] == lblJeton)
+                return i;
+        }
+
+        return 0;
     }
 
     /*----------------------

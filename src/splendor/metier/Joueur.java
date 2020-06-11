@@ -1,8 +1,6 @@
 package splendor.metier;
 
-import splendor.ihm.FrameJoueur;
 import splendor.utils.Couleur;
-import splendor.utils.NobleUtils;
 
 import java.util.ArrayList;
 import java.util.List;
