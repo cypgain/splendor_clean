@@ -84,15 +84,15 @@ public class GererSouris extends MouseAdapter
                         }
                     }
 
-                    this.framePlateau.resetJetonsChoisis();
-
                     // TODO - Fin du tour
+                    this.framePlateau.finTourJoueur();
                 }
                 else
                 {
                     JOptionPane.showMessageDialog(this.framePlateau, Message.ERR_JETON_FULL.getLib());
-                    this.framePlateau.resetJetonsChoisis();
                 }
+
+                this.framePlateau.resetJetonsChoisis();
             }
             else if (this.framePlateau.getAmountJetonsSelected() == 3)
             {

@@ -12,6 +12,8 @@ public enum Message
 
     PLAYER("Joueur n°{NUM}", "Player No {NUM}"),
 
+    TOUR_JOUEUR("Au tour du joueur n°{NUM}","Player {NUM}'s turn"),
+
     ERR_PRISE_JETON_INVALIDE("Vous n'avez pas le droit de prendre cette combinaison de jetons", "You are not allowed to take this tokens combination"),
 
     ERR_JETON_FULL("Vous possédez déjà trop de jetons", "You already have max tokens"),

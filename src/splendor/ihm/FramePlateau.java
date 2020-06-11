@@ -200,7 +200,7 @@ public class FramePlateau extends JFrame
 
         this.panelNobles  = new JPanel(new BorderLayout());
         this.tabLblNobles = new JLabel[this.controleur.getTabNobles().size()];
-        this.lblTitre     = new JLabel("Au tour du joueur 1", JLabel.CENTER);
+        this.lblTitre     = new JLabel(Message.TOUR_JOUEUR.getLib().replace("{NUM}", "1"), JLabel.CENTER);
 
         this.lblTitre.setFont(SplendorFont.SEGOE_BIG.getFont());
 
@@ -371,6 +371,11 @@ public class FramePlateau extends JFrame
         this.controleur.updateFramesPosition();
     }
 
+    public void updateLabelTourJoueur()
+    {
+        this.lblTitre.setText(Message.TOUR_JOUEUR.getLib().replace("{NUM}", "" +this.controleur.getCurrentJoueur().getNum()));
+    }
+
     public void updateCartes()
     {
         Carte[] tabCartes = this.controleur.getTabCartes();
@@ -405,6 +410,16 @@ public class FramePlateau extends JFrame
     {
         this.controleur.updateGraphics();
     }
+
+    /*-----------------------
+             Autres
+    ---------------------- */
+
+    public void finTourJoueur()
+    {
+        this.controleur.finTourJoueur();
+    }
+
 
     /*-----------------------
              Getters

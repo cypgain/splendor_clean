@@ -24,10 +24,13 @@ public class Controleur
     private List<FrameJoueur> tabFrameJoueurs;
 
     private boolean changementMetier;
+    private boolean finDuTourJoueur;
+    private boolean forcedEndGame;
 
     public Controleur()
     {
         new FrameLancement(this);
+
         while (true) 
         {
             try 
@@ -38,11 +41,9 @@ public class Controleur
 
             if (this.changementMetier) 
             {
-                //this.visuel.initJoueurs();
                 this.updateGraphics();
                 this.changementMetier = false;
-
-                //this.nouvellePartie();
+                this.nouvellePartie();
             }
 
         }
@@ -53,15 +54,16 @@ public class Controleur
              Init
     ---------------------- */
 
-    public void lancementPartie(String langue, Integer nbJoueurs) 
+    public void lancementPartie(String langue, int nbJoueurs)
     {
-        Controleur.langue=langue;
-        this.metier = new Jeu(nbJoueurs);
-        this.framePlateau = new FramePlateau(this);
+        Controleur.langue = langue;
 
+        this.metier          = new Jeu(nbJoueurs);
+        this.framePlateau    = new FramePlateau(this);
         this.tabFrameJoueurs = new ArrayList<>();
 
         this.initJoueurs(nbJoueurs);
+        this.nouvellePartie();
     }
 
     private void initJoueurs(int nbJoueurs)
@@ -96,6 +98,7 @@ public class Controleur
     {
         this.framePlateau.updateCartes();
         this.framePlateau.updateJetons();
+        this.framePlateau.updateLabelTourJoueur();
 
         for(FrameJoueur frameJoueur : this.tabFrameJoueurs)
         {
@@ -124,6 +127,58 @@ public class Controleur
         }
 
         return true;
+    }
+
+    public void nouvellePartie()
+    {
+        this.forcedEndGame = false;
+
+        new Thread(() ->
+        {
+            while (!(this.finDePartie()) && !(this.forcedEndGame))
+            {
+                this.nouveauTour();
+            }
+        }).start();
+    }
+
+    public void finTourJoueur()
+    {
+        this.finDuTourJoueur = true;
+    }
+
+    private boolean finDePartie()
+    {
+        // TODO - Fin de partie
+
+        return false;
+    }
+
+    public void nouveauTour()
+    {
+        while (this.metier.getTabJoueurs().indexOf(this.metier.getCurrentJoueur()) < this.metier.getTabJoueurs().size())
+        {
+            this.finDuTourJoueur = false;
+
+            this.updateGraphics();
+
+            while (!(this.finDuTourJoueur))
+            {
+                try
+                {
+                    Thread.sleep(100);
+                    if (this.forcedEndGame)
+                        return;
+                } catch (Exception e) { e.printStackTrace(); }
+            }
+
+            // TODO - Visite des nobles
+            // TODO - Update points prestiges
+
+            this.updateGraphics();
+            this.finDuTourJoueur = false;
+            this.metier.joueurSuivant();
+        }
     }
 
     /*-----------------------

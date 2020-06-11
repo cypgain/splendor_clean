@@ -159,6 +159,18 @@ public class Jeu
         return carte;
     }
 
+    public void joueurSuivant()
+    {
+        if(this.tabJoueurs.indexOf(this.currentJoueur) == (this.tabJoueurs.size() - 1))
+        {
+            this.currentJoueur = this.tabJoueurs.get(0);
+        }
+        else
+        {
+            this.currentJoueur = this.tabJoueurs.get(this.tabJoueurs.indexOf(this.currentJoueur) + 1);
+        }
+    }
+
     /*-----------------------
              Getters
     ---------------------- */
