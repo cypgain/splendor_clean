@@ -5,6 +5,7 @@ import splendor.ihm.listeners.frameplateau.GererBoutons;
 import splendor.ihm.listeners.frameplateau.GererFenetre;
 import splendor.ihm.listeners.frameplateau.GererSouris;
 import splendor.metier.Carte;
+import splendor.metier.Joueur;
 import splendor.metier.Noble;
 import splendor.utils.Couleur;
 import splendor.utils.ImageUtils;
@@ -113,7 +114,7 @@ public class FramePlateau extends JFrame
             this.tabLblJetons[i].addMouseListener(new GererSouris(this));
 
             this.tabLblNbJetons       [i] = new JLabel("" + this.controleur.getTabJetons       ()[i] + " x ", JLabel.RIGHT);
-            this.tabLblNbJetonsChoisis[i] = new JLabel("" + this.controleur.getTabJetonsChoisis()[i] + " x ", JLabel.RIGHT);
+            this.tabLblNbJetonsChoisis[i] = new JLabel("" + this.controleur.getNbJetonsChoisis (i)   + " x ", JLabel.RIGHT);
 
             this.tabLblNbJetonsChoisis[i].setForeground(Color.RED);
 
@@ -162,6 +163,31 @@ public class FramePlateau extends JFrame
         }
 
         return 0;
+    }
+
+    public void resetLabelJetonsChoisis()
+    {
+        int i = 0;
+        for(JLabel label : this.tabLblNbJetonsChoisis)
+        {
+            label.setText("" + this.controleur.getNbJetonsChoisis(i) + " x ");
+            i++;
+        }
+    }
+
+    public boolean isJetonsSelectedFull()
+    {
+        return this.controleur.isJetonsSelectedFull();
+    }
+
+    public boolean addSelectedJeton(int indexJeton)
+    {
+        return this.controleur.addSelectedJeton(indexJeton);
+    }
+
+    public void resetJetonsChoisis()
+    {
+        this.controleur.resetJetonsChoisis();
     }
 
     /*----------------------
@@ -252,6 +278,15 @@ public class FramePlateau extends JFrame
         return 0;
     }
 
+    public void resetDosCarteSelectionnee()
+    {
+        if(this.dosCarteSelectionnee != -1)
+        {
+            this.tabLblDosCartes[this.dosCarteSelectionnee].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.dosCarteSelectionnee = -1;
+        }
+    }
+
     public void setDosCarteSelectionnee(int dosCarteSelectionnee) { this.dosCarteSelectionnee = dosCarteSelectionnee; }
 
     /*----------------------
@@ -276,18 +311,6 @@ public class FramePlateau extends JFrame
         }
 
         this.updateCartes();
-    }
-
-    private void updateCartes()
-    {
-        Carte[] tabCartes = this.controleur.getTabCartes();
-
-        for (int i = 0; i < tabCartes.length; i++)
-        {
-            this.tabLblCartes[i].setIcon(ImageUtils.resizeImage(tabCartes[i].getUrl(), FramePlateau.TAILLE_IMAGE_CARTE_X, FramePlateau.TAILLE_IMAGE_CARTE_Y));
-            this.tabLblCartes[i].setName(tabCartes[i].getUrl());
-            this.tabLblCartes[i].addMouseListener(new GererSouris(this));
-        }
     }
 
     public boolean isCarte(Object object)
@@ -323,19 +346,71 @@ public class FramePlateau extends JFrame
         return 0;
     }
 
+    public void resetCarteSelectionnee()
+    {
+        if(this.carteSelectionnee != -1)
+        {
+            this.tabLblCartes[this.carteSelectionnee].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.carteSelectionnee = -1;
+        }
+    }
+
     public void setCarteSelectionnee(int carteSelectionnee) { this.carteSelectionnee = carteSelectionnee; }
 
+    /*-----------------------
+             Updates
+    ---------------------- */
 
     public void updateFramesPosition()
     {
         this.controleur.updateFramesPosition();
     }
 
+    public void updateCartes()
+    {
+        Carte[] tabCartes = this.controleur.getTabCartes();
+
+        for (int i = 0; i < tabCartes.length; i++)
+        {
+            this.tabLblCartes[i].setIcon(ImageUtils.resizeImage(tabCartes[i].getUrl(), FramePlateau.TAILLE_IMAGE_CARTE_X, FramePlateau.TAILLE_IMAGE_CARTE_Y));
+            this.tabLblCartes[i].setName(tabCartes[i].getUrl());
+            this.tabLblCartes[i].addMouseListener(new GererSouris(this));
+        }
+    }
+
+    public void updateJetons()
+    {
+        for(int i = 0; i < this.tabLblNbJetons.length; i++)
+        {
+            this.tabLblNbJetons[i].setText("" + this.controleur.getTabJetons()[i] + " x ");
+        }
+
+        this.resetLabelJetonsChoisis();
+
+        for(int i=0; i < this.controleur.getTabJetonsChoisis().length; i++)
+        {
+            if (this.controleur.getTabJetonsChoisis()[i] == -1)
+                continue;
+
+            this.tabLblNbJetonsChoisis[this.controleur.getTabJetonsChoisis()[i]].setText(this.controleur.getNbJetonsChoisis(this.controleur.getTabJetonsChoisis()[i]) + " x ");
+        }
+    }
+
+    public void updateGraphics()
+    {
+        this.controleur.updateGraphics();
+    }
+
     /*-----------------------
              Getters
     ---------------------- */
 
-    public JButton    getBtnAcheter() { return this.btnAcheter; }
-    public JButton    getBtnReserve() { return this.btnReserve; }
+    public JButton    getBtnAcheter          () { return this.btnAcheter;                           }
+    public JButton    getBtnReserve          () { return this.btnReserve;                           }
+    public Joueur     getCurrentJoueur       () { return this.controleur.getCurrentJoueur();        }
+    public int[]      getTabJetons           () { return this.controleur.getTabJetons();            }
+    public int        getAmountJetonsSelected() { return this.controleur.getAmountJetonsSelected(); }
+    public int[]      getTabJetonsChoisis    () { return this.controleur.getTabJetonsChoisis();     }
+    public JLabel[]   getTabLblJetons        () { return tabLblJetons;                              }
 
 }

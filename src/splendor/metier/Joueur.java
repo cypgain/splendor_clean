@@ -8,6 +8,8 @@ import java.util.List;
 public class Joueur
 {
 
+    private static final int MAX_JETONS = 10;
+
     private static int nbJoueur;
 
     private int         num;
@@ -39,6 +41,30 @@ public class Joueur
         return amount;
     }
 
-    public int         getNum()       { return this.num;  }
-    public List<Noble> getTabNobles() { return tabNobles; }
+    public int getNbJetons()
+    {
+        int amount = 0;
+
+        for (int i = 0; i < this.tabJetons.length; i++)
+        {
+            amount += this.tabJetons[i];
+        }
+
+        return amount;
+    }
+
+    public boolean ajouterJeton(int numJeton, int amount)
+    {
+        if(this.getNbJetons() + amount <= Joueur.MAX_JETONS)
+        {
+            this.tabJetons[numJeton] += amount;
+            return true;
+        }
+
+        return false;
+    }
+
+    public int         getNum      () { return this.num;       }
+    public List<Noble> getTabNobles() { return this.tabNobles; }
+    public int[]       getTabJetons() { return this.tabJetons; }
 }

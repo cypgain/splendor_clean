@@ -189,6 +189,14 @@ public class FrameJoueur extends JFrame
         this.setLocation((int) (this.framePlateau.getX() + this.framePlateau.getSize().getWidth() + (this.getWidth() + 5) *  (this.joueur.getNum() - 1)), this.framePlateau.getY());
     }
 
+    public void updateGraphics()
+    {
+        for(int i = 0; i < this.tabLblJetons.length; i++)
+        {
+            this.tabLblJetons[i].setText("" + this.joueur.getTabJetons()[i]);
+        }
+    }
+
 }
 
 class BonusComponent extends JPanel

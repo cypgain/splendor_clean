@@ -1,11 +1,13 @@
 package splendor.ihm.listeners.frameplateau;
 
 import splendor.ihm.FramePlateau;
+import splendor.utils.Message;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
 public class GererSouris extends MouseAdapter
 {
@@ -15,6 +17,15 @@ public class GererSouris extends MouseAdapter
     public GererSouris(FramePlateau framePlateau)
     {
         this.framePlateau = framePlateau;
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e)
+    {
+        for(JLabel label : this.framePlateau.getTabLblJetons())
+        {
+            label.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+        }
     }
 
     @Override
@@ -54,7 +65,41 @@ public class GererSouris extends MouseAdapter
 
             int indexJeton = this.framePlateau.getIndexOfLblJeton(lblJeton);
 
+            this.framePlateau.addSelectedJeton(indexJeton);
+            this.framePlateau.updateGraphics();
 
+            this.framePlateau.resetCarteSelectionnee();
+            this.framePlateau.resetDosCarteSelectionnee();
+
+            if (this.framePlateau.isJetonsSelectedFull())
+            {
+                if(this.framePlateau.getCurrentJoueur().getNbJetons() + this.framePlateau.getAmountJetonsSelected() <= 10)
+                {
+                    for (int i = 0; i < this.framePlateau.getTabJetonsChoisis().length; i++)
+                    {
+                        if (this.framePlateau.getTabJetonsChoisis()[i] != -1)
+                        {
+                            this.framePlateau.getCurrentJoueur().ajouterJeton(this.framePlateau.getTabJetonsChoisis()[i], 1);
+                            this.framePlateau.getTabJetons()[this.framePlateau.getTabJetonsChoisis()[i]] -= 1;
+                        }
+                    }
+
+                    this.framePlateau.resetJetonsChoisis();
+
+                    // TODO - Fin du tour
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this.framePlateau, Message.ERR_JETON_FULL.getLib());
+                    this.framePlateau.resetJetonsChoisis();
+                }
+            }
+            else if (this.framePlateau.getAmountJetonsSelected() == 3)
+            {
+                this.framePlateau.resetJetonsChoisis();
+            }
+
+            this.framePlateau.updateGraphics();
         }
     }
 

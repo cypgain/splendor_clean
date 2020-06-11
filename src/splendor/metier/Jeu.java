@@ -2,9 +2,12 @@ package splendor.metier;
 
 import splendor.utils.CarteUtils;
 import splendor.utils.Couleur;
+import splendor.utils.Message;
 import splendor.utils.NobleUtils;
 
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Jeu
@@ -24,6 +27,8 @@ public class Jeu
 
     private Carte[] tabCartes;
 
+    private Joueur currentJoueur;
+
     /*-----------------------
           Constructeur
     ---------------------- */
@@ -37,22 +42,38 @@ public class Jeu
         this.deckLevelThree   = new ArrayList<>();
         this.tabNobles        = new ArrayList<>();
         this.tabJoueurs       = new ArrayList<>();
-        this.tabJetons        = new int[Couleur.values().length];
-        this.tabJetonsChoisis = new int[Couleur.values().length];
+        this.tabJetonsChoisis = new int[] { -1, -1, -1 };
         this.tabCartes        = new Carte[12];
 
         this.initDeck();
         this.initNobles();
         this.initCartes();
+        this.initJetons();
     }
 
     /*-----------------------
-         initialisation
+         Initialisation
     ---------------------- */
+
+    private void initJetons()
+    {
+        this.tabJetons = new int[Couleur.values().length];
+
+        // Chargement du nombre de jetons
+        Arrays.fill(this.tabJetons, (this.nbJoueurs == 4 ? 7 : 2 + this.nbJoueurs));
+
+        // Joker
+        this.tabJetons[5] = 5;
+    }
 
     public void addJoueur(Joueur joueur)
     {
         this.tabJoueurs.add(joueur);
+    }
+
+    public void setCurrentJoueur(Joueur currentJoueur)
+    {
+        this.currentJoueur = currentJoueur;
     }
 
     private void initDeck()
@@ -84,6 +105,27 @@ public class Jeu
             else if (i < 8)  this.tabCartes[i] = this.tirerCarte(2);
             else if (i < 12) this.tabCartes[i] = this.tirerCarte(1);
         }
+    }
+
+    /*-----------------------
+             Jetons
+    ---------------------- */
+
+    public void resetJetonsChoisis()
+    {
+        this.tabJetonsChoisis = new int[] { -1, -1, -1 };
+    }
+
+    public int getAmountJetonsSelected()
+    {
+        int amount = 0;
+
+        for(int i = 0; i < this.tabJetonsChoisis.length; i++)
+        {
+            if(this.tabJetonsChoisis[i] != -1) amount++;
+        }
+
+        return amount;
     }
 
     /*-----------------------
@@ -120,9 +162,11 @@ public class Jeu
              Getters
     ---------------------- */
 
-    public Carte[]     getTabCartes       () { return this.tabCartes;        }
-    public List<Noble> getTabNobles       () { return this.tabNobles;        }
-    public int[]       getTabJetons       () { return this.tabJetons;        }
-    public int[]       getTabJetonsChoisis() { return this.tabJetonsChoisis; }
+    public Carte[]      getTabCartes       () { return this.tabCartes;        }
+    public List<Noble>  getTabNobles       () { return this.tabNobles;        }
+    public int[]        getTabJetons       () { return this.tabJetons;        }
+    public int[]        getTabJetonsChoisis() { return this.tabJetonsChoisis; }
+    public List<Joueur> getTabJoueurs      () { return this.tabJoueurs;       }
+    public Joueur       getCurrentJoueur   () { return currentJoueur;         }
 
 }
