@@ -15,17 +15,13 @@ import splendor_equipe_h.utils.SplendorFont;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class FramePlateau extends JFrame
 {
 
     /*----------------------
            Constantes
      -----------------------*/
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = -9161063204877878156L;
     
     private static final int TAILLE_IMAGE_CARTE_X = 130;
     private static final int TAILLE_IMAGE_CARTE_Y = 200;
@@ -75,6 +71,8 @@ public class FramePlateau extends JFrame
         this.setTitle(Message.TITRE_FRAME_PLATEAU.getLib());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setFocusable(true);
+        this.setResizable(false);
+
         this.addComponentListener(new GererFenetre(this));
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
@@ -470,7 +468,7 @@ public class FramePlateau extends JFrame
     public int[]    getTabJetons           () { return this.controleur.getTabJetons();            }
     public int      getAmountJetonsSelected() { return this.controleur.getAmountJetonsSelected(); }
     public int[]    getTabJetonsChoisis    () { return this.controleur.getTabJetonsChoisis();     }
-    public JLabel[] getTabLblJetons        () { return tabLblJetons;                              }
+    public JLabel[] getTabLblJetons        () { return this.tabLblJetons;                              }
     public int      getCarteSelectionnee   () { return this.carteSelectionnee;                    }
     public Carte[]  getTabCartes           () { return this.controleur.getTabCartes();            }
     public JLabel[] getTabLblCartes        () { return this.tabLblCartes;                         }

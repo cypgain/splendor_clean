@@ -15,6 +15,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class FrameJoueur extends JFrame
 {
 
@@ -22,11 +23,6 @@ public class FrameJoueur extends JFrame
            Constantes
      -----------------------*/
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 4626388053030781462L;
-    
     private static final int TAILLE_FRAME_X = 270;
     private static final int TAILLE_FRAME_Y = 900;
 
@@ -319,14 +315,10 @@ public class FrameJoueur extends JFrame
 
 }
 
+@SuppressWarnings("serial")
 class BonusComponent extends JPanel
 {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -1932281453903555345L;
-    
     private Color color;
     private int amount;
 

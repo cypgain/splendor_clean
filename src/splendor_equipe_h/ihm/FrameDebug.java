@@ -9,10 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+@SuppressWarnings("serial")
 public class FrameDebug extends JFrame implements ActionListener
 {
-
-    private static final long serialVersionUID = -8588662142757696989L;
 
     private Controleur controleur;
 
@@ -35,7 +34,8 @@ public class FrameDebug extends JFrame implements ActionListener
         this.controleur = controleur;
 
         this.setFocusable(false);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+
         this.setTitle("Debug");
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
@@ -162,12 +162,10 @@ public class FrameDebug extends JFrame implements ActionListener
 
 }
 
-
+@SuppressWarnings("serial")
 class FrameDebugValeurJeton extends JFrame implements ActionListener
 {
-
-    private static final long serialVersionUID = 426805579780077215L;
-    
+   
     private Controleur   controleur;
     private JPanel       panelTxtField;
     private JTextField[] txtValeurJeton;

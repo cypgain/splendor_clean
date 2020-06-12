@@ -6,14 +6,10 @@ import java.awt.*;
 import splendor_equipe_h.Controleur;
 import splendor_equipe_h.ihm.listeners.framelancement.GererBoutons;
 
+@SuppressWarnings("serial")
 public class FrameLancement extends JFrame
 {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -8682273366677549486L;
-    
     private JComboBox<String> cbxLangue;
     private JComboBox<Integer> cbxNombreJoueur;
     private JButton   btnValider;
@@ -24,8 +20,12 @@ public class FrameLancement extends JFrame
     {
         this.controleur = controleur;
 
+        this.setTitle("Lancement");
         this.setLayout(new GridLayout(7, 1));
         this.setSize(300,300);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
 

@@ -61,7 +61,7 @@ public class Controleur
         Controleur.langue = langue;
 
         this.metier       = new Jeu(nbJoueurs);
-        
+
         if (this.framePlateau != null)
         {
             this.framePlateau.dispose();
@@ -396,22 +396,25 @@ public class Controleur
 
     public void reposerJeton(Carte c)
     {
+        Joueur j = this.getCurrentJoueur();
         for (int i = 0; i < this.metier.getTabJetons().length-1; i++)
         {
-            Joueur j = this.getCurrentJoueur();
 
             if (c.getPrix()[i] <= j.getNbCarte(i))
                 continue;
             if (c.getPrix()[i] - j.getNbCarte(i) <= j.getNbJetons(i))
             {
                 this.metier.getTabJetons()[i] += c.getPrix()[i] - j.getNbCarte(i);
-            } else {
+            } 
+            else 
+            {
                 this.metier.getTabJetons()[i] += j.getNbJetons(i);
 
-                this.metier.getTabJetons()[5] += c.getPrix()[i] - j.getNbCarte(i) + j.getNbJetons(i);
+                this.metier.getTabJetons()[5] += c.getPrix()[i] - j.getNbCarte(i) - j.getNbJetons(i);
             }
 
         }
+        System.out.println(j.getNbJetons(5) +" joueur : "+ this.metier.getTabJetons()[5] + " plateau");
     }
 
     public boolean isJetonsSelectedFull()
