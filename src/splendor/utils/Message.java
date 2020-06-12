@@ -29,7 +29,15 @@ public enum Message
 
     BOUTON_VALIDER_NOBLE("Selectionner ce noble", "Select this noble"),
 
-    WINNER("Le joueur {NUM} à gagné la partie", "Player's {NUM} has won the game")
+    WINNER("Le joueur {NUM} à gagné la partie", "Player's {NUM} has won the game"),
+
+    ERR_SAUVEGARDE_NOM_SCENARIO("Vous n'avez pas entré de nom", "You didn't enter a name"),
+
+    ACTION_SAVE_NOM_SCENARIO("Veuillez entrer le nom du scénario", "Please enter the name of the script"),
+
+    ACTION_SAVE_SCENARIO("Vous avez sauvegardé le scénario", "You saved the script"),
+
+    NOT_YOUR_TURN("Ce n'est pas votre tour !", "It's not your turn !"),
 
     ;
 

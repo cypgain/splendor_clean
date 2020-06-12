@@ -294,6 +294,11 @@ public class FrameJoueur extends JFrame
         return this.joueur;
     }
 
+    public Joueur getCurrentJoueur()
+    {
+        return this.controleur.getCurrentJoueur();
+    }
+
     public void finTourJoueur()
     {
         this.controleur.finTourJoueur();

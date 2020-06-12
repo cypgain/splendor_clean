@@ -21,24 +21,32 @@ public class GererBoutons implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        Carte carteReserve = this.frameJoueur.getCarteReserve();
-
-        if(carteReserve != null)
+        if(this.frameJoueur.getJoueur() == this.frameJoueur.getCurrentJoueur())
         {
-            if (this.frameJoueur.prendreCarte(this.frameJoueur.getJoueur(), carteReserve))
-            {
-                this.frameJoueur.getJoueur().getTabCartesReserve().remove(carteReserve);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this.frameJoueur, Message.ERR_JETON.getLib());
-                return;
-            }
+            Carte carteReserve = this.frameJoueur.getCarteReserve();
 
-            this.frameJoueur.resetCarteReserveChoisie();
-            this.frameJoueur.updateGraphics();
-            this.frameJoueur.finTourJoueur();
+            if(carteReserve != null)
+            {
+                if (this.frameJoueur.prendreCarte(this.frameJoueur.getJoueur(), carteReserve))
+                {
+                    this.frameJoueur.getJoueur().getTabCartesReserve().remove(carteReserve);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this.frameJoueur, Message.ERR_JETON.getLib());
+                    return;
+                }
+
+                this.frameJoueur.finTourJoueur();
+            }
         }
+        else
+        {
+            JOptionPane.showMessageDialog(this.frameJoueur, Message.NOT_YOUR_TURN.getLib());
+        }
+
+        this.frameJoueur.resetCarteReserveChoisie();
+        this.frameJoueur.updateGraphics();
     }
 
 }

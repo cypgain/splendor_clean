@@ -26,7 +26,7 @@ public class Joueur implements Serializable
     {
         this.num              = ++Joueur.nbJoueur;
         this.prestige         = 0;
-        this.tabJetons        = new int[] { 999, 999, 999, 999, 999, 999 };
+        this.tabJetons        = new int[Couleur.values().length];
         this.tabNobles        = new ArrayList<>();
         this.tabCartes        = new ArrayList<>();
         this.tabCartesReserve = new ArrayList<>();
@@ -43,6 +43,11 @@ public class Joueur implements Serializable
         }
 
         return amount;
+    }
+
+    public void setValeurJeton(int[] newValeurs)
+    {
+        this.tabJetons = newValeurs;
     }
 
     public int getNbJetons()

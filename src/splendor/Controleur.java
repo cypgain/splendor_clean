@@ -1,9 +1,6 @@
 package splendor;
 
-import splendor.ihm.FrameJoueur;
-import splendor.ihm.FrameNoble;
-import splendor.ihm.FramePlateau;
-import splendor.ihm.FrameLancement;
+import splendor.ihm.*;
 import splendor.metier.Carte;
 import splendor.metier.Jeu;
 import splendor.metier.Joueur;
@@ -11,6 +8,9 @@ import splendor.metier.Noble;
 import splendor.utils.Message;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +24,7 @@ public class Controleur
     private Jeu metier;
 
     private FramePlateau      framePlateau;
+    private FrameDebug        frameDebug;
     private List<FrameJoueur> tabFrameJoueurs;
 
     private boolean changementMetier;
@@ -64,6 +65,28 @@ public class Controleur
         this.framePlateau    = new FramePlateau(this);
         this.tabFrameJoueurs = new ArrayList<>();
 
+        this.framePlateau.addKeyListener(new KeyAdapter()
+        {
+
+            @Override
+            public void keyPressed(KeyEvent e)
+            {
+                if(e.getKeyCode() == KeyEvent.VK_D)
+                {
+                    if(Controleur.this.frameDebug == null)
+                    {
+                        Controleur.this.frameDebug = new FrameDebug(Controleur.this);
+                    }
+                    else
+                    {
+                        Controleur.this.frameDebug.dispose();
+                        Controleur.this.frameDebug = null;
+                    }
+                }
+            }
+
+        });
+
         this.initJoueurs(nbJoueurs);
         this.nouvellePartie();
     }
@@ -83,6 +106,18 @@ public class Controleur
         this.metier.setCurrentJoueur(this.metier.getTabJoueurs().get(0));
     }
 
+    public void changementScenario()
+    {
+        for(FrameJoueur frameJoueur : new ArrayList<>(this.tabFrameJoueurs))
+        {
+            frameJoueur.dispose();
+        }
+
+        for(Joueur joueur : this.metier.getTabJoueurs())
+        {
+            this.tabFrameJoueurs.add(new FrameJoueur(this, this.framePlateau, joueur));
+        }
+    }
 
     /*-----------------------
             Updates
@@ -497,50 +532,54 @@ public class Controleur
         return true;
     }
 
+    public void setValeurJeton(int[] newValeurs)
+    {
+        this.getCurrentJoueur().setValeurJeton(newValeurs);
+    }
+
     /*-----------------------
           Serialization
     ---------------------- */
 
-    public boolean sauvegarder(String nom) 
+    public boolean sauvegarder(String nom)
     {
         if (nom == null || nom.equalsIgnoreCase(""))
             return false;
 
-        try 
+        try
         {
             File file = new File("../scenarios/" + nom + ".data");
             file.createNewFile();
-        } 
-        catch (IOException ex) 
+        }
+        catch (IOException ex)
         {
             ex.printStackTrace();
         }
 
         ObjectOutputStream oos = null;
 
-        try 
+        try
         {
             final FileOutputStream fichier = new FileOutputStream("../scenarios/" + nom + ".data");
             oos = new ObjectOutputStream(fichier);
             oos.writeObject(this.metier);
-            System.out.println(this.metier);
             oos.flush();
-        } 
-        catch (final java.io.IOException ex) 
+        }
+        catch (final java.io.IOException ex)
         {
             ex.printStackTrace();
-        } 
-        finally 
+        }
+        finally
         {
-            try 
+            try
             {
-                if (oos != null) 
+                if (oos != null)
                 {
                     oos.flush();
                     oos.close();
                 }
-            } 
-            catch (final IOException ex) 
+            }
+            catch (final IOException ex)
             {
                 ex.printStackTrace();
             }
@@ -548,41 +587,40 @@ public class Controleur
         return true;
     }
 
-    public boolean charger(String nom) 
+    public boolean charger(String nom)
     {
         String selectedFileName = nom + ".data";
-        ObjectInputStream ois = null;
+        ObjectInputStream ois   = null;
 
-        try 
+        try
         {
             final FileInputStream fichier = new FileInputStream("../scenarios/" + selectedFileName);
             ois = new ObjectInputStream(fichier);
             this.forceEndGame();
             final Jeu metier = (Jeu) ois.readObject();
-
-            System.out.println(metier);
-
             this.changementMetier(metier);
-        } 
-        catch (final IOException | ClassNotFoundException ex) 
+            this.changementScenario();
+        }
+        catch (final IOException | ClassNotFoundException ex)
         {
             ex.printStackTrace();
             return false;
-        } 
-        finally 
+        }
+        finally
         {
-            try 
+            try
             {
-                if (ois != null) 
+                if (ois != null)
                 {
                     ois.close();
                 }
-            } 
-            catch (final IOException ex) 
+            }
+            catch (final IOException ex)
             {
                 ex.printStackTrace();
             }
         }
+
         return true;
     }
 
