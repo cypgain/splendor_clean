@@ -60,7 +60,8 @@ public class Controleur
     {
         Controleur.langue = langue;
 
-        this.metier          = new Jeu(nbJoueurs);
+        this.metier       = new Jeu(nbJoueurs);
+        
         if (this.framePlateau != null)
         {
             this.framePlateau.dispose();
