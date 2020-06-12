@@ -32,6 +32,8 @@ public class FrameDebug extends JFrame implements ActionListener
         this.setFocusable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Debug");
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
 
         this.panelPrinc = new JPanel(new GridLayout(8, 1));
 
@@ -138,7 +140,7 @@ class FrameDebugValeurJeton extends JFrame implements ActionListener
 
     private static final long serialVersionUID = 426805579780077215L;
     
-    private Controleur controleur;
+    private Controleur   controleur;
     private JPanel       panelTxtField;
     private JTextField[] txtValeurJeton;
     private JLabel[]     lblJeton;
@@ -146,6 +148,9 @@ class FrameDebugValeurJeton extends JFrame implements ActionListener
 
     public FrameDebugValeurJeton(Controleur controleur)
     {
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
+
         this.controleur = controleur;
         this.panelTxtField = new JPanel(new GridLayout(2, 6, 20, 20));
 

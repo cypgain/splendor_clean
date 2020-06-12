@@ -76,6 +76,8 @@ public class FramePlateau extends JFrame
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setFocusable(true);
         this.addComponentListener(new GererFenetre(this));
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
 
         this.loadRegionNobles();
         this.loadRegionCartes();
@@ -103,8 +105,8 @@ public class FramePlateau extends JFrame
         JPanel panelJetonsBottom = new JPanel();
 
         // Jetons
-        this.tabLblJetons          = new JLabel[Couleur.values().length - 1];
-        this.tabLblNbJetons        = new JLabel[Couleur.values().length - 1];
+        this.tabLblJetons          = new JLabel[Couleur.values().length    ];
+        this.tabLblNbJetons        = new JLabel[Couleur.values().length    ];
         this.tabLblNbJetonsChoisis = new JLabel[Couleur.values().length - 1];
 
         JPanel panelTemp;
@@ -129,6 +131,13 @@ public class FramePlateau extends JFrame
             panelJetonsTop.add(panelTemp);
             panelJetonsTop.add(this.tabLblJetons[i]);
         }
+
+        this.tabLblNbJetons[5] = new JLabel("" + this.controleur.getTabJetons()[5] + " x ", JLabel.RIGHT);
+        this.tabLblJetons  [5] = new JLabel();
+        this.tabLblJetons  [5].setIcon(ImageUtils.resizeImage("ressources/jeton_" + Couleur.values()[5].toString().toLowerCase() + ".png",TAILLE_IMAGE_JETON_X, TAILLE_IMAGE_JETON_Y));
+
+        panelJetonsTop.add(this.tabLblNbJetons[5]);
+        panelJetonsTop.add(this.tabLblJetons  [5]);
 
         // Boutons
         this.btnAcheter = new JButton(Message.BUTTON_BUY_CARD.getLib());

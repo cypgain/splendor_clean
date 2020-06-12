@@ -26,6 +26,8 @@ public class FrameLancement extends JFrame
 
         this.setLayout(new GridLayout(7, 1));
         this.setSize(300,300);
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
 
         // Création
         this.cbxLangue       = new JComboBox<>(new String[] { "FR", "ENG" });

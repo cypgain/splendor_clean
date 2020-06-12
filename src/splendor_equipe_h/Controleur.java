@@ -598,7 +598,6 @@ public class Controleur
         {
             final FileInputStream fichier = new FileInputStream("../scenarios/" + selectedFileName);
             ois = new ObjectInputStream(fichier);
-            this.forceEndGame();
             final Jeu metier = (Jeu) ois.readObject();
             this.changementMetier(metier);
         }
@@ -633,6 +632,7 @@ public class Controleur
 
     public void changementMetier(Jeu metier)
     {
+        this.forceEndGame();
         this.metier           = metier;
         this.changementScenario();
 
@@ -651,6 +651,7 @@ public class Controleur
 
     public static void main(String[] args)
     {
+        System.out.println("Copyright Projet tutoré 2020 Equipe H : Mathieu BARTON, Tom BRULIN, Kevin BLONDEL, Jean-Bernard CAVELIER, Romuald NISS ");
         new Controleur();
     }
 

@@ -38,6 +38,8 @@ public class FrameNoble extends JFrame implements ActionListener
         this.nobleChoisi = null;
 
         this.setLayout(new BorderLayout());
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
 
         //Creation des composants
         this.lblTexte = new JLabel(Message.CHOIX_NOBLE.getLib());

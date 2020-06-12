@@ -84,6 +84,9 @@ public class FrameJoueur extends JFrame
         this.setLayout(new BorderLayout());
         this.setResizable(false);
         this.setSize(FrameJoueur.TAILLE_FRAME_X, FrameJoueur.TAILLE_FRAME_Y);
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
+        this.setTitle(Message.PLAYER.getLib().replace("{NUM}", "" + this.joueur.getNum()));
 
         this.panelPrincipal = new JPanel(new BorderLayout());
         this.panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -199,6 +202,16 @@ public class FrameJoueur extends JFrame
 
     public void update()
     {
+        // Joueur actuel
+        if (this.joueur==this.controleur.getCurrentJoueur())
+        {
+            this.lblJoueur.setForeground(Color.RED);
+        }
+        else
+        {
+            this.lblJoueur.setForeground(null);
+        }
+
         // Jetons
         for(int i = 0; i < this.tabLblJetons.length; i++)
         {
