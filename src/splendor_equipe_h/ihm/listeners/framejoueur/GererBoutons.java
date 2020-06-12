@@ -1,8 +1,8 @@
-package splendor.ihm.listeners.framejoueur;
+package splendor_equipe_h.ihm.listeners.framejoueur;
 
-import splendor.ihm.FrameJoueur;
-import splendor.metier.Carte;
-import splendor.utils.Message;
+import splendor_equipe_h.ihm.FrameJoueur;
+import splendor_equipe_h.metier.Carte;
+import splendor_equipe_h.utils.Message;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

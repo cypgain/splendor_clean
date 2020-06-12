@@ -1,6 +1,6 @@
-package splendor.ihm.listeners.framejoueur;
+package splendor_equipe_h.ihm.listeners.framejoueur;
 
-import splendor.ihm.FrameJoueur;
+import splendor_equipe_h.ihm.FrameJoueur;
 
 import javax.swing.*;
 import java.awt.*;

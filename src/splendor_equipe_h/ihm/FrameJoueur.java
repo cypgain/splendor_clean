@@ -1,15 +1,15 @@
-package splendor.ihm;
+package splendor_equipe_h.ihm;
 
-import splendor.Controleur;
-import splendor.ihm.listeners.framejoueur.GererBoutons;
-import splendor.ihm.listeners.framejoueur.GererSouris;
-import splendor.metier.Carte;
-import splendor.metier.Joueur;
-import splendor.metier.Noble;
-import splendor.utils.Couleur;
-import splendor.utils.ImageUtils;
-import splendor.utils.Message;
-import splendor.utils.SplendorFont;
+import splendor_equipe_h.Controleur;
+import splendor_equipe_h.ihm.listeners.framejoueur.GererBoutons;
+import splendor_equipe_h.ihm.listeners.framejoueur.GererSouris;
+import splendor_equipe_h.metier.Carte;
+import splendor_equipe_h.metier.Joueur;
+import splendor_equipe_h.metier.Noble;
+import splendor_equipe_h.utils.Couleur;
+import splendor_equipe_h.utils.ImageUtils;
+import splendor_equipe_h.utils.Message;
+import splendor_equipe_h.utils.SplendorFont;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

@@ -1,6 +1,6 @@
-package splendor.utils;
+package splendor_equipe_h.utils;
 
-import splendor.metier.Carte;
+import splendor_equipe_h.metier.Carte;
 
 import java.util.ArrayList;
 

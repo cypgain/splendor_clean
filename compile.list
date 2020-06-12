@@ -1,24 +1,24 @@
-./src/splendor/Controleur.java
+./src/splendor_equipe_h/Controleur.java
 
-./src/splendor/ihm/FramePlateau.java
-./src/splendor/ihm/FrameJoueur.java
-./src/splendor/ihm/FrameLancement.java
-./src/splendor/ihm/FrameNoble.java
-./src/splendor/ihm/listeners/framejoueur/GererBoutons.java
-./src/splendor/ihm/listeners/framejoueur/GererSouris.java
-./src/splendor/ihm/listeners/frameplateau/GererBoutons.java
-./src/splendor/ihm/listeners/frameplateau/GererFenetre.java
-./src/splendor/ihm/listeners/frameplateau/GererSouris.java
-./src/splendor/ihm/listeners/framelancement/GererBoutons.java
+./src/splendor_equipe_h/ihm/FramePlateau.java
+./src/splendor_equipe_h/ihm/FrameJoueur.java
+./src/splendor_equipe_h/ihm/FrameLancement.java
+./src/splendor_equipe_h/ihm/FrameNoble.java
+./src/splendor_equipe_h/ihm/listeners/framejoueur/GererBoutons.java
+./src/splendor_equipe_h/ihm/listeners/framejoueur/GererSouris.java
+./src/splendor_equipe_h/ihm/listeners/frameplateau/GererBoutons.java
+./src/splendor_equipe_h/ihm/listeners/frameplateau/GererFenetre.java
+./src/splendor_equipe_h/ihm/listeners/frameplateau/GererSouris.java
+./src/splendor_equipe_h/ihm/listeners/framelancement/GererBoutons.java
 
-./src/splendor/metier/Carte.java
-./src/splendor/metier/Jeu.java
-./src/splendor/metier/Joueur.java
-./src/splendor/metier/Noble.java
+./src/splendor_equipe_h/metier/Carte.java
+./src/splendor_equipe_h/metier/Jeu.java
+./src/splendor_equipe_h/metier/Joueur.java
+./src/splendor_equipe_h/metier/Noble.java
 
-./src/splendor/utils/CarteUtils.java
-./src/splendor/utils/Couleur.java
-./src/splendor/utils/ImageUtils.java
-./src/splendor/utils/Message.java
-./src/splendor/utils/NobleUtils.java
-./src/splendor/utils/SplendorFont.java
+./src/splendor_equipe_h/utils/CarteUtils.java
+./src/splendor_equipe_h/utils/Couleur.java
+./src/splendor_equipe_h/utils/ImageUtils.java
+./src/splendor_equipe_h/utils/Message.java
+./src/splendor_equipe_h/utils/NobleUtils.java
+./src/splendor_equipe_h/utils/SplendorFont.java

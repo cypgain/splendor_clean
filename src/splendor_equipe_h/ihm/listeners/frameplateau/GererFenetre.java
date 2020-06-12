@@ -1,8 +1,7 @@
-package splendor.ihm.listeners.frameplateau;
+package splendor_equipe_h.ihm.listeners.frameplateau;
 
-import splendor.ihm.FramePlateau;
+import splendor_equipe_h.ihm.FramePlateau;
 
-import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 

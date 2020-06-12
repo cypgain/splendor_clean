@@ -1,16 +1,15 @@
-package splendor;
+package splendor_equipe_h;
 
-import splendor.ihm.*;
-import splendor.metier.Carte;
-import splendor.metier.Jeu;
-import splendor.metier.Joueur;
-import splendor.metier.Noble;
-import splendor.utils.Message;
+import splendor_equipe_h.ihm.*;
+import splendor_equipe_h.metier.Carte;
+import splendor_equipe_h.metier.Jeu;
+import splendor_equipe_h.metier.Joueur;
+import splendor_equipe_h.metier.Noble;
+import splendor_equipe_h.utils.Message;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 

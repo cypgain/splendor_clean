@@ -1,6 +1,6 @@
-package splendor.metier;
+package splendor_equipe_h.metier;
 
-import splendor.utils.Couleur;
+import splendor_equipe_h.utils.Couleur;
 
 public class Noble extends Carte
 {

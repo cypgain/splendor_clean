@@ -1,9 +1,9 @@
-package splendor.ihm;
+package splendor_equipe_h.ihm;
 
-import splendor.Controleur;
-import splendor.metier.Noble;
-import splendor.utils.Message;
-import splendor.utils.SplendorFont;
+import splendor_equipe_h.Controleur;
+import splendor_equipe_h.metier.Noble;
+import splendor_equipe_h.utils.Message;
+import splendor_equipe_h.utils.SplendorFont;
 
 import javax.swing.*;
 import java.awt.*;

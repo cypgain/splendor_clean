@@ -1,4 +1,4 @@
-package splendor.utils;
+package splendor_equipe_h.utils;
 
 import java.awt.*;
 

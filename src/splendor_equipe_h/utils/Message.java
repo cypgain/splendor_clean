@@ -1,6 +1,6 @@
-package splendor.utils;
+package splendor_equipe_h.utils;
 
-import static splendor.Controleur.langue;
+import static splendor_equipe_h.Controleur.langue;
 
 public enum Message
 {

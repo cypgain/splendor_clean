@@ -1,10 +1,10 @@
-package splendor.ihm;
+package splendor_equipe_h.ihm;
 
 import javax.swing.*;
 import java.awt.*;
 
-import splendor.Controleur;
-import splendor.ihm.listeners.framelancement.GererBoutons;
+import splendor_equipe_h.Controleur;
+import splendor_equipe_h.ihm.listeners.framelancement.GererBoutons;
 
 public class FrameLancement extends JFrame
 {

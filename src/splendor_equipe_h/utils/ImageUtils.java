@@ -1,4 +1,4 @@
-package splendor.utils;
+package splendor_equipe_h.utils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

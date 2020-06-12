@@ -1,7 +1,7 @@
-package splendor.ihm;
+package splendor_equipe_h.ihm;
 
-import splendor.Controleur;
-import splendor.utils.Message;
+import splendor_equipe_h.Controleur;
+import splendor_equipe_h.utils.Message;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,13 +1,12 @@
-package splendor.ihm.listeners.frameplateau;
+package splendor_equipe_h.ihm.listeners.frameplateau;
 
-import splendor.ihm.FramePlateau;
-import splendor.utils.Message;
+import splendor_equipe_h.ihm.FramePlateau;
+import splendor_equipe_h.utils.Message;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
 public class GererSouris extends MouseAdapter
 {

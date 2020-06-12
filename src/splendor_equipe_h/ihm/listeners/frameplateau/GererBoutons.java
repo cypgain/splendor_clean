@@ -1,8 +1,8 @@
-package splendor.ihm.listeners.frameplateau;
+package splendor_equipe_h.ihm.listeners.frameplateau;
 
-import splendor.ihm.FramePlateau;
-import splendor.metier.Carte;
-import splendor.utils.Message;
+import splendor_equipe_h.ihm.FramePlateau;
+import splendor_equipe_h.metier.Carte;
+import splendor_equipe_h.utils.Message;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

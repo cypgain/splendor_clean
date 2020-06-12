@@ -1,6 +1,6 @@
-package splendor.ihm.listeners.framelancement;
+package splendor_equipe_h.ihm.listeners.framelancement;
 
-import splendor.ihm.FrameLancement;
+import splendor_equipe_h.ihm.FrameLancement;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

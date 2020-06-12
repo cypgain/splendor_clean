@@ -1,8 +1,8 @@
-package splendor.metier;
+package splendor_equipe_h.metier;
 
-import splendor.utils.CarteUtils;
-import splendor.utils.Couleur;
-import splendor.utils.NobleUtils;
+import splendor_equipe_h.utils.CarteUtils;
+import splendor_equipe_h.utils.Couleur;
+import splendor_equipe_h.utils.NobleUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;

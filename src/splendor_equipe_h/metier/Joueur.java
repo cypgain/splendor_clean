@@ -1,6 +1,6 @@
-package splendor.metier;
+package splendor_equipe_h.metier;
 
-import splendor.utils.Couleur;
+import splendor_equipe_h.utils.Couleur;
 
 import java.io.Serializable;
 import java.util.ArrayList;

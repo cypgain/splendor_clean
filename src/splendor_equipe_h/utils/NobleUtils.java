@@ -1,6 +1,6 @@
-package splendor.utils;
+package splendor_equipe_h.utils;
 
-import splendor.metier.Noble;
+import splendor_equipe_h.metier.Noble;
 
 import java.util.ArrayList;
 
