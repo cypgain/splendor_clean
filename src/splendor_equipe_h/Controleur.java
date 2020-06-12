@@ -107,6 +107,9 @@ public class Controleur
 
     public void changementScenario()
     {
+        this.framePlateau.dispose();
+        this.framePlateau = new FramePlateau(this);
+        
         for(FrameJoueur frameJoueur : new ArrayList<>(this.tabFrameJoueurs))
         {
             frameJoueur.dispose();
@@ -598,7 +601,6 @@ public class Controleur
             this.forceEndGame();
             final Jeu metier = (Jeu) ois.readObject();
             this.changementMetier(metier);
-            this.changementScenario();
         }
         catch (final IOException | ClassNotFoundException ex)
         {
@@ -632,6 +634,8 @@ public class Controleur
     public void changementMetier(Jeu metier)
     {
         this.metier           = metier;
+        this.changementScenario();
+
         this.changementMetier = true;
     }
 
