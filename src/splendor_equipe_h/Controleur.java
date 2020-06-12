@@ -61,7 +61,18 @@ public class Controleur
         Controleur.langue = langue;
 
         this.metier          = new Jeu(nbJoueurs);
-        this.framePlateau    = new FramePlateau(this);
+        if (this.framePlateau != null)
+        {
+            this.framePlateau.dispose();
+        }
+        this.framePlateau = new FramePlateau(this);
+        if (this.tabFrameJoueurs!=null)
+        {
+            for (FrameJoueur frameJoueur : this.tabFrameJoueurs)
+            {
+                frameJoueur.dispose();
+            }
+        }
         this.tabFrameJoueurs = new ArrayList<>();
 
         this.framePlateau.addKeyListener(new KeyAdapter()
@@ -85,14 +96,16 @@ public class Controleur
             }
 
         });
-
+        this.forceEndGame();
         this.initJoueurs(nbJoueurs);
-        this.nouvellePartie();
+        this.changementMetier=true;
     }
 
     private void initJoueurs(int nbJoueurs)
     {
         Joueur joueurTemp;
+
+        Joueur.resetNbJoueurs();
 
         for(int i = 0; i < nbJoueurs; i++)
         {

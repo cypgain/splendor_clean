@@ -45,6 +45,11 @@ public class Joueur implements Serializable
         return amount;
     }
 
+    public static void resetNbJoueurs()
+    {
+        Joueur.nbJoueur=0;
+    }
+
     public void setValeurJeton(int[] newValeurs)
     {
         this.tabJetons = newValeurs;
