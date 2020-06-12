@@ -12,12 +12,14 @@ import java.io.File;
 public class FrameDebug extends JFrame implements ActionListener
 {
 
+    private static final long serialVersionUID = -8588662142757696989L;
+
     private Controleur controleur;
 
-    private JPanel    panelPrinc;
-    private JComboBox cbxScenario;
-    private JButton   btnCharger;
-    private JButton   btnSauvegarder;
+    private JPanel            panelPrinc;
+    private JComboBox<String> cbxScenario;
+    private JButton           btnCharger;
+    private JButton           btnSauvegarder;
 
     private JButton btnPasserTour;
     private JButton btnJetonInfini;
@@ -134,7 +136,9 @@ public class FrameDebug extends JFrame implements ActionListener
 class FrameDebugValeurJeton extends JFrame implements ActionListener
 {
 
-    private Controleur   controleur;
+    private static final long serialVersionUID = 426805579780077215L;
+    
+    private Controleur controleur;
     private JPanel       panelTxtField;
     private JTextField[] txtValeurJeton;
     private JLabel[]     lblJeton;
