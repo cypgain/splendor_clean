@@ -2,11 +2,14 @@ package splendor.metier;
 
 import splendor.utils.Couleur;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Joueur
+public class Joueur implements Serializable
 {
+
+    private static final long serialVersionUID = 5047753364239890219L;
 
     private static final int MAX_JETONS = 10;
 

@@ -15,6 +15,11 @@ import java.awt.event.MouseEvent;
 public class FrameNoble extends JFrame implements ActionListener
 {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -3610097031579091119L;
+
     private Controleur controleur;
 
     private Noble[] visiteNoble;

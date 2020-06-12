@@ -10,7 +10,10 @@ public class CarteUtils
     public static ArrayList<Carte> getDeckOne()
     {
         ArrayList<Carte> deckOne = new ArrayList<Carte>()
-        {{
+        {
+            private static final long serialVersionUID = 5047753364239890219L;
+
+            {
             add(new Carte("ressources/dev_I_01.png", 0, Couleur.BLANC, 0, 0, 0, 1, 2));
             add(new Carte("ressources/dev_I_02.png", 0, Couleur.BLANC, 0, 0, 3, 0, 0));
             add(new Carte("ressources/dev_I_03.png", 0, Couleur.BLANC, 0, 0, 2, 2, 0));
@@ -59,7 +62,11 @@ public class CarteUtils
     public static ArrayList<Carte> getDeckTwo()
     {
         ArrayList<Carte> deckTwo = new ArrayList<Carte>()
-        {{
+        {
+            
+            private static final long serialVersionUID = 5047753364239890219L;
+
+            {
             add(new Carte("ressources/dev_II_01.png", 1, Couleur.BLANC, 3, 0, 0, 2, 2));
             add(new Carte("ressources/dev_II_02.png", 1, Couleur.BLANC, 0, 2, 3, 0, 3));
             add(new Carte("ressources/dev_II_03.png", 2, Couleur.BLANC, 1, 0, 0, 2, 4));
@@ -99,7 +106,11 @@ public class CarteUtils
     public static ArrayList<Carte> getDeckThree()
     {
         ArrayList<Carte> deckThree = new ArrayList<Carte>()
-        {{
+        {
+            
+            private static final long serialVersionUID = 5047753364239890219L;
+
+            {
             add(new Carte("ressources/dev_III_01.png", 3, Couleur.BLANC, 3, 0, 3, 3, 5));
             add(new Carte("ressources/dev_III_02.png", 4, Couleur.BLANC, 0, 3, 0, 6, 3));
             add(new Carte("ressources/dev_III_03.png", 4, Couleur.BLANC, 0, 0, 0, 7, 0));
