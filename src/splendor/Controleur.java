@@ -1,6 +1,7 @@
 package splendor;
 
 import splendor.ihm.FrameJoueur;
+import splendor.ihm.FrameNoble;
 import splendor.ihm.FramePlateau;
 import splendor.ihm.FrameLancement;
 import splendor.metier.Carte;
@@ -26,28 +27,27 @@ public class Controleur
     private boolean changementMetier;
     private boolean finDuTourJoueur;
     private boolean forcedEndGame;
+    private boolean finDuTour;
 
     public Controleur()
     {
         new FrameLancement(this);
 
-        while (true) 
+
+        new Thread(() ->
         {
-            try 
+            while (true)
             {
-                Thread.sleep(500);
-            } 
-            catch (Exception e) {}
+                try { Thread.sleep(100); } catch (Exception e) {}
 
-            if (this.changementMetier) 
-            {
-                this.updateGraphics();
-                this.changementMetier = false;
-                this.nouvellePartie();
+                if (this.changementMetier)
+                {
+                    this.updateGraphics();
+                    this.changementMetier = false;
+                    this.nouvellePartie();
+                }
             }
-
-        }
-        
+        }).start();
     }
 
     /*-----------------------
@@ -86,9 +86,9 @@ public class Controleur
             Updates
     ---------------------- */
 
-    public void updateFramesPosition() 
+    public void updateFramesPosition()
     {
-        for (FrameJoueur frameJoueur : this.tabFrameJoueurs) 
+        for (FrameJoueur frameJoueur : this.tabFrameJoueurs)
         {
             frameJoueur.updateFramePosition();
         }
@@ -99,16 +99,28 @@ public class Controleur
         this.framePlateau.updateCartes();
         this.framePlateau.updateJetons();
         this.framePlateau.updateLabelTourJoueur();
+        this.framePlateau.updateNobles();
 
         for(FrameJoueur frameJoueur : this.tabFrameJoueurs)
         {
-            frameJoueur.updateGraphics();
+            frameJoueur.update();
         }
     }
 
     /*-----------------------
             Partie
     ---------------------- */
+
+    public boolean prendreCarte(Joueur joueur, Carte carte)
+    {
+        if (!(joueur.peutPrendreCarte(carte)))
+            return false;
+
+        this.reposerJeton(carte);
+        joueur.ajouterCarte(carte);
+
+        return true;
+    }
 
     public boolean acheterCarte(Joueur joueur, Carte carte)
     {
@@ -147,16 +159,98 @@ public class Controleur
         this.finDuTourJoueur = true;
     }
 
+    private void quitterLaPartie(Joueur winner)
+    {
+        JOptionPane.showMessageDialog(this.framePlateau, Message.WINNER.getLib().replace("{NUM}", "" + winner.getNum()));
+        System.exit(0);
+    }
+
     private boolean finDePartie()
     {
-        // TODO - Fin de partie
+        int amount = 0;
+
+        for (Joueur j : this.metier.getTabJoueurs())
+        {
+            if (j.getPrestige() >= 15)
+                amount++;
+        }
+
+        if (amount == 1)
+        {
+            for (Joueur j : this.metier.getTabJoueurs())
+            {
+                if (j.getPrestige() >= 15)
+                {
+                    this.quitterLaPartie(j);
+                    return true;
+                }
+            }
+        }
+        else if (amount > 1)
+        {
+            boolean equals = false;
+            int best = 0;
+
+            for (Joueur j : this.metier.getTabJoueurs())
+            {
+                if (j.getPrestige() > best)
+                {
+                    best = j.getPrestige();
+                }
+                else if (best == j.getPrestige())
+                {
+                    equals = true;
+                }
+            }
+
+            if (equals)
+            {
+                best = 0;
+                Joueur bestJoueur = null;
+
+                for (Joueur j : this.metier.getTabJoueurs())
+                {
+                    if (j.getPrestige() >= best)
+                    {
+                        if (bestJoueur == null || bestJoueur.getTabCartes().size() > j.getTabCartes().size())
+                        {
+                            best = j.getPrestige();
+                            bestJoueur = j;
+                        }
+                    }
+                }
+
+                this.quitterLaPartie(bestJoueur);
+
+                return true;
+            }
+            else
+            {
+                best = 0;
+                Joueur bestJoueur = null;
+
+                for (Joueur j : this.metier.getTabJoueurs())
+                {
+                    if (j.getPrestige() > best)
+                    {
+                        best = j.getPrestige();
+                        bestJoueur = j;
+                    }
+                }
+
+                this.quitterLaPartie(bestJoueur);
+
+                return true;
+            }
+        }
 
         return false;
     }
 
     public void nouveauTour()
     {
-        while (this.metier.getTabJoueurs().indexOf(this.metier.getCurrentJoueur()) < this.metier.getTabJoueurs().size())
+        this.finDuTour = false;
+        while (!(this.finDuTour) && this.metier.getTabJoueurs().indexOf(this.metier.getCurrentJoueur()) < this.metier.getTabJoueurs().size())
         {
             this.finDuTourJoueur = false;
 
@@ -172,13 +266,75 @@ public class Controleur
                 } catch (Exception e) { e.printStackTrace(); }
             }
 
-            // TODO - Visite des nobles
-            // TODO - Update points prestiges
+            // Visite des nobles
+            if (this.getNoblesPossible() != null)
+            {
+                Noble[] ensNoblePossible = this.getNoblesPossible();
+                Noble   n                = null;
+
+                if (ensNoblePossible.length == 1) n = ensNoblePossible[0];
+                else                              n = this.choisirNoble(ensNoblePossible);
+
+                this.getCurrentJoueur().ajouterNoble(n);
+                this.metier.getTabNobles().remove(n);
+            }
+
+            this.getCurrentJoueur().updatePointsPrestiges();
 
             this.updateGraphics();
             this.finDuTourJoueur = false;
             this.metier.joueurSuivant();
+
+            if(this.getCurrentJoueur().getNum() == 1)
+                this.finDuTour = true;
         }
+    }
+
+    public Noble choisirNoble(Noble[] ensNoble)
+    {
+        FrameNoble frameNoble = new FrameNoble(this, ensNoble);
+
+        while (frameNoble.getNobleChoisi() == null)
+        {
+            try { Thread.sleep(100); } catch (Exception e) {}
+        }
+        return frameNoble.getNobleChoisi();
+    }
+
+    public boolean haveMoneyForNoble(Noble noble)
+    {
+        for(int i = 0; i < noble.getPrix().length; i++)
+        {
+            if (this.metier.getCurrentJoueur().getNbCarte(i) < noble.getPrix()[i])
+                return false;
+        }
+
+        return true;
+    }
+
+    public Noble[] getNoblesPossible()
+    {
+        Noble[] nobles = new Noble[this.metier.getTabNobles().size()];
+
+        int amount = 0;
+        for(int i = 0; i < this.metier.getTabNobles().size(); i++)
+        {
+            if(this.metier.getTabNobles().get(i) != null && this.haveMoneyForNoble(this.metier.getTabNobles().get(i)))
+            {
+                nobles[amount] = this.metier.getTabNobles().get(i);
+                amount++;
+            }
+        }
+
+        if(amount == 0) return null;
+
+        Noble[] nb = new Noble[amount];
+        for (int i = 0; i < nb.length; i++)
+        {
+            nb[i] = nobles[i];
+        }
+
+        return nb;
     }
 
     /*-----------------------
@@ -187,13 +343,13 @@ public class Controleur
 
     public void reposerJeton(Carte c)
     {
-        for (int i = 0; i < this.metier.getTabJetons().length-1; i++) 
+        for (int i = 0; i < this.metier.getTabJetons().length-1; i++)
         {
             Joueur j = this.getCurrentJoueur();
 
             if (c.getPrix()[i] <= j.getNbCarte(i))
                 continue;
-            if (c.getPrix()[i] - j.getNbCarte(i) <= j.getNbJetons(i)) 
+            if (c.getPrix()[i] - j.getNbCarte(i) <= j.getNbJetons(i))
             {
                 this.metier.getTabJetons()[i] += c.getPrix()[i] - j.getNbCarte(i);
             } else {
@@ -296,8 +452,49 @@ public class Controleur
     }
 
     /*-----------------------
-          Serialization
+             Cartes
     ---------------------- */
+
+    public boolean reserverCarte(Joueur joueur, int deck)
+    {
+        return this.reserverCarte(joueur, this.metier.tirerCarte(deck));
+    }
+
+    public boolean reserverCarte(Joueur joueur, Carte carte)
+    {
+        if (!(joueur.reserverCarte(carte)))
+            return false;
+
+        this.prendreJeton(joueur, 5);
+
+        int deck;
+
+        for (int index = 0; index < this.metier.getTabCartes().length; index++)
+        {
+            deck = 3 - (index / (this.metier.getTabCartes().length / 3));
+
+            if (this.metier.getTabCartes()[index] == carte)
+                this.metier.getTabCartes()[index] = this.metier.tirerCarte(deck);
+        }
+
+        return true;
+    }
+
+    /*-----------------------
+           Joueur
+    ---------------------- */
+
+    public boolean prendreJeton(Joueur joueur, int couleur)
+    {
+        if (this.getTabJetons()[couleur] == 0)
+            return false;
+
+        joueur.ajouterJeton(couleur, 1);
+        this.getTabJetons()[couleur]--;
+
+        return true;
+    }
+
 
 
     /*-----------------------

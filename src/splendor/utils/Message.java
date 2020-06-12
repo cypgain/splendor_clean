@@ -7,7 +7,8 @@ public enum Message
 
     TITRE_FRAME_PLATEAU("Splendor", "Splendor"),
 
-    BUTTON_BUY_CARD    ("Acheter la carte",  "Buy card"),
+    BUTTON_BUY_CARD("Acheter la carte",  "Buy card"),
+    BUTTON_BUY_CARD_RESERVE("Acheter la carte reservée",  "Buy booked card"),
     BUTTON_RESERVE_CARD("Reserver la carte", "Book card"),
 
     PLAYER("Joueur n°{NUM}", "Player No {NUM}"),
@@ -16,9 +17,19 @@ public enum Message
 
     ERR_PRISE_JETON_INVALIDE("Vous n'avez pas le droit de prendre cette combinaison de jetons", "You are not allowed to take this tokens combination"),
 
+    ERR_JETON("Vous n'avez pas assez de jetons","You do not have enough Tokens"),
+
     ERR_JETON_FULL("Vous possédez déjà trop de jetons", "You already have max tokens"),
 
     ERR_NOT_ENOUGH_JETON("Vous n'avez pas assez de jetons", "You do not have enough Tokens"),
+
+    ERR_RESERVATION("Vous ne pouvez pas reserver cette carte", "You can't book this card"),
+
+    CHOIX_NOBLE("Veuillez choisir le noble que vous souhaitez prendre", "Please select the noble you want"),
+
+    BOUTON_VALIDER_NOBLE("Selectionner ce noble", "Select this noble"),
+
+    WINNER("Le joueur {NUM} à gagné la partie", "Player's {NUM} has won the game")
 
     ;
 

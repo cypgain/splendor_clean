@@ -2,15 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a04d4a2-780d-4578-a286-cade7cdde259" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/splendor/ihm/FrameNoble.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/framelancement/GererBoutons.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/Controleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/Controleur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/BonusComponent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/BonusComponent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameJoueur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameJoueur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameLancement.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameLancement.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FramePlateau.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FramePlateau.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Jeu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Jeu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/framejoueur/GererBoutons.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/framejoueur/GererBoutons.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/framejoueur/GererSouris.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/framejoueur/GererSouris.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/frameplateau/GererBoutons.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/frameplateau/GererBoutons.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/frameplateau/GererSouris.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/frameplateau/GererSouris.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Joueur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Joueur.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Clean/splendor/utils/Message.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/splendor/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/ihm/FrameJoueur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/ihm/FrameJoueur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/splendor/ihm/FrameLancement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/ihm/FrameLancement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/splendor/ihm/FramePlateau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/ihm/FramePlateau.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/ihm/listeners/framejoueur/GererBoutons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/framejoueur/GererBoutons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/ihm/listeners/framejoueur/GererSouris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/framejoueur/GererSouris.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/ihm/listeners/frameplateau/GererBoutons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/frameplateau/GererBoutons.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/splendor/ihm/listeners/frameplateau/GererSouris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/ihm/listeners/frameplateau/GererSouris.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/splendor/metier/Jeu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/metier/Jeu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor/metier/Joueur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/metier/Joueur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/splendor/utils/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor/utils/Message.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,6 +113,7 @@
       <workItem from="1591860750442" duration="8181000" />
       <workItem from="1591875001681" duration="7356000" />
       <workItem from="1591905751322" duration="2483000" />
+      <workItem from="1591944409834" duration="8744000" />
     </task>
     <servers />
   </component>
@@ -106,26 +121,26 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1591867738390">
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser" timestamp="1591944493834">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591867738390" />
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1591908236078">
+    <state x="765" y="224" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591944493834" />
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1591953163801">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591908236078" />
-    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1591908236076">
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591953163801" />
+    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1591953163801">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591908236076" />
-    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1591908236076">
+    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591953163801" />
+    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1591953163801">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591908236076" />
-    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1591908236078">
+    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591953163801" />
+    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1591953163801">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591908236078" />
+    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591953163801" />
     <state width="1877" height="326" key="GridCell.Tab.1.bottom" timestamp="1591882364645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

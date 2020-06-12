@@ -84,7 +84,6 @@ public class GererSouris extends MouseAdapter
                         }
                     }
 
-                    // TODO - Fin du tour
                     this.framePlateau.finTourJoueur();
                 }
                 else

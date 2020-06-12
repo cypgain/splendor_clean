@@ -21,11 +21,12 @@ public class Joueur
 
     public Joueur()
     {
-        this.num       = ++Joueur.nbJoueur;
-        this.prestige  = 0;
-        this.tabJetons = new int[Couleur.values().length];
-        this.tabNobles = new ArrayList<>();
-        this.tabCartes = new ArrayList<>();
+        this.num              = ++Joueur.nbJoueur;
+        this.prestige         = 0;
+        this.tabJetons        = new int[] { 999, 999, 999, 999, 999, 999 };
+        this.tabNobles        = new ArrayList<>();
+        this.tabCartes        = new ArrayList<>();
+        this.tabCartesReserve = new ArrayList<>();
     }
 
     public int getNbCarte(Couleur couleur)
@@ -128,6 +129,15 @@ public class Joueur
         }
     }
 
+    public boolean reserverCarte(Carte carte)
+    {
+        if (this.tabCartesReserve.size() >= 3 || carte == null)
+            return false;
+
+        this.tabCartesReserve.add(carte);
+        return true;
+    }
+
     public boolean peutPrendreCarte(Carte carte)
     {
         if (carte == null)
@@ -155,7 +165,31 @@ public class Joueur
         return true;
     }
 
-    public int         getNum      () { return this.num;       }
-    public List<Noble> getTabNobles() { return this.tabNobles; }
-    public int[]       getTabJetons() { return this.tabJetons; }
+    public void updatePointsPrestiges()
+    {
+        this.prestige = 0;
+
+        for(Carte carte : this.tabCartes)
+        {
+            this.prestige += carte.getPrestige();
+        }
+
+        for(Noble noble : this.tabNobles)
+        {
+            this.prestige += noble.getPrestige();
+        }
+    }
+
+    public void ajouterNoble(Noble noble)
+    {
+        this.tabNobles.add(noble);
+    }
+
+    public int         getNum             () { return this.num;         }
+    public List<Noble> getTabNobles       () { return this.tabNobles;   }
+    public int[]       getTabJetons       () { return this.tabJetons;   }
+    public List<Carte> getTabCartesReserve() { return tabCartesReserve; }
+    public int         getPrestige        () { return this.prestige;    }
+    public List<Carte> getTabCartes       () { return this.tabCartes;   }
+
 }

@@ -3,7 +3,9 @@ package splendor.ihm;
 import splendor.Controleur;
 import splendor.ihm.listeners.framejoueur.GererBoutons;
 import splendor.ihm.listeners.framejoueur.GererSouris;
+import splendor.metier.Carte;
 import splendor.metier.Joueur;
+import splendor.metier.Noble;
 import splendor.utils.Couleur;
 import splendor.utils.ImageUtils;
 import splendor.utils.Message;
@@ -170,6 +172,7 @@ public class FrameJoueur extends JFrame
         for (int i = 0; i < this.tabLblReserve.length; i++)
         {
             this.tabLblReserve[i] = new JLabel();
+            this.tabLblReserve[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
             this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("ressources/dev_III_dos.png", FrameJoueur.TAILLE_IMAGE_CARTE_X, FrameJoueur.TAILLE_IMAGE_CARTE_Y));
             this.tabLblReserve[i].addMouseListener(new GererSouris(this));
             this.panelReserve.add(this.tabLblReserve[i]);
@@ -180,7 +183,7 @@ public class FrameJoueur extends JFrame
 
     private void initBoutons()
     {
-        this.btnAcheter = new JButton(Message.BUTTON_BUY_CARD.getLib());
+        this.btnAcheter = new JButton(Message.BUTTON_BUY_CARD_RESERVE.getLib());
         this.btnAcheter.addActionListener(new GererBoutons(this));
     }
 
@@ -189,18 +192,106 @@ public class FrameJoueur extends JFrame
         this.setLocation((int) (this.framePlateau.getX() + this.framePlateau.getSize().getWidth() + (this.getWidth() + 5) *  (this.joueur.getNum() - 1)), this.framePlateau.getY());
     }
 
-    public void updateGraphics()
+    public void update()
     {
+        // Jetons
         for(int i = 0; i < this.tabLblJetons.length; i++)
         {
             this.tabLblJetons[i].setText("" + this.joueur.getTabJetons()[i]);
         }
 
+        // Bonus
         for(int i = 0; i < this.tabBonusCpnt.length; i++)
         {
             this.tabBonusCpnt[i].setAmount(this.joueur.getNbCarte(i));
             this.tabBonusCpnt[i].repaint();
         }
+
+        // Nobles
+        for (int i = 0 ; i < this.tabLblNobles.length ; i++)
+        {
+            this.tabLblNobles[i].setIcon(null);
+        }
+
+        int z = 0;
+        for(Noble noble : this.getJoueur().getTabNobles())
+        {
+            this.tabLblNobles[z].setIcon(ImageUtils.resizeImage(noble.getUrl(), FrameJoueur.TAILLE_IMAGE_NOBLE_X, FrameJoueur.TAILLE_IMAGE_NOBLE_Y));
+            z++;
+        }
+
+        // Carte reservée
+        for(int i = 0; i < this.tabLblReserve.length; i++)
+        {
+            this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("ressources/dev_III_dos.png", FrameJoueur.TAILLE_IMAGE_CARTE_X, FrameJoueur.TAILLE_IMAGE_CARTE_Y));
+        }
+
+        int i = 0;
+        for(Carte carteReserve : this.joueur.getTabCartesReserve())
+        {
+            this.tabLblReserve[i].setIcon(ImageUtils.resizeImage(carteReserve.getUrl(), FrameJoueur.TAILLE_IMAGE_CARTE_X, FrameJoueur.TAILLE_IMAGE_CARTE_Y));
+            i++;
+        }
+
+        // Points prestiges
+        this.lblPrestige.setText("" + this.joueur.getPrestige());
+    }
+
+    public void updateGraphics()
+    {
+        this.controleur.updateGraphics();
+    }
+
+    public void resetCarteReserveChoisie()
+    {
+        if(this.carteReserveChoisie != null)
+            this.carteReserveChoisie.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+
+        this.carteReserveChoisie = null;
+        this.update();
+    }
+
+    public JLabel getCarteReserveChoisie() { return this.carteReserveChoisie; }
+
+    public Carte getCarteReserve()
+    {
+        if (this.carteReserveChoisie == null)
+            return null;
+
+        int index = -1;
+
+        for(int i = 0; i < this.tabLblReserve.length; i++)
+        {
+            if(this.tabLblReserve[i] == this.carteReserveChoisie)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        if(index >= this.joueur.getTabCartesReserve().size())
+        {
+            return null;
+        }
+
+        return this.joueur.getTabCartesReserve().get(index);
+    }
+
+    public void setCarteReserveChoisie(JLabel carteReserveChoisie) { this.carteReserveChoisie = carteReserveChoisie; }
+
+    public boolean prendreCarte(Joueur joueur, Carte carte)
+    {
+        return this.controleur.prendreCarte(joueur, carte);
+    }
+
+    public Joueur getJoueur()
+    {
+        return this.joueur;
+    }
+
+    public void finTourJoueur()
+    {
+        this.controleur.finTourJoueur();
     }
 
 }

@@ -355,6 +355,16 @@ public class FramePlateau extends JFrame
         }
     }
 
+    public boolean reserverCarte(Joueur joueur, int deck)
+    {
+        return this.controleur.reserverCarte(joueur, deck);
+    }
+
+    public boolean reserverCarte(Joueur joueur, Carte carte)
+    {
+        return this.controleur.reserverCarte(joueur, carte);
+    }
+
     public boolean acheterCarte(Joueur joueur, Carte carte)
     {
         return this.controleur.acheterCarte(joueur, carte);
@@ -406,6 +416,21 @@ public class FramePlateau extends JFrame
         }
     }
 
+    public void updateNobles()
+    {
+        for (int i = 0; i < this.tabLblNobles.length; i++)
+        {
+            this.tabLblNobles[i].setIcon(null);
+        }
+
+        int i = 0;
+        for (Noble noble : this.controleur.getTabNobles())
+        {
+            this.tabLblNobles[i].setIcon(ImageUtils.resizeImage(noble.getUrl(), FramePlateau.TAILLE_IMAGE_NOBLE_X, FramePlateau.TAILLE_IMAGE_NOBLE_Y));
+            i++;
+        }
+    }
+
     public void updateGraphics()
     {
         this.controleur.updateGraphics();
@@ -434,4 +459,8 @@ public class FramePlateau extends JFrame
     public JLabel[] getTabLblJetons        () { return tabLblJetons;                              }
     public int      getCarteSelectionnee   () { return this.carteSelectionnee;                    }
     public Carte[]  getTabCartes           () { return this.controleur.getTabCartes();            }
+    public JLabel[] getTabLblCartes        () { return this.tabLblCartes;                         }
+    public JLabel[] getTabLblDosCartes     () { return this.tabLblDosCartes;                      }
+    public int      getDosCarteSelectionnee() { return this.dosCarteSelectionnee;                 }
+
 }

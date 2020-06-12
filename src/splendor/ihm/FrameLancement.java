@@ -5,8 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 import splendor.Controleur;
+import splendor.ihm.listeners.framelancement.GererBoutons;
 
-public class FrameLancement extends JFrame implements ActionListener
+public class FrameLancement extends JFrame
 {
 
     private JComboBox cbxLangue;
@@ -18,6 +19,7 @@ public class FrameLancement extends JFrame implements ActionListener
     public FrameLancement(Controleur controleur)
     {
         this.controleur = controleur;
+
         this.setLayout(new GridLayout(7, 1));
         this.setSize(300,300);
 
@@ -27,7 +29,7 @@ public class FrameLancement extends JFrame implements ActionListener
         this.btnValider      = new JButton("Valider votre choix");
 
         // Activation
-        this.btnValider.addActionListener(this);
+        this.btnValider.addActionListener(new GererBoutons(this));
 
         // Ajout à la frame
         this.add(new JLabel("Langue"));
@@ -43,14 +45,13 @@ public class FrameLancement extends JFrame implements ActionListener
         this.setVisible(true);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e)
+    public void lancementPartie(String langue, int nbJoueurs)
     {
-        if (e.getSource() == this.btnValider)
-        {
-            this.controleur.lancementPartie(this.cbxLangue.getSelectedItem().toString(), Integer.parseInt(String.valueOf(this.cbxNombreJoueur.getSelectedItem())));
-            this.dispose();
-        }
+        this.controleur.lancementPartie(langue, nbJoueurs);
     }
+
+    public JButton            getBtnValider()      { return this.btnValider;      }
+    public JComboBox<String>  getCbxLangue()       { return this.cbxLangue;       }
+    public JComboBox<Integer> getCbxNombreJoueur() { return this.cbxNombreJoueur; }
 
 }

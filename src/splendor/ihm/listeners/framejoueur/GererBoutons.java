@@ -1,7 +1,10 @@
 package splendor.ihm.listeners.framejoueur;
 
 import splendor.ihm.FrameJoueur;
+import splendor.metier.Carte;
+import splendor.utils.Message;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,7 +21,24 @@ public class GererBoutons implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        System.out.println("WOW");
+        Carte carteReserve = this.frameJoueur.getCarteReserve();
+
+        if(carteReserve != null)
+        {
+            if (this.frameJoueur.prendreCarte(this.frameJoueur.getJoueur(), carteReserve))
+            {
+                this.frameJoueur.getJoueur().getTabCartesReserve().remove(carteReserve);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this.frameJoueur, Message.ERR_JETON.getLib());
+                return;
+            }
+
+            this.frameJoueur.resetCarteReserveChoisie();
+            this.frameJoueur.updateGraphics();
+            this.frameJoueur.finTourJoueur();
+        }
     }
 
 }

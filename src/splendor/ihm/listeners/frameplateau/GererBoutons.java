@@ -41,13 +41,46 @@ public class GererBoutons implements ActionListener
                     this.framePlateau.resetCarteSelectionnee();
                     this.framePlateau.updateGraphics();
 
-                    // TODO - Fin du tour joueur
+                    this.framePlateau.finTourJoueur();
                 }
             }
         }
         else if(e.getSource() == framePlateau.getBtnReserve())
         {
-            System.out.println("RESERVER");
+            this.framePlateau.resetJetonsChoisis();
+
+            int dosCarteChoisi = this.framePlateau.getDosCarteSelectionnee();
+            int carteChoisie   = this.framePlateau.getCarteSelectionnee();
+
+            if (dosCarteChoisi == -1 && carteChoisie == -1)
+                return;
+
+            if (dosCarteChoisi != -1)
+            {
+                int deck = 1;
+
+                if      (this.framePlateau.getTabLblDosCartes()[dosCarteChoisi] == this.framePlateau.getTabLblDosCartes()[0]) deck = 3;
+                else if (this.framePlateau.getTabLblDosCartes()[dosCarteChoisi] == this.framePlateau.getTabLblDosCartes()[1]) deck = 2;
+
+                if (!(this.framePlateau.reserverCarte(this.framePlateau.getCurrentJoueur(), deck)))
+                {
+                    JOptionPane.showMessageDialog(this.framePlateau, Message.ERR_RESERVATION.getLib());
+                    return;
+                }
+
+            }
+            else
+            {
+                if (!(this.framePlateau.reserverCarte(this.framePlateau.getCurrentJoueur(), this.framePlateau.getTabCartes()[carteChoisie]))) {
+                    JOptionPane.showMessageDialog(this.framePlateau, Message.ERR_RESERVATION.getLib());
+                    return;
+                }
+            }
+
+            this.framePlateau.resetDosCarteSelectionnee();
+            this.framePlateau.resetCarteSelectionnee();
+            this.framePlateau.updateGraphics();
+            this.framePlateau.finTourJoueur();
         }
     }
 
