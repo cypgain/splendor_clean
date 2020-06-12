@@ -5,6 +5,8 @@ import splendor.utils.Couleur;
 public class Noble extends Carte
 {
 
+    private static final long serialVersionUID = 5047753364239890219L;
+
     public Noble(String url)
     {
         super(url, 0, Couleur.BLANC, 0, 0, 0, 0, 0);

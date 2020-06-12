@@ -2,7 +2,6 @@ package splendor.ihm;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 import splendor.Controleur;
 import splendor.ihm.listeners.framelancement.GererBoutons;
@@ -10,8 +9,13 @@ import splendor.ihm.listeners.framelancement.GererBoutons;
 public class FrameLancement extends JFrame
 {
 
-    private JComboBox cbxLangue;
-    private JComboBox cbxNombreJoueur;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -8682273366677549486L;
+    
+    private JComboBox<String> cbxLangue;
+    private JComboBox<Integer> cbxNombreJoueur;
     private JButton   btnValider;
 
     private Controleur controleur;

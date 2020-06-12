@@ -22,6 +22,11 @@ public class FrameJoueur extends JFrame
            Constantes
      -----------------------*/
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 4626388053030781462L;
+    
     private static final int TAILLE_FRAME_X = 270;
     private static final int TAILLE_FRAME_Y = 900;
 
@@ -299,6 +304,11 @@ public class FrameJoueur extends JFrame
 class BonusComponent extends JPanel
 {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -1932281453903555345L;
+    
     private Color color;
     private int amount;
 

@@ -3,11 +3,13 @@
 ./src/splendor/ihm/FramePlateau.java
 ./src/splendor/ihm/FrameJoueur.java
 ./src/splendor/ihm/FrameLancement.java
+./src/splendor/ihm/FrameNoble.java
 ./src/splendor/ihm/listeners/framejoueur/GererBoutons.java
 ./src/splendor/ihm/listeners/framejoueur/GererSouris.java
 ./src/splendor/ihm/listeners/frameplateau/GererBoutons.java
 ./src/splendor/ihm/listeners/frameplateau/GererFenetre.java
 ./src/splendor/ihm/listeners/frameplateau/GererSouris.java
+./src/splendor/ihm/listeners/framelancement/GererBoutons.java
 
 ./src/splendor/metier/Carte.java
 ./src/splendor/metier/Jeu.java

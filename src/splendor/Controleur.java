@@ -14,6 +14,8 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.io.*;
+
 public class Controleur
 {
 
@@ -133,7 +135,7 @@ public class Controleur
         int deck;
         for (int index = 0 ; index < this.metier.getTabCartes().length ; index ++)
         {
-            deck = 3 - ((int) (index / (this.metier.getTabCartes().length / 3)));
+            deck = 3 - ( (index / (this.metier.getTabCartes().length / 3)));
             if (this.metier.getTabCartes()[index] == carte)
                 this.metier.getTabCartes()[index] = this.metier.tirerCarte(deck);
         }
@@ -495,7 +497,106 @@ public class Controleur
         return true;
     }
 
+    /*-----------------------
+          Serialization
+    ---------------------- */
 
+    public boolean sauvegarder(String nom) 
+    {
+        if (nom == null || nom.equalsIgnoreCase(""))
+            return false;
+
+        try 
+        {
+            File file = new File("../scenarios/" + nom + ".data");
+            file.createNewFile();
+        } 
+        catch (IOException ex) 
+        {
+            ex.printStackTrace();
+        }
+
+        ObjectOutputStream oos = null;
+
+        try 
+        {
+            final FileOutputStream fichier = new FileOutputStream("../scenarios/" + nom + ".data");
+            oos = new ObjectOutputStream(fichier);
+            oos.writeObject(this.metier);
+            System.out.println(this.metier);
+            oos.flush();
+        } 
+        catch (final java.io.IOException ex) 
+        {
+            ex.printStackTrace();
+        } 
+        finally 
+        {
+            try 
+            {
+                if (oos != null) 
+                {
+                    oos.flush();
+                    oos.close();
+                }
+            } 
+            catch (final IOException ex) 
+            {
+                ex.printStackTrace();
+            }
+        }
+        return true;
+    }
+
+    public boolean charger(String nom) 
+    {
+        String selectedFileName = nom + ".data";
+        ObjectInputStream ois = null;
+
+        try 
+        {
+            final FileInputStream fichier = new FileInputStream("../scenarios/" + selectedFileName);
+            ois = new ObjectInputStream(fichier);
+            this.forceEndGame();
+            final Jeu metier = (Jeu) ois.readObject();
+
+            System.out.println(metier);
+
+            this.changementMetier(metier);
+        } 
+        catch (final IOException | ClassNotFoundException ex) 
+        {
+            ex.printStackTrace();
+            return false;
+        } 
+        finally 
+        {
+            try 
+            {
+                if (ois != null) 
+                {
+                    ois.close();
+                }
+            } 
+            catch (final IOException ex) 
+            {
+                ex.printStackTrace();
+            }
+        }
+        return true;
+    }
+
+    public void forceEndGame()
+    {
+        this.forcedEndGame   = true;
+        this.finDuTourJoueur = true;
+    }
+
+    public void changementMetier(Jeu metier)
+    {
+        this.metier           = metier;
+        this.changementMetier = true;
+    }
 
     /*-----------------------
              Getters

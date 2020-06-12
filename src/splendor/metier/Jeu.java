@@ -2,16 +2,17 @@ package splendor.metier;
 
 import splendor.utils.CarteUtils;
 import splendor.utils.Couleur;
-import splendor.utils.Message;
 import splendor.utils.NobleUtils;
 
-import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Jeu
+public class Jeu implements Serializable
 {
+
+    private static final long serialVersionUID = 5047753364239890219L;
 
     private int nbJoueurs;
 

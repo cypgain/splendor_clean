@@ -1,11 +1,15 @@
 package splendor.metier;
 
+import java.io.Serializable;
+
 import splendor.utils.Couleur;
 
-public class Carte
+public class Carte implements Serializable
 {
 
-    private String  url;
+    private static final long serialVersionUID = 5047753364239890219L;
+    
+    private String url;
     private int     prestige;
     private Couleur couleur;
     private int     prixVert;

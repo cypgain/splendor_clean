@@ -22,6 +22,11 @@ public class FramePlateau extends JFrame
            Constantes
      -----------------------*/
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = -9161063204877878156L;
+    
     private static final int TAILLE_IMAGE_CARTE_X = 130;
     private static final int TAILLE_IMAGE_CARTE_Y = 200;
 
