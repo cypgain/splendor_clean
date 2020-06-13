@@ -355,10 +355,14 @@ public class Controleur
     {
         FrameNoble frameNoble = new FrameNoble(this, ensNoble);
 
+        this.setEnabled(false);
+
         while (frameNoble.getNobleChoisi() == null)
         {
             try { Thread.sleep(100); } catch (Exception e) {}
         }
+
+        this.setEnabled(true);
         return frameNoble.getNobleChoisi();
     }
 
@@ -422,7 +426,6 @@ public class Controleur
             }
 
         }
-        System.out.println(j.getNbJetons(5) +" joueur : "+ this.metier.getTabJetons()[5] + " plateau");
     }
 
     public int  getNbJetonADeposer()
@@ -540,24 +543,13 @@ public class Controleur
     {
         this.setEnabled(false);
 
-        System.out.println("entrée controleur");
-        System.out.println(this.getTabJetonsChoisis());
-        for (int i : this.getTabJetonsChoisis())
-            System.out.println(""+i);
-
         FrameChoixJeton frameChoixJeton = new FrameChoixJeton(this, this.getTabJetonsChoisis());
-        System.out.println("création frame jeton");
 
         while (frameChoixJeton.getJetonReposerChoisis() == null) 
         {
             try {Thread.sleep(100);} catch (Exception e) {}
         }
 
-        for (int i=0; i<frameChoixJeton.getJetonReposerChoisis().length; i++)
-            System.out.println(frameChoixJeton.getJetonReposerChoisis()[i]+"");
-        //this.reposerJetonChoisis(frameChoixJeton.getJetonReposerChoisis());
-
-        System.out.println("fermeture frame jeton");
         frameChoixJeton.dispose();
 
         this.reposerJetonChoisis(frameChoixJeton.getJetonReposerChoisis());

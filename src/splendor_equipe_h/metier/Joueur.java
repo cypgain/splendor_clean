@@ -130,7 +130,6 @@ public class Joueur implements Serializable
                 for (int i = 0; i < jetonsJoueur ; i++)
                 {
                     this.retirerJeton(indexPrix);
-                    System.out.println(this.tabJetons[5]);
                 }
 
                 for (int i = 0; i < coutJeton - jetonsJoueur; i++)
@@ -143,7 +142,6 @@ public class Joueur implements Serializable
 
         this.tabCartes.add(carte);
 
-        System.out.println("Il reste "+ this.tabJetons[5] + " jetons or");
     }
 
     public boolean reserverCarte(Carte carte)

@@ -37,6 +37,8 @@ public class FrameNoble extends JFrame implements ActionListener
         this.setLayout(new BorderLayout());
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setTitle("Noble");
         this.setResizable(false);
 
         //Creation des composants

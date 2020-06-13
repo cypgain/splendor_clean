@@ -34,8 +34,10 @@ public class FrameChoixJeton extends JFrame implements ActionListener
         this.setLayout(new BorderLayout());
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
         this.setResizable(false);
-        this.setTitle("test");
+        this.setTitle(Message.FRAME_JETON.getLib());
 
         // Creation des composants
         this.lblTexte = new JLabel(Message.CHOIX_DEPOSER_JETON.getLib().replace("{NUM}", ""+ this.controleur.getNbJetonADeposer()));

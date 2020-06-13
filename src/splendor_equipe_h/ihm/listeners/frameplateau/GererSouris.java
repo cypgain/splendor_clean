@@ -90,13 +90,10 @@ public class GererSouris extends MouseAdapter
                 {
                     new Thread(() ->
                     {
-                        System.out.println("erreur jeton full");
                         this.framePlateau.updateGraphics();
                         this.framePlateau.reposerJetonChoisis();
-                        System.out.println("pk t'es ici");
                     }).start();
 
-                    
                 }
 
             }

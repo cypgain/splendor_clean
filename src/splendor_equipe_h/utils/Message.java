@@ -17,16 +17,18 @@ public enum Message
 
     ERR_PRISE_JETON_INVALIDE("Vous n'avez pas le droit de prendre cette combinaison de jetons", "You are not allowed to take this tokens combination"),
 
-    ERR_JETON("Vous n'avez pas assez de jetons","You do not have enough Tokens"),
+    ERR_JETON("Vous n'avez pas assez de jetons","You do not have enough chips"),
 
     ERR_JETON_FULL("Vous possédez déjà trop de jetons", "You already have max tokens"),
 
-    ERR_NOT_ENOUGH_JETON("Vous n'avez pas assez de jetons", "You do not have enough Tokens"),
+    ERR_NOT_ENOUGH_JETON("Vous n'avez pas assez de jetons", "You do not have enough chips"),
 
     ERR_RESERVATION("Vous ne pouvez pas reserver cette carte", "You can't book this card"),
 
     CHOIX_NOBLE("Veuillez choisir le noble que vous souhaitez prendre", "Please select the noble you want"),
     CHOIX_DEPOSER_JETON("Vous devez deposer {NUM} ou tous vos Jetons choisis", "You must put {NUM} or all the choosen token back"),
+
+    FRAME_JETON("Jetons", "Chips"),
 
     BOUTON_VALIDER_NOBLE("Selectionner ce noble", "Select this noble"),
     BOUTON_DEPOSER_JETON("Déposer ces jetons","Put back these tokens"),
