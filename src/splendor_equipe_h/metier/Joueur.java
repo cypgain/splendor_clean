@@ -171,13 +171,14 @@ public class Joueur implements Serializable
             {
                 return false;
             }
-            if (jetonsOrUsed > this.tabJetons[5])
-            {
-                return false;
-            }
+            
             if (tabPrix[i] > (this.getNbCarte(i) + this.tabJetons[i]))
             {
                 jetonsOrUsed += (tabPrix[i] - this.tabCartes.size() - this.tabJetons[i]);
+            }
+            if (jetonsOrUsed >= this.tabJetons[5]) 
+            {
+                return false;
             }
         }
 
