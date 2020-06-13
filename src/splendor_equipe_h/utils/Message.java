@@ -1,6 +1,6 @@
 package splendor_equipe_h.utils;
 
-import static splendor_equipe_h.Controleur.langue;
+//import static splendor_equipe_h.Controleur.langue;
 
 public enum Message
 {
@@ -26,8 +26,10 @@ public enum Message
     ERR_RESERVATION("Vous ne pouvez pas reserver cette carte", "You can't book this card"),
 
     CHOIX_NOBLE("Veuillez choisir le noble que vous souhaitez prendre", "Please select the noble you want"),
+    CHOIX_DEPOSER_JETON("Vous devez deposer {NUM} ou tous vos Jetons choisis", "You must put {NUM} or all the choosen token back"),
 
     BOUTON_VALIDER_NOBLE("Selectionner ce noble", "Select this noble"),
+    BOUTON_DEPOSER_JETON("Déposer ces jetons","Put back these tokens"),
 
     WINNER("Le joueur {NUM} à gagné la partie", "Player's {NUM} has won the game"),
 
@@ -40,6 +42,8 @@ public enum Message
     NOT_YOUR_TURN("Ce n'est pas votre tour !", "It's not your turn !"),
 
     ;
+
+    public static final String langue="FR";
 
     private String libFrancais;
     private String libAnglais;

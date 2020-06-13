@@ -129,6 +129,10 @@ public class Jeu implements Serializable
         return amount;
     }
     
+    public void removeJetonChoisi(int indexJeton)
+    {
+        this.tabJetonsChoisis[indexJeton] = -1;
+    }
 
     /*-----------------------
              Partie

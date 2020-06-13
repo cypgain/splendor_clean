@@ -5,6 +5,8 @@
 ./src/splendor_equipe_h/ihm/FrameLancement.java
 ./src/splendor_equipe_h/ihm/FrameNoble.java
 ./src/splendor_equipe_h/ihm/FrameDebug.java
+./src/splendor_equipe_h/ihm/FrameChoixJeton.java
+
 ./src/splendor_equipe_h/ihm/listeners/framejoueur/GererBoutons.java
 ./src/splendor_equipe_h/ihm/listeners/framejoueur/GererSouris.java
 ./src/splendor_equipe_h/ihm/listeners/frameplateau/GererBoutons.java

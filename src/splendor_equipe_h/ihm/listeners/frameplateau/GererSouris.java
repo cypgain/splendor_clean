@@ -72,25 +72,33 @@ public class GererSouris extends MouseAdapter
 
             if (this.framePlateau.isJetonsSelectedFull())
             {
-                if(this.framePlateau.getCurrentJoueur().getNbJetons() + this.framePlateau.getAmountJetonsSelected() <= 10)
+                if(this.framePlateau.getCurrentJoueur().getNbJetons()>=10)
                 {
-                    for (int i = 0; i < this.framePlateau.getTabJetonsChoisis().length; i++)
-                    {
-                        if (this.framePlateau.getTabJetonsChoisis()[i] != -1)
-                        {
-                            this.framePlateau.getCurrentJoueur().ajouterJeton(this.framePlateau.getTabJetonsChoisis()[i], 1);
-                            this.framePlateau.getTabJetons()[this.framePlateau.getTabJetonsChoisis()[i]] -= 1;
-                        }
-                    }
+                    JOptionPane.showMessageDialog(this.framePlateau,Message.ERR_JETON_FULL.getLib());
+                    this.framePlateau.resetJetonsChoisis();
+
+                }
+                else if(this.framePlateau.getCurrentJoueur().getNbJetons() + this.framePlateau.getAmountJetonsSelected() <= 10)
+                {
+                    this.framePlateau.ajouterJetonJoueur();
 
                     this.framePlateau.finTourJoueur();
+
+                    this.framePlateau.resetJetonsChoisis();
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this.framePlateau, Message.ERR_JETON_FULL.getLib());
+                    new Thread(() ->
+                    {
+                        System.out.println("erreur jeton full");
+                        this.framePlateau.updateGraphics();
+                        this.framePlateau.reposerJetonChoisis();
+                        System.out.println("pk t'es ici");
+                    }).start();
+
+                    
                 }
 
-                this.framePlateau.resetJetonsChoisis();
             }
             else if (this.framePlateau.getAmountJetonsSelected() == 3)
             {

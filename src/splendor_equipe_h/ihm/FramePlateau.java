@@ -202,6 +202,15 @@ public class FramePlateau extends JFrame
         this.controleur.resetJetonsChoisis();
     }
 
+    public void reposerJetonChoisis()
+    {
+        this.controleur.reposerJetonChoisis();
+    }
+    public void ajouterJetonJoueur()
+    {
+        this.controleur.ajouterJetonJoueur();
+    }
+    
     /*----------------------
        Gestion des Nobles
      -----------------------*/
@@ -468,7 +477,7 @@ public class FramePlateau extends JFrame
     public int[]    getTabJetons           () { return this.controleur.getTabJetons();            }
     public int      getAmountJetonsSelected() { return this.controleur.getAmountJetonsSelected(); }
     public int[]    getTabJetonsChoisis    () { return this.controleur.getTabJetonsChoisis();     }
-    public JLabel[] getTabLblJetons        () { return this.tabLblJetons;                              }
+    public JLabel[] getTabLblJetons        () { return this.tabLblJetons;                         }
     public int      getCarteSelectionnee   () { return this.carteSelectionnee;                    }
     public Carte[]  getTabCartes           () { return this.controleur.getTabCartes();            }
     public JLabel[] getTabLblCartes        () { return this.tabLblCartes;                         }
