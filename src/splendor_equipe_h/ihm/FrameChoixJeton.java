@@ -89,40 +89,40 @@ public class FrameChoixJeton extends JFrame implements ActionListener
 
     public void actionPerformed(ActionEvent e) 
     {
-        
         if (e.getSource() == this.btnValider) 
         {
             this.tabJetonReposer = this.setJetonReposerChoisis();
         }
-        
     }
 
     public int nbJetonsChoisis()
     {
-        int cpt=0;
+        int cpt = 0;
+
         for (JLabel lbl : this.lblJetons) 
         {
             if (lbl == null)
                 continue;
-            if ( ( (LineBorder) lbl.getBorder()).getLineColor() == Color.RED )
+
+            if (((LineBorder) lbl.getBorder()).getLineColor() == Color.RED)
             {
                 cpt++;
             }
         }
+
         return cpt;
     }
 
     public boolean enoughJetonChoisis()
     {
-        if (this.nbJetonsChoisis()>=this.controleur.getNbJetonADeposer() )
-            return true;
-        return false;
+        return this.nbJetonsChoisis() >= this.controleur.getNbJetonADeposer();
     }
 
     public int[] setJetonReposerChoisis()
     {
         int[] tabJetonReposer = new int[this.controleur.getTabJetonsChoisis().length];
-        int cpt=0;
+        int   cpt             = 0;
+
         for (JLabel lbl : this.lblJetons) 
         {
             if (lbl == null)
