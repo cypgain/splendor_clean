@@ -83,6 +83,9 @@ public class FrameChoixJeton extends JFrame implements ActionListener
         this.add(this.panelJeton, BorderLayout.CENTER);
         this.add(this.btnValider, BorderLayout.SOUTH);
 
+        this.setLocation((int) ((Controleur.screenWidth  - this.getSize().getWidth ()) / 2),
+                         (int) ((Controleur.screenHeight - this.getSize().getHeight()) / 2));
+
         this.pack();
         this.setVisible(true);
     }

@@ -15,6 +15,7 @@ import splendor_equipe_h.utils.SplendorFont;
 import javax.swing.*;
 import java.awt.*;
 
+
 @SuppressWarnings("serial")
 public class FramePlateau extends JFrame
 {
@@ -23,14 +24,15 @@ public class FramePlateau extends JFrame
            Constantes
      -----------------------*/
     
-    private static final int TAILLE_IMAGE_CARTE_X = 130;
-    private static final int TAILLE_IMAGE_CARTE_Y = 200;
+    private static final int TAILLE_IMAGE_CARTE_X = 120;
+    private static final int TAILLE_IMAGE_CARTE_Y = 180;
 
     private static final int TAILLE_IMAGE_NOBLE_X = 125;
     private static final int TAILLE_IMAGE_NOBLE_Y = 125;
 
     private static final int TAILLE_IMAGE_JETON_X = 75;
     private static final int TAILLE_IMAGE_JETON_Y = 75;
+
 
     /*----------------------
             Attributs
@@ -114,14 +116,19 @@ public class FramePlateau extends JFrame
             panelTemp = new JPanel(new GridLayout(2, 1, 10, 0));
 
             this.tabLblJetons[i] = new JLabel();
-            this.tabLblJetons[i].setIcon(ImageUtils.resizeImage("ressources/jeton_" + Couleur.values()[i].toString().toLowerCase() + ".png", TAILLE_IMAGE_JETON_X, TAILLE_IMAGE_JETON_Y));
+            this.tabLblJetons[i].setIcon(ImageUtils.resizeImage("ressources/jeton_" + Couleur.values()[i].toString().toLowerCase() + ".png", 
+                                         (int) (TAILLE_IMAGE_JETON_X  * Controleur.echelleHeight ),
+                                         (int) (TAILLE_IMAGE_JETON_Y  * Controleur.echelleWidth  )));
             this.tabLblJetons[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
             this.tabLblJetons[i].addMouseListener(new GererSouris(this));
 
-            this.tabLblNbJetons       [i] = new JLabel("" + this.controleur.getTabJetons       ()[i] + " x ", JLabel.RIGHT);
-            this.tabLblNbJetonsChoisis[i] = new JLabel("" + this.controleur.getNbJetonsChoisis (i)   + " x ", JLabel.RIGHT);
+            this.tabLblNbJetons       [i] = new JLabel("" + this.controleur.getTabJetons       ()[i] + "x", JLabel.RIGHT);
+            this.tabLblNbJetonsChoisis[i] = new JLabel("" + this.controleur.getNbJetonsChoisis (i)   + "x", JLabel.RIGHT);
 
             this.tabLblNbJetonsChoisis[i].setForeground(Color.RED);
+
+            this.tabLblNbJetons       [i].setFont(SplendorFont.SEGOE_SMALL.getFont());
+            this.tabLblNbJetonsChoisis[i].setFont(SplendorFont.SEGOE_SMALL.getFont());
 
             panelTemp.add(tabLblNbJetonsChoisis[i]);
             panelTemp.add(tabLblNbJetons[i]);
@@ -130,9 +137,12 @@ public class FramePlateau extends JFrame
             panelJetonsTop.add(this.tabLblJetons[i]);
         }
 
-        this.tabLblNbJetons[5] = new JLabel("" + this.controleur.getTabJetons()[5] + " x ", JLabel.RIGHT);
+        this.tabLblNbJetons[5] = new JLabel("" + this.controleur.getTabJetons()[5] + "x", JLabel.RIGHT);
+        this.tabLblNbJetons[5].setFont(SplendorFont.SEGOE_SMALL.getFont());
         this.tabLblJetons  [5] = new JLabel();
-        this.tabLblJetons  [5].setIcon(ImageUtils.resizeImage("ressources/jeton_" + Couleur.values()[5].toString().toLowerCase() + ".png",TAILLE_IMAGE_JETON_X, TAILLE_IMAGE_JETON_Y));
+        this.tabLblJetons  [5].setIcon(ImageUtils.resizeImage("ressources/jeton_" + Couleur.values()[5].toString().toLowerCase() + ".png",
+                                       (int) (FramePlateau.TAILLE_IMAGE_JETON_X  * Controleur.echelleHeight ),
+                                       (int) (FramePlateau.TAILLE_IMAGE_JETON_Y  * Controleur.echelleWidth  )));
 
         panelJetonsTop.add(this.tabLblNbJetons[5]);
         panelJetonsTop.add(this.tabLblJetons  [5]);
@@ -182,7 +192,7 @@ public class FramePlateau extends JFrame
         int i = 0;
         for(JLabel label : this.tabLblNbJetonsChoisis)
         {
-            label.setText("" + this.controleur.getNbJetonsChoisis(i) + " x ");
+            label.setText("" + this.controleur.getNbJetonsChoisis(i) + "x");
             i++;
         }
     }
@@ -230,7 +240,10 @@ public class FramePlateau extends JFrame
         for(Noble noble : this.controleur.getTabNobles())
         {
             this.tabLblNobles[i] = new JLabel();
-            this.tabLblNobles[i].setIcon(ImageUtils.resizeImage(noble.getUrl(), FramePlateau.TAILLE_IMAGE_NOBLE_X, FramePlateau.TAILLE_IMAGE_NOBLE_Y));
+            this.tabLblNobles[i].setIcon(ImageUtils.resizeImage(noble.getUrl(), 
+                                         (int) (FramePlateau.TAILLE_IMAGE_NOBLE_X  * Controleur.echelleHeight ) ,
+                                         (int) (FramePlateau.TAILLE_IMAGE_NOBLE_Y  * Controleur.echelleWidth  ) ));
+        
             panelNoblesIn.add(this.tabLblNobles[i]);
             i++;
         }
@@ -257,13 +270,19 @@ public class FramePlateau extends JFrame
             this.panelDosCartes.add(this.tabLblDosCartes[i]);
         }
 
-        this.tabLblDosCartes[0].setIcon(ImageUtils.resizeImage("ressources/dev_III_dos.png", FramePlateau.TAILLE_IMAGE_CARTE_X, FramePlateau.TAILLE_IMAGE_CARTE_Y));
+        this.tabLblDosCartes[0].setIcon(ImageUtils.resizeImage("ressources/dev_III_dos.png", 
+                                        (int) (FramePlateau.TAILLE_IMAGE_CARTE_X  * Controleur.echelleHeight ) ,
+                                        (int) (FramePlateau.TAILLE_IMAGE_CARTE_Y  * Controleur.echelleWidth  ) ));
         this.tabLblDosCartes[0].setName("ressources/dev_III_dos.png");
 
-        this.tabLblDosCartes[1].setIcon(ImageUtils.resizeImage("ressources/dev_II_dos.png", FramePlateau.TAILLE_IMAGE_CARTE_X, FramePlateau.TAILLE_IMAGE_CARTE_Y));
+        this.tabLblDosCartes[1].setIcon(ImageUtils.resizeImage("ressources/dev_II_dos.png", 
+                                        (int) (FramePlateau.TAILLE_IMAGE_CARTE_X  * Controleur.echelleHeight ) ,
+                                        (int) (FramePlateau.TAILLE_IMAGE_CARTE_Y  * Controleur.echelleWidth  ) ));
         this.tabLblDosCartes[1].setName("ressources/dev_II_dos.png");
 
-        this.tabLblDosCartes[2].setIcon(ImageUtils.resizeImage("ressources/dev_I_dos.png", FramePlateau.TAILLE_IMAGE_CARTE_X, FramePlateau.TAILLE_IMAGE_CARTE_Y));
+        this.tabLblDosCartes[2].setIcon(ImageUtils.resizeImage("ressources/dev_I_dos.png", 
+                                        (int) (FramePlateau.TAILLE_IMAGE_CARTE_X  * Controleur.echelleHeight ) ,
+                                        (int) (FramePlateau.TAILLE_IMAGE_CARTE_Y  * Controleur.echelleWidth  ) ));
         this.tabLblDosCartes[2].setName("ressources/dev_I_dos.png");
     }
 
@@ -438,7 +457,9 @@ public class FramePlateau extends JFrame
             }
             else
             {
-                this.tabLblCartes[i].setIcon(ImageUtils.resizeImage(tabCartes[i].getUrl(),FramePlateau.TAILLE_IMAGE_CARTE_X, FramePlateau.TAILLE_IMAGE_CARTE_Y));
+                this.tabLblCartes[i].setIcon(ImageUtils.resizeImage(tabCartes[i].getUrl(),
+                                             (int) (FramePlateau.TAILLE_IMAGE_CARTE_X  * Controleur.echelleHeight ) ,
+                                             (int) (FramePlateau.TAILLE_IMAGE_CARTE_Y  * Controleur.echelleWidth  ) ));
                 this.tabLblCartes[i].addMouseListener(new GererSouris(this));
             }
             this.tabLblCartes[i].setName(tabCartes[i].getUrl());
@@ -450,7 +471,7 @@ public class FramePlateau extends JFrame
     {
         for(int i = 0; i < this.tabLblNbJetons.length; i++)
         {
-            this.tabLblNbJetons[i].setText("" + this.controleur.getTabJetons()[i] + " x ");
+            this.tabLblNbJetons[i].setText("" + this.controleur.getTabJetons()[i] + "x");
         }
 
         this.resetLabelJetonsChoisis();
@@ -460,7 +481,7 @@ public class FramePlateau extends JFrame
             if (this.controleur.getTabJetonsChoisis()[i] == -1)
                 continue;
 
-            this.tabLblNbJetonsChoisis[this.controleur.getTabJetonsChoisis()[i]].setText(this.controleur.getNbJetonsChoisis(this.controleur.getTabJetonsChoisis()[i]) + " x ");
+            this.tabLblNbJetonsChoisis[this.controleur.getTabJetonsChoisis()[i]].setText(this.controleur.getNbJetonsChoisis(this.controleur.getTabJetonsChoisis()[i]) + "x");
         }
     }
 
@@ -474,7 +495,9 @@ public class FramePlateau extends JFrame
         int i = 0;
         for (Noble noble : this.controleur.getTabNobles())
         {
-            this.tabLblNobles[i].setIcon(ImageUtils.resizeImage(noble.getUrl(), FramePlateau.TAILLE_IMAGE_NOBLE_X, FramePlateau.TAILLE_IMAGE_NOBLE_Y));
+            this.tabLblNobles[i].setIcon(ImageUtils.resizeImage(noble.getUrl(), 
+                                         (int) (FramePlateau.TAILLE_IMAGE_NOBLE_X  * Controleur.echelleHeight ) ,
+                                         (int) (FramePlateau.TAILLE_IMAGE_NOBLE_Y  * Controleur.echelleWidth  ) ));
             i++;
         }
     }
