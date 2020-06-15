@@ -167,6 +167,11 @@ public class Controleur
             frameJoueur.setEnabled(b);
     }
 
+    public int getTailleDeck(int deck)
+    {
+        return this.metier.getTailleDeck(deck);
+    }
+
     /*-----------------------
             Partie
     ---------------------- */

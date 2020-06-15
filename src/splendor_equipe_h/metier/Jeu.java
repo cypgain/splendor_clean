@@ -183,6 +183,16 @@ public class Jeu implements Serializable
         }
     }
 
+    public int getTailleDeck(int deck)
+    {
+        switch (deck)
+        {
+            case 1: return this.deckLevelOne  .size();
+            case 2: return this.deckLevelTwo  .size();
+            case 3: return this.deckLevelThree.size();
+        }
+        return -1;
+    }
     /*-----------------------
              Getters
     ---------------------- */
@@ -193,5 +203,6 @@ public class Jeu implements Serializable
     public int[]        getTabJetonsChoisis() { return this.tabJetonsChoisis; }
     public List<Joueur> getTabJoueurs      () { return this.tabJoueurs;       }
     public Joueur       getCurrentJoueur   () { return currentJoueur;         }
+
 
 }
