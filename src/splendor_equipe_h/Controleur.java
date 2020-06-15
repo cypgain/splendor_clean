@@ -574,21 +574,13 @@ public class Controleur
 
     public void reposerJetonChoisis(int[] tabJetonReposer)
     {
-        for (int ind : getTabJetonsChoisis())
-            System.out.print(ind + " ");
-        System.out.println();
-        for (int i=0 ; i < getTabJetonsChoisis().length ; i++ )
+
+        for (int i=0; i < getTabJetonsChoisis().length; i++ )
         {
-            
             if (tabJetonReposer[i] == getTabJetonsChoisis()[i])
             {
-                this.metier.removeJetonChoisi(tabJetonReposer[j]);
+                this.metier.removeJetonChoisi(tabJetonReposer[i]);
             }
-
-            for (int ind : getTabJetonsChoisis())
-                System.out.print(ind + " ");
-            System.out.println();
-            
         }
     }
 

@@ -127,15 +127,16 @@ public class FrameChoixJeton extends JFrame implements ActionListener
         {
             if (lbl == null)
             {
-                tabJetonReposer[cpt]=-1;
+                tabJetonReposer[cpt] = -1;
+                cpt++;
+                continue;
             }
             
             if (((LineBorder) lbl.getBorder()).getLineColor() == Color.RED)
             {
                 tabJetonReposer[cpt] = Integer.parseInt(lbl.getName());
+                cpt++;
             }
-            cpt++;
-
         }
 
         return tabJetonReposer;

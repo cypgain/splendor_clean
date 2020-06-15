@@ -12,8 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
-@SuppressWarnings("serial")
 public class FrameNoble extends JFrame implements ActionListener
 {
 
@@ -53,6 +51,7 @@ public class FrameNoble extends JFrame implements ActionListener
         for (int i = 0; i < this.lblNobles.length; i++)
         {
             this.lblNobles[i] = new JLabel();
+            this.lblNobles[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
             this.lblNobles[i].setIcon(new ImageIcon(this.visiteNoble[i].getUrl()));
             this.lblNobles[i].setName(this.visiteNoble[i].getUrl());
         }
@@ -99,14 +98,18 @@ public class FrameNoble extends JFrame implements ActionListener
 
     class GererSouris extends MouseAdapter
     {
-        public void mouseClicked(MouseEvent e)
+        public void mousePressed(MouseEvent e)
         {
+            if(FrameNoble.this.lblNobleChoisi != null)
+                FrameNoble.this.lblNobleChoisi.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+
             FrameNoble.this.lblNobleChoisi = null;
             FrameNoble.this.btnValider.setEnabled(false);
 
             if (e.getSource() instanceof JLabel)
             {
                 FrameNoble.this.lblNobleChoisi = (JLabel) e.getSource();
+                FrameNoble.this.lblNobleChoisi.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
                 FrameNoble.this.btnValider.setEnabled(true);
             }
         }
