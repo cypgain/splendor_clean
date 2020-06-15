@@ -580,7 +580,7 @@ public class Controleur
             {
                 if (tabJetonReposer[j]==getTabJetonsChoisis()[i])
                 {
-                    this.metier.removeJetonChoisi(j);
+                    this.metier.removeJetonChoisi(tabJetonReposer[j]);
                 }
             }
         }
