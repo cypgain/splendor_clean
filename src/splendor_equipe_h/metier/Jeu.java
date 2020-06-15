@@ -131,9 +131,9 @@ public class Jeu implements Serializable
     
     public void removeJetonChoisi(int indexJeton)
     {
-        for (int i=0; i < this.tabJetonsChoisis.length; i++)
+        for (int i = 0; i < this.tabJetonsChoisis.length; i++)
         {
-            if (this.tabJetonsChoisis[i]==indexJeton)
+            if (this.tabJetonsChoisis[i] == indexJeton)
             {
                 this.tabJetonsChoisis[i] = -1;
                 return;
