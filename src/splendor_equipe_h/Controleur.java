@@ -731,7 +731,7 @@ public class Controleur
     public void changementMetier(Jeu metier)
     {
         this.forceEndGame();
-        this.metier           = metier;
+        this.metier = metier;
         this.changementScenario();
 
         this.changementMetier = true;
