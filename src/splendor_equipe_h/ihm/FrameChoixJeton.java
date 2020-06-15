@@ -47,7 +47,7 @@ public class FrameChoixJeton extends JFrame implements ActionListener
 
         this.lblJetons = new JLabel[tabJetonsChoisis.length];
 
-        this.tabJetonReposer=null;
+        this.tabJetonReposer = null;
 
         
         for (int i = 0; i < this.lblJetons.length && tabJetonsChoisis[i] != -1; i++) 
