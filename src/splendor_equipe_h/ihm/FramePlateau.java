@@ -206,6 +206,7 @@ public class FramePlateau extends JFrame
     {
         this.controleur.reposerJetonChoisis();
     }
+
     public void ajouterJetonJoueur()
     {
         this.controleur.ajouterJetonJoueur();

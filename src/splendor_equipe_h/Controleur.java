@@ -576,9 +576,9 @@ public class Controleur
     {
         for (int i=0 ; i < getTabJetonsChoisis().length ; i++ )
         {
-            for (int j=0; j < tabJetonReposer.length; j++)
+            for (int j = 0; j < tabJetonReposer.length; j++)
             {
-                if (tabJetonReposer[j]==getTabJetonsChoisis()[i])
+                if (tabJetonReposer[j] == getTabJetonsChoisis()[i])
                 {
                     this.metier.removeJetonChoisi(tabJetonReposer[j]);
                 }
