@@ -30,7 +30,6 @@ public class Controleur
     private boolean finDuTourJoueur;
     private boolean forcedEndGame;
     private boolean finDuTour;
-    private boolean finChoix;
 
     public Controleur()
     {
@@ -625,7 +624,8 @@ public class Controleur
     {
         if (this.getTabJetons()[couleur] == 0)
             return false;
-        if (joueur.getNbJetons()>=10)
+
+        if (joueur.getNbJetons() >= 10)
             return false;
 
         joueur.ajouterJeton(couleur, 1);

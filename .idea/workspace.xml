@@ -3,35 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9a04d4a2-780d-4578-a286-cade7cdde259" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/Controleur$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/Controleur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/BonusComponent.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameDebug.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameDebugValeurJeton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameJoueur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameLancement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameNoble$GererSouris.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FrameNoble.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/FramePlateau.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/framejoueur/GererBoutons.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/framejoueur/GererSouris.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/framelancement/GererBoutons.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/frameplateau/GererBoutons.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/frameplateau/GererFenetre.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/ihm/listeners/frameplateau/GererSouris.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Carte.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Jeu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Joueur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/metier/Noble.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/CarteUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/Couleur.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/ImageUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/Message.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/NobleUtils.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Clean/splendor/utils/SplendorFont.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/splendor_equipe_h/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/splendor_equipe_h/Controleur.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,6 +97,7 @@
       <workItem from="1591966632758" duration="35000" />
       <workItem from="1591968028505" duration="42000" />
       <workItem from="1592069221320" duration="19000" />
+      <workItem from="1592206040758" duration="417000" />
     </task>
     <servers />
   </component>
@@ -140,22 +113,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1592069237672" />
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1591968070429">
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom" timestamp="1592206327953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591968070429" />
-    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1591968070429">
+    <state width="1877" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1592206327953" />
+    <state width="1877" height="261" key="GridCell.Tab.0.center" timestamp="1592206327953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591968070429" />
-    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1591968070429">
+    <state width="1877" height="261" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1592206327953" />
+    <state width="1877" height="261" key="GridCell.Tab.0.left" timestamp="1592206327952">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591968070429" />
-    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1591968070429">
+    <state width="1877" height="261" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1592206327952" />
+    <state width="1877" height="261" key="GridCell.Tab.0.right" timestamp="1592206327953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591968070429" />
+    <state width="1877" height="261" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1592206327953" />
     <state width="1877" height="326" key="GridCell.Tab.1.bottom" timestamp="1591882364645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
