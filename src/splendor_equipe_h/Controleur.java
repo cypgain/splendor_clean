@@ -582,6 +582,10 @@ public class Controleur
                 {
                     this.metier.removeJetonChoisi(tabJetonReposer[j]);
                 }
+
+                for (int ind : getTabJetonsChoisis())
+                    System.out.print(ind + " ");
+                System.out.println();
             }
         }
     }
