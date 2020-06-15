@@ -135,7 +135,7 @@ public class Jeu implements Serializable
         {
             if (this.tabJetonsChoisis[i] == indexJeton)
             {
-                this.tabJetonsChoisis[indexJeton] = -1;
+                this.tabJetonsChoisis[i] = -1;
             }
         }
     }
