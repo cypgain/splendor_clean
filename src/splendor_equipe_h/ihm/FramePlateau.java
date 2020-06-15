@@ -78,8 +78,8 @@ public class FramePlateau extends JFrame
         this.setIconImage(icon);
 
         this.loadRegionNobles();
-        this.loadRegionCartes();
         this.loadRegionDosCartes();
+        this.loadRegionCartes();
         this.loadRegionJetons();
 
         this.add(this.panelNobles,    BorderLayout.NORTH);
@@ -285,7 +285,11 @@ public class FramePlateau extends JFrame
     {
         for(JLabel lbl : this.tabLblDosCartes)
         {
-            lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            if (lbl.getBorder() != null)
+            {
+                lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                
+            }
         }
     }
 
@@ -353,7 +357,10 @@ public class FramePlateau extends JFrame
     {
         for(JLabel lbl : this.tabLblCartes)
         {
-            lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            if (lbl.getBorder() != null)
+            {
+                lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            }
         }
     }
 
@@ -410,13 +417,32 @@ public class FramePlateau extends JFrame
 
     public void updateCartes()
     {
+        for (int i=0; i < this.tabLblDosCartes.length ; i++)
+        {
+            if (this.controleur.getTailleDeck(i+1) < 1)
+            {
+                this.tabLblDosCartes[2-i].setIcon(null);
+                this.tabLblCartes[2-i].setName("");
+                this.tabLblDosCartes[2-i].setBorder(null);
+            }
+        }
+
         Carte[] tabCartes = this.controleur.getTabCartes();
 
         for (int i = 0; i < tabCartes.length; i++)
-        {
-            this.tabLblCartes[i].setIcon(ImageUtils.resizeImage(tabCartes[i].getUrl(), FramePlateau.TAILLE_IMAGE_CARTE_X, FramePlateau.TAILLE_IMAGE_CARTE_Y));
+        {   
+            if (tabCartes[i].getUrl().equals(""))
+            {
+                this.tabLblCartes[i].setIcon(null);
+                this.tabLblCartes[i].setBorder(null);
+            }
+            else
+            {
+                this.tabLblCartes[i].setIcon(ImageUtils.resizeImage(tabCartes[i].getUrl(),FramePlateau.TAILLE_IMAGE_CARTE_X, FramePlateau.TAILLE_IMAGE_CARTE_Y));
+                this.tabLblCartes[i].addMouseListener(new GererSouris(this));
+            }
             this.tabLblCartes[i].setName(tabCartes[i].getUrl());
-            this.tabLblCartes[i].addMouseListener(new GererSouris(this));
+            
         }
     }
 

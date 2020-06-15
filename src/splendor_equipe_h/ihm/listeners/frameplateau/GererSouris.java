@@ -39,9 +39,12 @@ public class GererSouris extends MouseAdapter
             this.framePlateau.setDosCarteSelectionnee(-1);
 
             this.framePlateau.resetBorderLblCartes();
-            this.framePlateau.setCarteSelectionnee(this.framePlateau.getIndexOfLblCarte(lblCarte));
-
-            lblCarte.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            
+            if (lblCarte.getBorder() != null)
+            {
+                this.framePlateau.setCarteSelectionnee(this.framePlateau.getIndexOfLblCarte(lblCarte));
+                lblCarte.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            }
         }
         // Selection dos de carte
         else if (this.framePlateau.isDosCarte(e.getSource()))
@@ -52,9 +55,12 @@ public class GererSouris extends MouseAdapter
             this.framePlateau.setCarteSelectionnee(-1);
 
             this.framePlateau.resetBorderLblDosCartes();
-            this.framePlateau.setDosCarteSelectionnee(this.framePlateau.getIndexOfLblDosCarte(lblDosCarte));
 
-            lblDosCarte.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            if (lblDosCarte.getBorder() != null)
+            {
+                this.framePlateau.setDosCarteSelectionnee(this.framePlateau.getIndexOfLblDosCarte(lblDosCarte));
+                lblDosCarte.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+            }
         }
         // Selection de jeton
         else if (this.framePlateau.isJeton(e.getSource()))
