@@ -574,6 +574,9 @@ public class Controleur
 
     public void reposerJetonChoisis(int[] tabJetonReposer)
     {
+        for (int ind : getTabJetonsChoisis())
+            System.out.print(ind + " ");
+        System.out.println();
         for (int i=0 ; i < getTabJetonsChoisis().length ; i++ )
         {
             for (int j = 0; j < tabJetonReposer.length; j++)
