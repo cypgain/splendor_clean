@@ -30,6 +30,7 @@ public class Controleur
     private boolean finDuTourJoueur;
     private boolean forcedEndGame;
     private boolean finDuTour;
+    private boolean finChoix;
 
     public Controleur()
     {
@@ -60,8 +61,20 @@ public class Controleur
     {
         Controleur.langue = langue;
 
-        this.metier          = new Jeu(nbJoueurs);
-        this.framePlateau    = new FramePlateau(this);
+        this.metier       = new Jeu(nbJoueurs);
+
+        if (this.framePlateau != null)
+        {
+            this.framePlateau.dispose();
+        }
+        this.framePlateau = new FramePlateau(this);
+        if (this.tabFrameJoueurs!=null)
+        {
+            for (FrameJoueur frameJoueur : this.tabFrameJoueurs)
+            {
+                frameJoueur.dispose();
+            }
+        }
         this.tabFrameJoueurs = new ArrayList<>();
 
         this.framePlateau.addKeyListener(new KeyAdapter()
@@ -85,14 +98,16 @@ public class Controleur
             }
 
         });
-
+        this.forceEndGame();
         this.initJoueurs(nbJoueurs);
-        this.nouvellePartie();
+        this.changementMetier=true;
     }
 
     private void initJoueurs(int nbJoueurs)
     {
         Joueur joueurTemp;
+
+        Joueur.resetNbJoueurs();
 
         for(int i = 0; i < nbJoueurs; i++)
         {
@@ -107,6 +122,9 @@ public class Controleur
 
     public void changementScenario()
     {
+        this.framePlateau.dispose();
+        this.framePlateau = new FramePlateau(this);
+        
         for(FrameJoueur frameJoueur : new ArrayList<>(this.tabFrameJoueurs))
         {
             frameJoueur.dispose();
@@ -141,6 +159,13 @@ public class Controleur
         {
             frameJoueur.update();
         }
+    }
+
+    public void setEnabled(boolean b)
+    {
+        this.framePlateau.setEnabled(b);
+        for (FrameJoueur frameJoueur : this.tabFrameJoueurs )
+            frameJoueur.setEnabled(b);
     }
 
     /*-----------------------
@@ -330,10 +355,14 @@ public class Controleur
     {
         FrameNoble frameNoble = new FrameNoble(this, ensNoble);
 
+        this.setEnabled(false);
+
         while (frameNoble.getNobleChoisi() == null)
         {
             try { Thread.sleep(100); } catch (Exception e) {}
         }
+
+        this.setEnabled(true);
         return frameNoble.getNobleChoisi();
     }
 
@@ -379,22 +408,29 @@ public class Controleur
 
     public void reposerJeton(Carte c)
     {
+        Joueur j = this.getCurrentJoueur();
         for (int i = 0; i < this.metier.getTabJetons().length-1; i++)
         {
-            Joueur j = this.getCurrentJoueur();
 
             if (c.getPrix()[i] <= j.getNbCarte(i))
                 continue;
             if (c.getPrix()[i] - j.getNbCarte(i) <= j.getNbJetons(i))
             {
                 this.metier.getTabJetons()[i] += c.getPrix()[i] - j.getNbCarte(i);
-            } else {
+            } 
+            else 
+            {
                 this.metier.getTabJetons()[i] += j.getNbJetons(i);
 
-                this.metier.getTabJetons()[5] += c.getPrix()[i] - j.getNbCarte(i) + j.getNbJetons(i);
+                this.metier.getTabJetons()[5] += c.getPrix()[i] - j.getNbCarte(i) - j.getNbJetons(i);
             }
 
         }
+    }
+
+    public int  getNbJetonADeposer()
+    {
+        return this.getAmountJetonsSelected()-(10-this.getCurrentJoueur().getNbJetons());
     }
 
     public boolean isJetonsSelectedFull()
@@ -406,6 +442,7 @@ public class Controleur
             return false;
         }
 
+        // Si deux des trois jetons choisis sont les mêmes
         if (amount == 3 && (this.metier.getTabJetonsChoisis()[0] == this.metier.getTabJetonsChoisis()[1]
                         || this.metier.getTabJetonsChoisis()[0]  == this.metier.getTabJetonsChoisis()[2]
                         || this.metier.getTabJetonsChoisis()[1]  == this.metier.getTabJetonsChoisis()[2]))
@@ -416,6 +453,7 @@ public class Controleur
             return false;
         }
 
+        // Si les deux jetons sont les mêmes et qu'il y en a moins de 4
         if (amount == 2 && this.metier.getTabJetonsChoisis()[0] == this.metier.getTabJetonsChoisis()[1]
                         && metier.getTabJetons()[this.metier.getTabJetonsChoisis()[0]] < 4)
         {
@@ -425,6 +463,7 @@ public class Controleur
             return false;
         }
 
+        // Si les 3 jetons sont différents et qu'il en reste au moins un de chaque
         if(amount == 3 && this.metier.getTabJetonsChoisis()[0] != this.metier.getTabJetonsChoisis()[1]
                        && this.metier.getTabJetonsChoisis()[0] != this.metier.getTabJetonsChoisis()[2]
                        && this.metier.getTabJetonsChoisis()[1] != this.metier.getTabJetonsChoisis()[2]
@@ -435,6 +474,7 @@ public class Controleur
             return true;
         }
 
+        // Si c'est les mêmes jetons et qu'il y a plus de 4 jetons de cette sorte sur le plateau
         if(amount == 2 && this.metier.getTabJetonsChoisis()[0] == this.metier.getTabJetonsChoisis()[1]
                 && this.metier.getTabJetons()[this.metier.getTabJetonsChoisis()[0]] >= 4)
         {
@@ -487,6 +527,67 @@ public class Controleur
         return amount;
     }
 
+    public void ajouterJetonJoueur()
+    {
+        for (int i = 0; i < this.getTabJetonsChoisis().length; i++) 
+        {
+            if (this.getTabJetonsChoisis()[i] != -1) 
+            {
+                this.getCurrentJoueur().ajouterJeton(this.getTabJetonsChoisis()[i], 1);
+                this.getTabJetons()[this.getTabJetonsChoisis()[i]] -= 1;
+            }
+        }
+    }
+
+    public void reposerJetonChoisis()
+    {
+        this.setEnabled(false);
+
+        FrameChoixJeton frameChoixJeton = new FrameChoixJeton(this, this.getTabJetonsChoisis());
+
+        while (frameChoixJeton.getJetonReposerChoisis() == null) 
+        {
+            try {Thread.sleep(100);} catch (Exception e) {}
+        }
+
+        frameChoixJeton.dispose();
+
+        this.reposerJetonChoisis(frameChoixJeton.getJetonReposerChoisis());
+
+        this.setEnabled(true);
+
+        if (this.getAmountJetonsSelected()==0)
+        {
+            this.framePlateau.resetJetonsChoisis();
+            this.framePlateau.updateGraphics();
+            return;
+        }
+        else
+        {
+            this.ajouterJetonJoueur();
+            this.finTourJoueur();
+            this.framePlateau.resetJetonsChoisis();
+            this.framePlateau.updateGraphics();
+
+        }
+        
+    }
+
+    public void reposerJetonChoisis(int[] tabJetonReposer)
+    {
+        for (int i=0 ; i < getTabJetonsChoisis().length ; i++ )
+        {
+            for (int j=0; j < tabJetonReposer.length; j++)
+            {
+                if (tabJetonReposer[j]==getTabJetonsChoisis()[i])
+                {
+                    this.metier.removeJetonChoisi(tabJetonReposer[j]);
+                }
+            }
+        }
+    }
+
+
     /*-----------------------
              Cartes
     ---------------------- */
@@ -523,6 +624,8 @@ public class Controleur
     public boolean prendreJeton(Joueur joueur, int couleur)
     {
         if (this.getTabJetons()[couleur] == 0)
+            return false;
+        if (joueur.getNbJetons()>=10)
             return false;
 
         joueur.ajouterJeton(couleur, 1);
@@ -595,10 +698,8 @@ public class Controleur
         {
             final FileInputStream fichier = new FileInputStream("../scenarios/" + selectedFileName);
             ois = new ObjectInputStream(fichier);
-            this.forceEndGame();
             final Jeu metier = (Jeu) ois.readObject();
             this.changementMetier(metier);
-            this.changementScenario();
         }
         catch (final IOException | ClassNotFoundException ex)
         {
@@ -631,7 +732,10 @@ public class Controleur
 
     public void changementMetier(Jeu metier)
     {
+        this.forceEndGame();
         this.metier           = metier;
+        this.changementScenario();
+
         this.changementMetier = true;
     }
 
@@ -647,6 +751,7 @@ public class Controleur
 
     public static void main(String[] args)
     {
+        System.out.println("Copyright Projet tutoré 2020 Equipe H : Mathieu BARTON, Tom BRULIN, Kevin BLONDEL, Jean-Bernard CAVELIER, Romuald NISS ");
         new Controleur();
     }
 

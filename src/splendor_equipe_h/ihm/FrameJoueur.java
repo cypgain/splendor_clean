@@ -15,6 +15,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class FrameJoueur extends JFrame
 {
 
@@ -22,11 +23,6 @@ public class FrameJoueur extends JFrame
            Constantes
      -----------------------*/
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 4626388053030781462L;
-    
     private static final int TAILLE_FRAME_X = 270;
     private static final int TAILLE_FRAME_Y = 900;
 
@@ -84,6 +80,9 @@ public class FrameJoueur extends JFrame
         this.setLayout(new BorderLayout());
         this.setResizable(false);
         this.setSize(FrameJoueur.TAILLE_FRAME_X, FrameJoueur.TAILLE_FRAME_Y);
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
+        this.setTitle(Message.PLAYER.getLib().replace("{NUM}", "" + this.joueur.getNum()));
 
         this.panelPrincipal = new JPanel(new BorderLayout());
         this.panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -199,6 +198,16 @@ public class FrameJoueur extends JFrame
 
     public void update()
     {
+        // Joueur actuel
+        if (this.joueur==this.controleur.getCurrentJoueur())
+        {
+            this.lblJoueur.setForeground(Color.RED);
+        }
+        else
+        {
+            this.lblJoueur.setForeground(null);
+        }
+
         // Jetons
         for(int i = 0; i < this.tabLblJetons.length; i++)
         {
@@ -306,14 +315,10 @@ public class FrameJoueur extends JFrame
 
 }
 
+@SuppressWarnings("serial")
 class BonusComponent extends JPanel
 {
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = -1932281453903555345L;
-    
     private Color color;
     private int amount;
 

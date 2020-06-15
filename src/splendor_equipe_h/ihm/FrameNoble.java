@@ -12,13 +12,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+
+@SuppressWarnings("serial")
 public class FrameNoble extends JFrame implements ActionListener
 {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = -3610097031579091119L;
 
     private Controleur controleur;
 
@@ -38,6 +35,11 @@ public class FrameNoble extends JFrame implements ActionListener
         this.nobleChoisi = null;
 
         this.setLayout(new BorderLayout());
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setTitle("Noble");
+        this.setResizable(false);
 
         //Creation des composants
         this.lblTexte = new JLabel(Message.CHOIX_NOBLE.getLib());

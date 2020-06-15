@@ -45,6 +45,11 @@ public class Joueur implements Serializable
         return amount;
     }
 
+    public static void resetNbJoueurs()
+    {
+        Joueur.nbJoueur=0;
+    }
+
     public void setValeurJeton(int[] newValeurs)
     {
         this.tabJetons = newValeurs;
@@ -99,7 +104,6 @@ public class Joueur implements Serializable
 
     public void ajouterCarte(Carte carte)
     {
-        this.tabCartes.add(carte);
 
         int[] tabPrix = carte.getPrix();
         int coutJeton;
@@ -107,34 +111,37 @@ public class Joueur implements Serializable
 
         for (int indexPrix = 0; indexPrix < tabPrix.length; indexPrix++)
         {
-            if (this.getNbCarte(indexPrix) < tabPrix[indexPrix])
+            if (this.getNbCarte(indexPrix)>=tabPrix[indexPrix])
+                continue;
+
+            coutJeton = tabPrix[indexPrix] - this.getNbCarte(indexPrix);
+
+            if (coutJeton <= this.tabJetons[indexPrix])
             {
-                coutJeton = tabPrix[indexPrix] - this.getNbCarte(indexPrix);
-
-                if (coutJeton <= this.tabJetons[indexPrix])
+                for (int i = 0; i < coutJeton; i++)
                 {
-                    for (int i = 0; i < coutJeton; i++)
-                    {
-                        this.retirerJeton(indexPrix);
-                    }
-                }
-                else
-                {
-                    jetonsJoueur = this.tabJetons[indexPrix];
-
-                    for (int i = 0; i < jetonsJoueur ; i++)
-                    {
-                        this.retirerJeton(indexPrix);
-                        System.out.println(this.tabJetons[5]);
-                    }
-
-                    for (int i = 0; i < coutJeton - jetonsJoueur; i++)
-                    {
-                        this.retirerJeton(5);
-                    }
+                    this.retirerJeton(indexPrix);
                 }
             }
+            else
+            {
+                jetonsJoueur = this.tabJetons[indexPrix];
+
+                for (int i = 0; i < jetonsJoueur ; i++)
+                {
+                    this.retirerJeton(indexPrix);
+                }
+
+                for (int i = 0; i < coutJeton - jetonsJoueur; i++)
+                {
+                    this.retirerJeton(5);
+                }
+            }
+        
         }
+
+        this.tabCartes.add(carte);
+
     }
 
     public boolean reserverCarte(Carte carte)
@@ -156,17 +163,20 @@ public class Joueur implements Serializable
 
         for (int i = 0 ; i < tabPrix.length ; i++)
         {
+            if (this.getNbCarte(i) >= tabPrix[i])
+                continue;
             if (tabPrix[i] > (this.getNbCarte(i) + this.tabJetons[i] + this.tabJetons[5] - jetonsOrUsed))
             {
                 return false;
             }
-            if (jetonsOrUsed > this.tabJetons[5])
-            {
-                return false;
-            }
+            
             if (tabPrix[i] > (this.getNbCarte(i) + this.tabJetons[i]))
             {
                 jetonsOrUsed += (tabPrix[i] - this.tabCartes.size() - this.tabJetons[i]);
+            }
+            if (jetonsOrUsed >= this.tabJetons[5]) 
+            {
+                return false;
             }
         }
 

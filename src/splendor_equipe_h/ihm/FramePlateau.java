@@ -15,17 +15,13 @@ import splendor_equipe_h.utils.SplendorFont;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class FramePlateau extends JFrame
 {
 
     /*----------------------
            Constantes
      -----------------------*/
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = -9161063204877878156L;
     
     private static final int TAILLE_IMAGE_CARTE_X = 130;
     private static final int TAILLE_IMAGE_CARTE_Y = 200;
@@ -75,7 +71,11 @@ public class FramePlateau extends JFrame
         this.setTitle(Message.TITRE_FRAME_PLATEAU.getLib());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setFocusable(true);
+        this.setResizable(false);
+
         this.addComponentListener(new GererFenetre(this));
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
 
         this.loadRegionNobles();
         this.loadRegionCartes();
@@ -103,8 +103,8 @@ public class FramePlateau extends JFrame
         JPanel panelJetonsBottom = new JPanel();
 
         // Jetons
-        this.tabLblJetons          = new JLabel[Couleur.values().length - 1];
-        this.tabLblNbJetons        = new JLabel[Couleur.values().length - 1];
+        this.tabLblJetons          = new JLabel[Couleur.values().length    ];
+        this.tabLblNbJetons        = new JLabel[Couleur.values().length    ];
         this.tabLblNbJetonsChoisis = new JLabel[Couleur.values().length - 1];
 
         JPanel panelTemp;
@@ -129,6 +129,13 @@ public class FramePlateau extends JFrame
             panelJetonsTop.add(panelTemp);
             panelJetonsTop.add(this.tabLblJetons[i]);
         }
+
+        this.tabLblNbJetons[5] = new JLabel("" + this.controleur.getTabJetons()[5] + " x ", JLabel.RIGHT);
+        this.tabLblJetons  [5] = new JLabel();
+        this.tabLblJetons  [5].setIcon(ImageUtils.resizeImage("ressources/jeton_" + Couleur.values()[5].toString().toLowerCase() + ".png",TAILLE_IMAGE_JETON_X, TAILLE_IMAGE_JETON_Y));
+
+        panelJetonsTop.add(this.tabLblNbJetons[5]);
+        panelJetonsTop.add(this.tabLblJetons  [5]);
 
         // Boutons
         this.btnAcheter = new JButton(Message.BUTTON_BUY_CARD.getLib());
@@ -195,6 +202,15 @@ public class FramePlateau extends JFrame
         this.controleur.resetJetonsChoisis();
     }
 
+    public void reposerJetonChoisis()
+    {
+        this.controleur.reposerJetonChoisis();
+    }
+    public void ajouterJetonJoueur()
+    {
+        this.controleur.ajouterJetonJoueur();
+    }
+    
     /*----------------------
        Gestion des Nobles
      -----------------------*/
@@ -461,7 +477,7 @@ public class FramePlateau extends JFrame
     public int[]    getTabJetons           () { return this.controleur.getTabJetons();            }
     public int      getAmountJetonsSelected() { return this.controleur.getAmountJetonsSelected(); }
     public int[]    getTabJetonsChoisis    () { return this.controleur.getTabJetonsChoisis();     }
-    public JLabel[] getTabLblJetons        () { return tabLblJetons;                              }
+    public JLabel[] getTabLblJetons        () { return this.tabLblJetons;                         }
     public int      getCarteSelectionnee   () { return this.carteSelectionnee;                    }
     public Carte[]  getTabCartes           () { return this.controleur.getTabCartes();            }
     public JLabel[] getTabLblCartes        () { return this.tabLblCartes;                         }

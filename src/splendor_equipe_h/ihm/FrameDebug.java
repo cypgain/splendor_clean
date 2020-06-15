@@ -9,29 +9,38 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+@SuppressWarnings("serial")
 public class FrameDebug extends JFrame implements ActionListener
 {
 
     private Controleur controleur;
 
-    private JPanel    panelPrinc;
-    private JComboBox cbxScenario;
-    private JButton   btnCharger;
-    private JButton   btnSauvegarder;
+    private JPanel            panelPrinc;
+    private JComboBox<String> cbxScenario;
+    private JButton           btnCharger;
+    private JButton           btnSauvegarder;
 
     private JButton btnPasserTour;
     private JButton btnJetonInfini;
     private JButton btnModifierJetons;
+
+    private JButton btnLancement2J;
+    private JButton btnLancement3J;
+    private JButton btnLancement4J;
+
 
     public FrameDebug(Controleur controleur)
     {
         this.controleur = controleur;
 
         this.setFocusable(false);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("Debug");
+        this.setResizable(false);
 
-        this.panelPrinc = new JPanel(new GridLayout(8, 1));
+        this.setTitle("Debug");
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
+
+        this.panelPrinc = new JPanel(new GridLayout(12, 1));
 
         File dir = new File("../scenarios");
         if(!dir.exists())
@@ -68,10 +77,21 @@ public class FrameDebug extends JFrame implements ActionListener
         this.btnModifierJetons = new JButton("Modifier jetons du joueur actuel");
         this.btnModifierJetons.addActionListener(this);
 
+        this.btnLancement2J = new JButton("Relancer une partie à 2 joueurs");
+        this.btnLancement2J.addActionListener(this);
+        this.btnLancement3J = new JButton("Relancer une partie à 3 joueurs");
+        this.btnLancement3J.addActionListener(this);
+        this.btnLancement4J = new JButton("Relancer une partie à 4 joueurs");
+        this.btnLancement4J.addActionListener(this);
+
         this.panelPrinc.add(new JLabel("Scénario :"));
         this.panelPrinc.add(this.cbxScenario);
         this.panelPrinc.add(this.btnCharger);
         this.panelPrinc.add(this.btnSauvegarder);
+        this.panelPrinc.add(new JLabel(""));
+        this.panelPrinc.add(this.btnLancement2J);
+        this.panelPrinc.add(this.btnLancement3J);
+        this.panelPrinc.add(this.btnLancement4J);
         this.panelPrinc.add(new JLabel(""));
         this.panelPrinc.add(this.btnPasserTour);
         this.panelPrinc.add(this.btnJetonInfini);
@@ -126,14 +146,26 @@ public class FrameDebug extends JFrame implements ActionListener
         {
             new FrameDebugValeurJeton(this.controleur);
         }
+        else if (e.getSource() == this.btnLancement2J)
+        {
+            this.controleur.lancementPartie(Controleur.langue, 2);
+        }
+        else if (e.getSource() == this.btnLancement3J) 
+        {
+            this.controleur.lancementPartie(Controleur.langue, 3);
+        }
+        else if (e.getSource() == this.btnLancement4J) 
+        {
+            this.controleur.lancementPartie(Controleur.langue, 4);
+        }
     }
 
 }
 
-
+@SuppressWarnings("serial")
 class FrameDebugValeurJeton extends JFrame implements ActionListener
 {
-
+   
     private Controleur   controleur;
     private JPanel       panelTxtField;
     private JTextField[] txtValeurJeton;
@@ -142,6 +174,9 @@ class FrameDebugValeurJeton extends JFrame implements ActionListener
 
     public FrameDebugValeurJeton(Controleur controleur)
     {
+        Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
+        this.setIconImage(icon);
+
         this.controleur = controleur;
         this.panelTxtField = new JPanel(new GridLayout(2, 6, 20, 20));
 
