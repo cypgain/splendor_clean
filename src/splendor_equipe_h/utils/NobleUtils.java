@@ -54,7 +54,7 @@ public class NobleUtils
                 }
             }
 
-            nobles.add(new Noble( i < 10 ? "ressources/noble_0" + i + ".png" : "ressources/noble_" + i + ".png", 3, Couleur.BLANC, res[0], res[1], res[2], res[3], res[4]));
+            nobles.add(new Noble( i < 10 ? "../ressources/noble_0" + i + ".png" : "../ressources/noble_" + i + ".png", 3, Couleur.BLANC, res[0], res[1], res[2], res[3], res[4]));
         }
 
         return nobles;

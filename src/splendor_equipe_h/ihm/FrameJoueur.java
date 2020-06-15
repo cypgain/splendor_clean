@@ -79,13 +79,13 @@ public class FrameJoueur extends JFrame
 
         this.setLayout(new BorderLayout());
         this.setResizable(false);
-        this.setSize((int) (FrameJoueur.TAILLE_FRAME_X * Controleur.echelleHeight), (int) (FrameJoueur.TAILLE_FRAME_Y * Controleur.echelleWidth));
+        this.setSize((int) (FrameJoueur.TAILLE_FRAME_X * Controleur.echelleWidth ), (int) (FrameJoueur.TAILLE_FRAME_Y * Controleur.echelleHeight));
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
         this.setTitle(Message.PLAYER.getLib().replace("{NUM}", "" + this.joueur.getNum()));
 
         this.panelPrincipal = new JPanel(new BorderLayout());
-        this.panelPrincipal.setBorder(new EmptyBorder((int) (10 * Controleur.echelleHeight), (int) (10 * Controleur.echelleWidth), (int) (10 * Controleur.echelleHeight), (int) (10 * Controleur.echelleWidth)));
+        this.panelPrincipal.setBorder(new EmptyBorder((int) (10 * Controleur.echelleWidth ), (int) (10 * Controleur.echelleHeight), (int) (10 * Controleur.echelleWidth ), (int) (10 * Controleur.echelleHeight)));
 
         this.panelMiddle = new JPanel(new GridLayout(2,1));
 
@@ -131,9 +131,9 @@ public class FrameJoueur extends JFrame
         for(int i = 0; i < Couleur.values().length; i++)
         {
             this.tabLblJetons[i] = new JLabel();
-            this.tabLblJetons[i].setIcon(ImageUtils.resizeImage("ressources/jeton_" + Couleur.values()[i].toString().toLowerCase() + ".png", 
-                                         (int) (FrameJoueur.TAILLE_IMAGE_JETON_X * Controleur.echelleHeight),
-                                         (int) (FrameJoueur.TAILLE_IMAGE_JETON_Y * Controleur.echelleWidth)));
+            this.tabLblJetons[i].setIcon(ImageUtils.resizeImage("../ressources/jeton_" + Couleur.values()[i].toString().toLowerCase() + ".png", 
+                                         (int) (FrameJoueur.TAILLE_IMAGE_JETON_X * Controleur.echelleWidth ),
+                                         (int) (FrameJoueur.TAILLE_IMAGE_JETON_Y * Controleur.echelleHeight)));
             this.tabLblJetons[i].setText("0");
             this.tabLblJetons[i].setFont(SplendorFont.SEGOE_SMALL.getFont());
             this.panelJetons.add(this.tabLblJetons[i]);
@@ -179,9 +179,9 @@ public class FrameJoueur extends JFrame
         {
             this.tabLblReserve[i] = new JLabel();
             this.tabLblReserve[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-            this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("ressources/dev_III_dos.png", 
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleHeight),
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleWidth)));
+            this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("../ressources/dev_III_dos.png", 
+                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth ),
+                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
             this.tabLblReserve[i].addMouseListener(new GererSouris(this));
             this.panelReserve.add(this.tabLblReserve[i]);
         }
@@ -235,25 +235,25 @@ public class FrameJoueur extends JFrame
         for(Noble noble : this.getJoueur().getTabNobles())
         {
             this.tabLblNobles[z].setIcon(ImageUtils.resizeImage(noble.getUrl(), 
-                                         (int) (FrameJoueur.TAILLE_IMAGE_NOBLE_X * Controleur.echelleHeight),
-                                         (int) (FrameJoueur.TAILLE_IMAGE_NOBLE_Y * Controleur.echelleWidth)));
+                                         (int) (FrameJoueur.TAILLE_IMAGE_NOBLE_X * Controleur.echelleWidth ),
+                                         (int) (FrameJoueur.TAILLE_IMAGE_NOBLE_Y * Controleur.echelleHeight)));
             z++;
         }
 
         // Carte reservée
         for(int i = 0; i < this.tabLblReserve.length; i++)
         {
-            this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("ressources/dev_III_dos.png", 
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleHeight),
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleWidth)));
+            this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("../ressources/dev_III_dos.png", 
+                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth ),
+                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
         }
 
         int i = 0;
         for(Carte carteReserve : this.joueur.getTabCartesReserve())
         {
             this.tabLblReserve[i].setIcon(ImageUtils.resizeImage(carteReserve.getUrl(), 
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleHeight),
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleWidth)));
+                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth ),
+                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
             i++;
         }
 
@@ -336,7 +336,7 @@ class BonusComponent extends JPanel
     {
         this.color = color;
         this.amount = amount;
-        this.setPreferredSize(new Dimension((int) (50 * Controleur.echelleHeight), (int) (50 * Controleur.echelleWidth)));
+        this.setPreferredSize(new Dimension((int) (50 * Controleur.echelleWidth ), (int) (50 * Controleur.echelleHeight)));
     }
 
     @Override
@@ -346,10 +346,10 @@ class BonusComponent extends JPanel
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setPaint(color);
-        g2.fillRect(0, (int) (50 * Controleur.echelleWidth), (int) (50 * Controleur.echelleHeight), (int) (50 * Controleur.echelleWidth));
+        g2.fillRect(0, (int) (50 * Controleur.echelleHeight), (int) (50 * Controleur.echelleWidth ), (int) (50 * Controleur.echelleHeight));
         g2.setPaint(Color.GRAY);
         g2.setFont(SplendorFont.SEGOE_SMALL.getFont());
-        g2.drawString("" + this.amount, (int) ((this.getWidth() / 2 - 8) * Controleur.echelleWidth), (int) (140 * Controleur.echelleHeight));
+        g2.drawString("" + this.amount, (int) ((this.getWidth() / 2 - 8) * Controleur.echelleHeight), (int) (140 * Controleur.echelleWidth ));
     }
 
     public void setAmount(int amount)
