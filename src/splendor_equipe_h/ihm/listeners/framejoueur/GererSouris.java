@@ -17,15 +17,28 @@ public class GererSouris extends MouseAdapter
         this.frameJoueur = frameJoueur;
     }
 
+    private boolean isMouseWithinFrame() 
+    {
+        Point mousePos = MouseInfo.getPointerInfo().getLocation();
+        Rectangle bounds = this.frameJoueur.getBounds();
+        bounds.setLocation(this.frameJoueur.getLocationOnScreen());
+        return bounds.contains(mousePos);
+    }
+
     @Override
     public void mousePressed(MouseEvent e)
     {
-        if(this.frameJoueur.getCarteReserveChoisie() != null)
-            this.frameJoueur.getCarteReserveChoisie().setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
 
         JLabel carteChoisie = (JLabel) e.getSource();
-        this.frameJoueur.setCarteReserveChoisie(carteChoisie);
-        carteChoisie.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+        if (carteChoisie != this.frameJoueur.getCarteReserveChoisie())
+        {
+            this.frameJoueur.resetCarteReserveChoisie();
+            this.frameJoueur.setCarteReserveChoisie(carteChoisie);
+        }
+        else
+        {
+            this.frameJoueur.resetCarteReserveChoisie();
+        }
     }
 
 }

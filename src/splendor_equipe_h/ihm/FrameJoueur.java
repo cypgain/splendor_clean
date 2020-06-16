@@ -178,10 +178,6 @@ public class FrameJoueur extends JFrame
         for (int i = 0; i < this.tabLblReserve.length; i++)
         {
             this.tabLblReserve[i] = new JLabel();
-            this.tabLblReserve[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-            this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("../ressources/dev_III_dos.png", 
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth ),
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
             this.tabLblReserve[i].addMouseListener(new GererSouris(this));
             this.panelReserve.add(this.tabLblReserve[i]);
         }
@@ -241,21 +237,24 @@ public class FrameJoueur extends JFrame
         }
 
         // Carte reservée
-        for(int i = 0; i < this.tabLblReserve.length; i++)
+        for (JLabel lblCarte : tabLblReserve )
         {
-            this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("../ressources/dev_III_dos.png", 
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth ),
-                                          (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
+            lblCarte.setBorder(null);
+            lblCarte.setIcon(null);
         }
-
         int i = 0;
-        for(Carte carteReserve : this.joueur.getTabCartesReserve())
+        for (Carte carteReserve : this.joueur.getTabCartesReserve())
         {
-            this.tabLblReserve[i].setIcon(ImageUtils.resizeImage(carteReserve.getUrl(), 
+            if (!(carteReserve.getUrl().equals("")))
+            {
+                this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("../ressources/boite.jpg", 
                                           (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth ),
                                           (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
+                this.tabLblReserve[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            }
             i++;
-        }
+
+        }        
 
         // Points prestiges
         this.lblPrestige.setText("" + this.joueur.getPrestige());
@@ -269,8 +268,12 @@ public class FrameJoueur extends JFrame
     public void resetCarteReserveChoisie()
     {
         if(this.carteReserveChoisie != null)
+        {
             this.carteReserveChoisie.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
-
+            this.carteReserveChoisie.setIcon(ImageUtils.resizeImage("../ressources/boite.jpg",
+                                     (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth),
+                                     (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
+        }
         this.carteReserveChoisie = null;
         this.update();
     }
@@ -301,7 +304,18 @@ public class FrameJoueur extends JFrame
         return this.joueur.getTabCartesReserve().get(index);
     }
 
-    public void setCarteReserveChoisie(JLabel carteReserveChoisie) { this.carteReserveChoisie = carteReserveChoisie; }
+    public void setCarteReserveChoisie(JLabel carteReserveChoisie) 
+    { 
+        if (carteReserveChoisie.getBorder()!=null)
+        {
+            this.carteReserveChoisie = carteReserveChoisie;
+            this.carteReserveChoisie.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+            this.carteReserveChoisie.setIcon(ImageUtils.resizeImage(this.getCarteReserve().getUrl(),
+                                     (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth),
+                                     (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
+        }
+        
+    }
 
     public boolean prendreCarte(Joueur joueur, Carte carte)
     {
