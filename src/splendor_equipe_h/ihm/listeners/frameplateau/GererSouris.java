@@ -1,5 +1,6 @@
 package splendor_equipe_h.ihm.listeners.frameplateau;
 
+import splendor_equipe_h.Controleur;
 import splendor_equipe_h.ihm.FramePlateau;
 import splendor_equipe_h.utils.Message;
 
@@ -23,7 +24,7 @@ public class GererSouris extends MouseAdapter
     {
         for(JLabel label : this.framePlateau.getTabLblJetons())
         {
-            label.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            label.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
         }
     }
 
@@ -43,7 +44,7 @@ public class GererSouris extends MouseAdapter
             if (lblCarte.getBorder() != null)
             {
                 this.framePlateau.setCarteSelectionnee(this.framePlateau.getIndexOfLblCarte(lblCarte));
-                lblCarte.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                lblCarte.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_CHOIX, 2));
             }
         }
         // Selection dos de carte
@@ -59,14 +60,14 @@ public class GererSouris extends MouseAdapter
             if (lblDosCarte.getBorder() != null)
             {
                 this.framePlateau.setDosCarteSelectionnee(this.framePlateau.getIndexOfLblDosCarte(lblDosCarte));
-                lblDosCarte.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                lblDosCarte.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_CHOIX, 2));
             }
         }
         // Selection de jeton
         else if (this.framePlateau.isJeton(e.getSource()))
         {
             JLabel lblJeton = (JLabel) e.getSource();
-            lblJeton.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
+            lblJeton.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_CHOIX, 2));
 
             int indexJeton = this.framePlateau.getIndexOfLblJeton(lblJeton);
 
@@ -118,7 +119,7 @@ public class GererSouris extends MouseAdapter
         if (this.framePlateau.isJeton(e.getSource()))
         {
             JLabel lblJeton = (JLabel) e.getSource();
-            lblJeton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            lblJeton.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
         }
     }
 

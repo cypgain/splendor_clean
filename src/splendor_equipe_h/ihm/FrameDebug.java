@@ -2,6 +2,7 @@ package splendor_equipe_h.ihm;
 
 import splendor_equipe_h.Controleur;
 import splendor_equipe_h.utils.Message;
+import splendor_equipe_h.utils.SplendorFont;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,9 @@ public class FrameDebug extends JFrame implements ActionListener
     private Controleur controleur;
 
     private JPanel            panelPrinc;
+
+    private JLabel            lblDebug;
+    private JLabel            lblScenario;
     private JComboBox<String> cbxScenario;
     private JButton           btnCharger;
     private JButton           btnSauvegarder;
@@ -40,7 +44,16 @@ public class FrameDebug extends JFrame implements ActionListener
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
 
-        this.panelPrinc = new JPanel(new GridLayout(12, 1));
+        this.panelPrinc = new JPanel(new GridLayout(15, 1));
+        this.panelPrinc.setBackground(Controleur.COULEUR_FOND);
+
+        this.lblDebug = new JLabel("Menu debug", JLabel.CENTER);
+        this.lblDebug.setFont(SplendorFont.SEGOE_SMALL.getFont());
+        this.lblDebug.setForeground(Controleur.COULEUR_TEXTE);
+
+        this.lblScenario = new JLabel("Scénario :", JLabel.CENTER);
+        this.lblScenario.setFont(SplendorFont.SEGOE_SMALL.getFont());
+        this.lblScenario.setForeground(Controleur.COULEUR_TEXTE);
 
         File dir = new File("../scenarios");
         if(!dir.exists())
@@ -84,7 +97,9 @@ public class FrameDebug extends JFrame implements ActionListener
         this.btnLancement4J = new JButton("Relancer une partie à 4 joueurs");
         this.btnLancement4J.addActionListener(this);
 
-        this.panelPrinc.add(new JLabel("Scénario :"));
+        this.panelPrinc.add(this.lblDebug);
+        this.panelPrinc.add(new JLabel(""));
+        this.panelPrinc.add(this.lblScenario);
         this.panelPrinc.add(this.cbxScenario);
         this.panelPrinc.add(this.btnCharger);
         this.panelPrinc.add(this.btnSauvegarder);
@@ -96,6 +111,7 @@ public class FrameDebug extends JFrame implements ActionListener
         this.panelPrinc.add(this.btnPasserTour);
         this.panelPrinc.add(this.btnJetonInfini);
         this.panelPrinc.add(this.btnModifierJetons);
+        this.panelPrinc.add(new JLabel(""));
 
         this.setContentPane(this.panelPrinc);
 
@@ -167,6 +183,10 @@ class FrameDebugValeurJeton extends JFrame implements ActionListener
 {
    
     private Controleur   controleur;
+
+    private JPanel       panelPrincipal;
+
+    private JLabel       lblTexte;
     private JPanel       panelTxtField;
     private JTextField[] txtValeurJeton;
     private JLabel[]     lblJeton;
@@ -178,6 +198,13 @@ class FrameDebugValeurJeton extends JFrame implements ActionListener
         this.setIconImage(icon);
 
         this.controleur = controleur;
+        this.panelPrincipal = new JPanel(new BorderLayout());
+        this.panelPrincipal.setBackground(Controleur.COULEUR_FOND);
+
+        this.lblTexte = new JLabel("Entrez les nouvelles valeurs", JLabel.CENTER);
+        this.lblTexte.setForeground(Controleur.COULEUR_TEXTE);
+        this.lblTexte.setFont(SplendorFont.SEGOE_SMALL.getFont());
+
         this.panelTxtField = new JPanel(new GridLayout(2, 6, 20, 20));
 
         this.lblJeton = new JLabel[6];
@@ -187,6 +214,12 @@ class FrameDebugValeurJeton extends JFrame implements ActionListener
         this.lblJeton[3] = new JLabel("Noir");
         this.lblJeton[4] = new JLabel("Rouge");
         this.lblJeton[5] = new JLabel("Or");
+
+        for (JLabel lblJ : this.lblJeton)
+        {
+            lblJ.setForeground(Controleur.COULEUR_TEXTE);
+            lblJ.setFont(SplendorFont.SEGOE_SMALL.getFont());
+        }
 
         this.btnValider = new JButton("Valider");
         this.btnValider.addActionListener(this);
@@ -207,9 +240,13 @@ class FrameDebugValeurJeton extends JFrame implements ActionListener
             this.panelTxtField.add(this.txtValeurJeton[i]);
         }
 
-        this.add(new JLabel("Entrez les nouvelles valeurs"), BorderLayout.NORTH);
-        this.add(this.panelTxtField,                         BorderLayout.CENTER);
-        this.add(this.btnValider,                            BorderLayout.SOUTH);
+        this.panelTxtField.setOpaque(false);
+
+        this.panelPrincipal.add(this.lblTexte     , BorderLayout.NORTH );
+        this.panelPrincipal.add(this.panelTxtField, BorderLayout.CENTER);
+        this.panelPrincipal.add(this.btnValider   , BorderLayout.SOUTH );
+
+        this.add(this.panelPrincipal);
 
         this.pack();
         this.setVisible(true);

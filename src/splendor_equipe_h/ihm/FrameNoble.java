@@ -18,6 +18,8 @@ public class FrameNoble extends JFrame implements ActionListener
 
     private Controleur controleur;
 
+    private JPanel panelPrincipal;
+
     private Noble[] visiteNoble;
     private Noble   nobleChoisi;
 
@@ -33,7 +35,6 @@ public class FrameNoble extends JFrame implements ActionListener
         this.visiteNoble = visiteNoble;
         this.nobleChoisi = null;
 
-        this.setLayout(new BorderLayout());
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -41,10 +42,14 @@ public class FrameNoble extends JFrame implements ActionListener
         this.setResizable(false);
 
         //Creation des composants
+        this.panelPrincipal = new JPanel(new BorderLayout());
+        this.panelPrincipal.setBackground(Controleur.COULEUR_FOND);
+
         this.lblTexte = new JLabel(Message.CHOIX_NOBLE.getLib());
         this.lblTexte.setFont(SplendorFont.SEGOE_SMALL.getFont());
 
         this.panelNoble = new JPanel();
+        this.panelNoble.setOpaque(false);
         this.panelNoble.setLayout(new GridLayout(1, this.visiteNoble.length));
 
         this.lblNobles = new JLabel[this.visiteNoble.length];
@@ -52,7 +57,7 @@ public class FrameNoble extends JFrame implements ActionListener
         for (int i = 0; i < this.lblNobles.length; i++)
         {
             this.lblNobles[i] = new JLabel();
-            this.lblNobles[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.lblNobles[i].setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND));
             this.lblNobles[i].setIcon(new ImageIcon(this.visiteNoble[i].getUrl()));
             this.lblNobles[i].setName(this.visiteNoble[i].getUrl());
         }
@@ -72,9 +77,11 @@ public class FrameNoble extends JFrame implements ActionListener
         for (JLabel l : this.lblNobles)
             this.panelNoble.add(l);
 
-        this.add(this.lblTexte,   BorderLayout.NORTH);
-        this.add(this.panelNoble, BorderLayout.CENTER);
-        this.add(this.btnValider, BorderLayout.SOUTH);
+        this.panelPrincipal.add(this.lblTexte,   BorderLayout.NORTH);
+        this.panelPrincipal.add(this.panelNoble, BorderLayout.CENTER);
+        this.panelPrincipal.add(this.btnValider, BorderLayout.SOUTH);
+
+        this.add(this.panelPrincipal);
 
         this.setLocation((int) ((Controleur.screenWidth  - this.getSize().getWidth() ) / 2),
                          (int) ((Controleur.screenHeight - this.getSize().getHeight()) / 2));
@@ -105,7 +112,7 @@ public class FrameNoble extends JFrame implements ActionListener
         public void mousePressed(MouseEvent e)
         {
             if(FrameNoble.this.lblNobleChoisi != null)
-                FrameNoble.this.lblNobleChoisi.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                FrameNoble.this.lblNobleChoisi.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
 
             FrameNoble.this.lblNobleChoisi = null;
             FrameNoble.this.btnValider.setEnabled(false);
@@ -113,7 +120,7 @@ public class FrameNoble extends JFrame implements ActionListener
             if (e.getSource() instanceof JLabel)
             {
                 FrameNoble.this.lblNobleChoisi = (JLabel) e.getSource();
-                FrameNoble.this.lblNobleChoisi.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                FrameNoble.this.lblNobleChoisi.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_CHOIX, 2));
                 FrameNoble.this.btnValider.setEnabled(true);
             }
         }

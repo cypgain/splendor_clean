@@ -83,9 +83,11 @@ public class FrameJoueur extends JFrame
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
         this.setTitle(Message.PLAYER.getLib().replace("{NUM}", "" + this.joueur.getNum()));
+        this.setBackground(Controleur.COULEUR_FOND);
 
         this.panelPrincipal = new JPanel(new BorderLayout());
         this.panelPrincipal.setBorder(new EmptyBorder((int) (10 * Controleur.echelleWidth ), (int) (10 * Controleur.echelleHeight), (int) (10 * Controleur.echelleWidth ), (int) (10 * Controleur.echelleHeight)));
+        this.panelPrincipal.setBackground(Controleur.COULEUR_FOND);
 
         this.panelMiddle = new JPanel(new GridLayout(2,1));
 
@@ -95,6 +97,8 @@ public class FrameJoueur extends JFrame
         this.initNobles();
         this.initReserve();
         this.initBoutons();
+
+        this.panelMiddle.setOpaque(false);
 
         this.panelPrincipal.add(this.panelMiddle,BorderLayout.CENTER);
 
@@ -118,9 +122,12 @@ public class FrameJoueur extends JFrame
 
         this.lblPrestige.setFont(SplendorFont.SEGOE_BIG.getFont());
         this.lblJoueur  .setFont(SplendorFont.SEGOE_BIG.getFont());
+        this.lblPrestige.setForeground(Controleur.COULEUR_TEXTE);
 
         this.panelInfos.add(this.lblJoueur);
         this.panelInfos.add(this.lblPrestige);
+
+        this.panelInfos.setBackground(Controleur.COULEUR_FOND);
     }
 
     private void initJetons()
@@ -136,10 +143,14 @@ public class FrameJoueur extends JFrame
                                          (int) (FrameJoueur.TAILLE_IMAGE_JETON_Y * Controleur.echelleHeight)));
             this.tabLblJetons[i].setText("0");
             this.tabLblJetons[i].setFont(SplendorFont.SEGOE_SMALL.getFont());
+            this.tabLblJetons[i].setForeground(Controleur.COULEUR_TEXTE);
             this.panelJetons.add(this.tabLblJetons[i]);
         }
 
+        this.panelJetons.setOpaque(false);
+
         this.panelPrincipal.add(this.panelJetons, BorderLayout.NORTH);
+
     }
 
     private void initBonus()
@@ -150,10 +161,14 @@ public class FrameJoueur extends JFrame
         for(int i = 0; i < (Couleur.values().length - 1); i++)
         {
             this.tabBonusCpnt[i] = new BonusComponent(Couleur.values()[i].getAwtCouleur(), this.joueur.getNbCarte(Couleur.values()[i]));
+            this.tabBonusCpnt[i].setOpaque(false);
             this.panelBonus.add(this.tabBonusCpnt[i]);
         }
 
+        this.panelBonus.setOpaque(false);
+
         this.panelMiddle.add(this.panelBonus);
+
     }
 
     private void initNobles()
@@ -166,6 +181,8 @@ public class FrameJoueur extends JFrame
             this.tabLblNobles[i] = new JLabel();
             this.panelNobles.add(this.tabLblNobles[i]);
         }
+
+        this.panelNobles.setOpaque(false);
 
         this.panelMiddle.add(this.panelNobles);
     }
@@ -181,6 +198,8 @@ public class FrameJoueur extends JFrame
             this.tabLblReserve[i].addMouseListener(new GererSouris(this));
             this.panelReserve.add(this.tabLblReserve[i]);
         }
+
+        this.panelReserve.setOpaque(false);
 
         this.panelPrincipal.add(this.panelReserve, BorderLayout.SOUTH);
     }
@@ -201,11 +220,11 @@ public class FrameJoueur extends JFrame
         // Joueur actuel
         if (this.joueur==this.controleur.getCurrentJoueur())
         {
-            this.lblJoueur.setForeground(Color.RED);
+            this.lblJoueur.setForeground(Controleur.COULEUR_CHOIX);
         }
         else
         {
-            this.lblJoueur.setForeground(null);
+            this.lblJoueur.setForeground(Controleur.COULEUR_TEXTE);
         }
 
         // Jetons
@@ -251,7 +270,7 @@ public class FrameJoueur extends JFrame
                 this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("../ressources/boite.jpg", 
                                           (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth ),
                                           (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
-                this.tabLblReserve[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                this.tabLblReserve[i].setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
             }
             i++;
 
@@ -270,7 +289,7 @@ public class FrameJoueur extends JFrame
     {
         if(this.carteReserveChoisie != null)
         {
-            this.carteReserveChoisie.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.carteReserveChoisie.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
             this.carteReserveChoisie.setIcon(ImageUtils.resizeImage("../ressources/boite.jpg",
                                      (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth),
                                      (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
@@ -310,7 +329,7 @@ public class FrameJoueur extends JFrame
         if (carteReserveChoisie.getBorder() != null)
         {
             this.carteReserveChoisie = carteReserveChoisie;
-            this.carteReserveChoisie.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
+            this.carteReserveChoisie.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_CHOIX, 2));
             this.carteReserveChoisie.setIcon(ImageUtils.resizeImage(this.getCarteReserve().getUrl(),
                                      (int) (FrameJoueur.TAILLE_IMAGE_CARTE_X * Controleur.echelleWidth),
                                      (int) (FrameJoueur.TAILLE_IMAGE_CARTE_Y * Controleur.echelleHeight)));
@@ -362,9 +381,9 @@ class BonusComponent extends JPanel
         Graphics2D g2 = (Graphics2D) g;
         g2.setPaint(color);
         g2.fillRect(0, (int) (50 * Controleur.echelleHeight), (int) (50 * Controleur.echelleWidth ), (int) (50 * Controleur.echelleHeight));
-        g2.setPaint(Color.GRAY);
+        g2.setPaint(Controleur.COULEUR_TEXTE);
         g2.setFont(SplendorFont.SEGOE_SMALL.getFont());
-        g2.drawString("" + this.amount, (int) ((this.getWidth() / 2 - 8) * Controleur.echelleHeight), (int) (140 * Controleur.echelleWidth ));
+        g2.drawString(""+this.amount, (int) ((this.getWidth() / 2 - 8) * Controleur.echelleHeight), (int) (140 * Controleur.echelleWidth ));
     }
 
     public void setAmount(int amount)

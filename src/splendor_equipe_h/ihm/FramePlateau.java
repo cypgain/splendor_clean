@@ -40,7 +40,9 @@ public class FramePlateau extends JFrame
 
     private Controleur controleur;
 
-    private JLabel lblTitre;
+    private JPanel     panelPrincipal;
+
+    private JLabel     lblTitre;
 
     // Nobles
     private JPanel   panelNobles;
@@ -79,15 +81,20 @@ public class FramePlateau extends JFrame
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
 
+        this.panelPrincipal = new JPanel(new BorderLayout());
+        this.panelPrincipal.setBackground(Controleur.COULEUR_FOND);
+
         this.loadRegionNobles();
         this.loadRegionDosCartes();
         this.loadRegionCartes();
         this.loadRegionJetons();
 
-        this.add(this.panelNobles,    BorderLayout.NORTH);
-        this.add(this.panelCartes,    BorderLayout.CENTER);
-        this.add(this.panelDosCartes, BorderLayout.WEST);
-        this.add(this.panelJetons,    BorderLayout.SOUTH);
+        this.panelPrincipal.add(this.panelNobles,    BorderLayout.NORTH);
+        this.panelPrincipal.add(this.panelCartes,    BorderLayout.CENTER);
+        this.panelPrincipal.add(this.panelDosCartes, BorderLayout.WEST);
+        this.panelPrincipal.add(this.panelJetons,    BorderLayout.SOUTH);
+
+        this.add(this.panelPrincipal);
 
         this.pack();
         this.setVisible(true);
@@ -119,13 +126,14 @@ public class FramePlateau extends JFrame
             this.tabLblJetons[i].setIcon(ImageUtils.resizeImage("../ressources/jeton_" + Couleur.values()[i].toString().toLowerCase() + ".png", 
                                          (int) (TAILLE_IMAGE_JETON_X  * Controleur.echelleWidth ),
                                          (int) (TAILLE_IMAGE_JETON_Y  * Controleur.echelleHeight  )));
-            this.tabLblJetons[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.tabLblJetons[i].setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
             this.tabLblJetons[i].addMouseListener(new GererSouris(this));
 
             this.tabLblNbJetons       [i] = new JLabel("" + this.controleur.getTabJetons       ()[i] + "x", JLabel.RIGHT);
             this.tabLblNbJetonsChoisis[i] = new JLabel("" + this.controleur.getNbJetonsChoisis (i)   + "x", JLabel.RIGHT);
 
-            this.tabLblNbJetonsChoisis[i].setForeground(Color.RED);
+            this.tabLblNbJetons       [i].setForeground(Controleur.COULEUR_TEXTE);
+            this.tabLblNbJetonsChoisis[i].setForeground(Controleur.COULEUR_CHOIX);
 
             this.tabLblNbJetons       [i].setFont(SplendorFont.SEGOE_SMALL.getFont());
             this.tabLblNbJetonsChoisis[i].setFont(SplendorFont.SEGOE_SMALL.getFont());
@@ -133,12 +141,15 @@ public class FramePlateau extends JFrame
             panelTemp.add(tabLblNbJetonsChoisis[i]);
             panelTemp.add(tabLblNbJetons[i]);
 
+            panelTemp.setOpaque(false);
+
             panelJetonsTop.add(panelTemp);
             panelJetonsTop.add(this.tabLblJetons[i]);
         }
 
         this.tabLblNbJetons[5] = new JLabel("" + this.controleur.getTabJetons()[5] + "x", JLabel.RIGHT);
         this.tabLblNbJetons[5].setFont(SplendorFont.SEGOE_SMALL.getFont());
+        this.tabLblNbJetons[5].setForeground(Controleur.COULEUR_TEXTE);
         this.tabLblJetons  [5] = new JLabel();
         this.tabLblJetons  [5].setIcon(ImageUtils.resizeImage("../ressources/jeton_" + Couleur.values()[5].toString().toLowerCase() + ".png",
                                        (int) (FramePlateau.TAILLE_IMAGE_JETON_X  * Controleur.echelleWidth ),
@@ -158,8 +169,12 @@ public class FramePlateau extends JFrame
         panelJetonsBottom.add(this.btnReserve);
 
         // Ajout au panel
+        panelJetonsBottom.setOpaque(false);
+        panelJetonsTop   .setOpaque(false);
         this.panelJetons.add(panelJetonsTop,    BorderLayout.NORTH);
         this.panelJetons.add(panelJetonsBottom, BorderLayout.SOUTH);
+
+        this.panelJetons.setOpaque(false);
     }
 
     public boolean isJeton(Object object)
@@ -235,6 +250,7 @@ public class FramePlateau extends JFrame
         this.lblTitre     = new JLabel(Message.TOUR_JOUEUR.getLib().replace("{NUM}", "1"), JLabel.CENTER);
 
         this.lblTitre.setFont(SplendorFont.SEGOE_BIG.getFont());
+        this.lblTitre.setForeground(Controleur.COULEUR_TEXTE);
 
         int i = 0;
         for(Noble noble : this.controleur.getTabNobles())
@@ -248,8 +264,12 @@ public class FramePlateau extends JFrame
             i++;
         }
 
+        panelNoblesIn.setOpaque(false);
+
         this.panelNobles.add(this.lblTitre, BorderLayout.NORTH);
         this.panelNobles.add(panelNoblesIn, BorderLayout.SOUTH);
+
+        this.panelNobles.setOpaque(false);
     }
 
     /*----------------------
@@ -265,7 +285,7 @@ public class FramePlateau extends JFrame
         for(int i = 0; i < this.tabLblDosCartes.length; i++)
         {
             this.tabLblDosCartes[i] = new JLabel();
-            this.tabLblDosCartes[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.tabLblDosCartes[i].setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
             this.tabLblDosCartes[i].addMouseListener(new GererSouris(this));
             this.panelDosCartes.add(this.tabLblDosCartes[i]);
         }
@@ -284,6 +304,8 @@ public class FramePlateau extends JFrame
                                         (int) (FramePlateau.TAILLE_IMAGE_CARTE_X  * Controleur.echelleWidth ) ,
                                         (int) (FramePlateau.TAILLE_IMAGE_CARTE_Y  * Controleur.echelleHeight  ) ));
         this.tabLblDosCartes[2].setName("../ressources/dev_I_dos.png");
+
+        this.panelDosCartes.setOpaque(false);
     }
 
     public boolean isDosCarte(Object object)
@@ -306,7 +328,7 @@ public class FramePlateau extends JFrame
         {
             if (lbl.getBorder() != null)
             {
-                lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                lbl.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
                 
             }
         }
@@ -327,7 +349,7 @@ public class FramePlateau extends JFrame
     {
         if(this.dosCarteSelectionnee != -1)
         {
-            this.tabLblDosCartes[this.dosCarteSelectionnee].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.tabLblDosCartes[this.dosCarteSelectionnee].setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
             this.dosCarteSelectionnee = -1;
         }
     }
@@ -351,9 +373,11 @@ public class FramePlateau extends JFrame
         for (int i = 0; i < tabCartes.length; i++)
         {
             this.tabLblCartes[i] = new JLabel();
-            this.tabLblCartes[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.tabLblCartes[i].setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
             this.panelCartes.add(this.tabLblCartes[i]);
         }
+
+        this.panelCartes.setOpaque(false);
 
         this.updateCartes();
     }
@@ -378,7 +402,7 @@ public class FramePlateau extends JFrame
         {
             if (lbl.getBorder() != null)
             {
-                lbl.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                lbl.setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
             }
         }
     }
@@ -398,7 +422,7 @@ public class FramePlateau extends JFrame
     {
         if(this.carteSelectionnee != -1)
         {
-            this.tabLblCartes[this.carteSelectionnee].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.tabLblCartes[this.carteSelectionnee].setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
             this.carteSelectionnee = -1;
         }
     }

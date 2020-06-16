@@ -12,6 +12,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Color;
 
 import java.io.*;
 import java.awt.Dimension;
@@ -27,6 +28,10 @@ public class Controleur
 
     public static double echelleHeight;
     public static double echelleWidth;
+
+    public static final Color COULEUR_TEXTE = Color.YELLOW;
+    public static final Color COULEUR_FOND = Color.DARK_GRAY;
+    public static final Color COULEUR_CHOIX = Color.RED;
 
     public static String langue;
 

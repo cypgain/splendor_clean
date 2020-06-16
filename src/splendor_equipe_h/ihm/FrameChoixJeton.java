@@ -20,6 +20,8 @@ public class FrameChoixJeton extends JFrame implements ActionListener
 
     private Controleur controleur;
 
+    private JPanel   panelPrincipal;
+
     private JLabel   lblTexte;
     private JPanel   panelJeton;
     private JLabel[] lblJetons;
@@ -31,7 +33,6 @@ public class FrameChoixJeton extends JFrame implements ActionListener
     {
         this.controleur = controleur;
 
-        this.setLayout(new BorderLayout());
         Image icon = Toolkit.getDefaultToolkit().getImage("../ressources/boite.jpg");
         this.setIconImage(icon);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -40,10 +41,14 @@ public class FrameChoixJeton extends JFrame implements ActionListener
         this.setTitle(Message.FRAME_JETON.getLib());
 
         // Creation des composants
+        this.panelPrincipal = new JPanel(new BorderLayout());
+        this.panelPrincipal.setBackground(Controleur.COULEUR_FOND);
         this.lblTexte = new JLabel(Message.CHOIX_DEPOSER_JETON.getLib().replace("{NUM}", ""+ this.controleur.getNbJetonADeposer()));
         this.lblTexte.setFont(SplendorFont.SEGOE_SMALL.getFont());
+        this.lblTexte.setForeground(Controleur.COULEUR_TEXTE);
 
         this.panelJeton = new JPanel(new GridLayout(1, tabJetonsChoisis.length, 20, 20));
+        this.panelJeton.setOpaque(false);
 
         this.lblJetons = new JLabel[tabJetonsChoisis.length];
 
@@ -56,7 +61,7 @@ public class FrameChoixJeton extends JFrame implements ActionListener
             this.lblJetons[i] = new JLabel();
             this.lblJetons[i].setIcon(new ImageIcon("../ressources/jeton_" + Couleur.values()[tabJetonsChoisis[i]].toString().toLowerCase() + ".png"));
             this.lblJetons[i].setName(""+tabJetonsChoisis[i]);
-            this.lblJetons[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+            this.lblJetons[i].setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
         }
         
 
@@ -79,9 +84,11 @@ public class FrameChoixJeton extends JFrame implements ActionListener
             if (l!=null) this.panelJeton.add(l);
         }
         
-        this.add(this.lblTexte,   BorderLayout.NORTH);
-        this.add(this.panelJeton, BorderLayout.CENTER);
-        this.add(this.btnValider, BorderLayout.SOUTH);
+        this.panelPrincipal.add(this.lblTexte,   BorderLayout.NORTH);
+        this.panelPrincipal.add(this.panelJeton, BorderLayout.CENTER);
+        this.panelPrincipal.add(this.btnValider, BorderLayout.SOUTH);
+
+        this.add(this.panelPrincipal);
 
         this.setLocation((int) ((Controleur.screenWidth  - this.getSize().getWidth ()) / 2),
                          (int) ((Controleur.screenHeight - this.getSize().getHeight()) / 2));
@@ -107,7 +114,7 @@ public class FrameChoixJeton extends JFrame implements ActionListener
             if (lbl == null)
                 continue;
 
-            if (((LineBorder) lbl.getBorder()).getLineColor() == Color.RED)
+            if (((LineBorder) lbl.getBorder()).getLineColor() == Controleur.COULEUR_CHOIX)
             {
                 cpt++;
             }
@@ -135,7 +142,7 @@ public class FrameChoixJeton extends JFrame implements ActionListener
                 continue;
             }
             
-            if (((LineBorder) lbl.getBorder()).getLineColor() == Color.RED)
+            if (((LineBorder) lbl.getBorder()).getLineColor() == Controleur.COULEUR_CHOIX)
             {
                 tabJetonReposer[cpt] = Integer.parseInt(lbl.getName());
                 cpt++;
@@ -157,13 +164,13 @@ public class FrameChoixJeton extends JFrame implements ActionListener
 
             if (e.getSource() instanceof JLabel) 
             {
-                if (((LineBorder) ((JLabel) e.getSource()).getBorder()).getLineColor() == Color.WHITE)
+                if (((LineBorder) ((JLabel) e.getSource()).getBorder()).getLineColor() == Controleur.COULEUR_FOND)
                 {
-                    ((JLabel) e.getSource()).setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+                    ((JLabel) e.getSource()).setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_CHOIX, 2));
                 }
                 else
                 {
-                    ((JLabel) e.getSource()).setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+                    ((JLabel) e.getSource()).setBorder(BorderFactory.createLineBorder(Controleur.COULEUR_FOND, 2));
                 }
             }
             if (FrameChoixJeton.this.enoughJetonChoisis())
