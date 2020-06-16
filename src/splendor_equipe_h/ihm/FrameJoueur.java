@@ -161,7 +161,7 @@ public class FrameJoueur extends JFrame
         this.panelNobles  = new JPanel();
         this.tabLblNobles = new JLabel[5];
 
-        for (int i = 0 ; i < this.tabLblNobles.length ; i++)
+        for (int i = 0; i < this.tabLblNobles.length; i++)
         {
             this.tabLblNobles[i] = new JLabel();
             this.panelNobles.add(this.tabLblNobles[i]);
@@ -222,7 +222,7 @@ public class FrameJoueur extends JFrame
         }
 
         // Nobles
-        for (int i = 0 ; i < this.tabLblNobles.length ; i++)
+        for (int i = 0; i < this.tabLblNobles.length; i++)
         {
             this.tabLblNobles[i].setIcon(null);
         }
@@ -307,7 +307,7 @@ public class FrameJoueur extends JFrame
 
     public void setCarteReserveChoisie(JLabel carteReserveChoisie) 
     { 
-        if (carteReserveChoisie.getBorder()!=null)
+        if (carteReserveChoisie.getBorder() != null)
         {
             this.carteReserveChoisie = carteReserveChoisie;
             this.carteReserveChoisie.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
