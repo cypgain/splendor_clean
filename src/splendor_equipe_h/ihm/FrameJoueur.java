@@ -159,7 +159,7 @@ public class FrameJoueur extends JFrame
     private void initNobles()
     {
         this.panelNobles  = new JPanel();
-        this.tabLblNobles = new JLabel[this.controleur.getTabNobles().size()];
+        this.tabLblNobles = new JLabel[5];
 
         for (int i = 0 ; i < this.tabLblNobles.length ; i++)
         {
@@ -245,6 +245,7 @@ public class FrameJoueur extends JFrame
         int i = 0;
         for (Carte carteReserve : this.joueur.getTabCartesReserve())
         {
+            this.tabLblReserve[i].setBorder(null);
             if (!(carteReserve.getUrl().equals("")))
             {
                 this.tabLblReserve[i].setIcon(ImageUtils.resizeImage("../ressources/boite.jpg", 
