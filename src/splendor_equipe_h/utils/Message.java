@@ -25,6 +25,8 @@ public enum Message
 
     ERR_RESERVATION("Vous ne pouvez pas reserver cette carte", "You can't book this card"),
 
+    ERR_PDF("Fichier introuvable ou incompatible", "File not found or not compatible"),
+
     CHOIX_NOBLE("Veuillez choisir le noble que vous souhaitez prendre", "Please select the noble you want"),
     CHOIX_DEPOSER_JETON("Vous devez deposer {NUM} ou tous vos Jetons choisis", "You must put {NUM} or all the choosen token back"),
 

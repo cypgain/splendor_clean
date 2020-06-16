@@ -177,9 +177,4 @@ public class FrameChoixJeton extends JFrame implements ActionListener
         }
     }
 
-    public static void main(String[] args)
-    {
-        new FrameChoixJeton(new Controleur(), new int[] {0,0,4});
-    }
-
 }
