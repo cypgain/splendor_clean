@@ -47,7 +47,7 @@ public class FrameLancement extends JFrame
         this.add(this.btnValider);
 
         // Affichage
-        this.setLocation(600, 400);
+        this.setLocation((int) ((Controleur.screenWidth - this.getSize().getWidth()) / 2), (int) (( Controleur.screenHeight - this.getSize().getHeight()) / 2));
         this.setVisible(true);
     }
 

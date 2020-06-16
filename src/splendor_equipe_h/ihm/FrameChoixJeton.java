@@ -54,7 +54,7 @@ public class FrameChoixJeton extends JFrame implements ActionListener
         {
             
             this.lblJetons[i] = new JLabel();
-            this.lblJetons[i].setIcon(new ImageIcon("ressources/jeton_" + Couleur.values()[tabJetonsChoisis[i]].toString().toLowerCase() + ".png"));
+            this.lblJetons[i].setIcon(new ImageIcon("../ressources/jeton_" + Couleur.values()[tabJetonsChoisis[i]].toString().toLowerCase() + ".png"));
             this.lblJetons[i].setName(""+tabJetonsChoisis[i]);
             this.lblJetons[i].setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         }
@@ -82,6 +82,9 @@ public class FrameChoixJeton extends JFrame implements ActionListener
         this.add(this.lblTexte,   BorderLayout.NORTH);
         this.add(this.panelJeton, BorderLayout.CENTER);
         this.add(this.btnValider, BorderLayout.SOUTH);
+
+        this.setLocation((int) ((Controleur.screenWidth  - this.getSize().getWidth ()) / 2),
+                         (int) ((Controleur.screenHeight - this.getSize().getHeight()) / 2));
 
         this.pack();
         this.setVisible(true);

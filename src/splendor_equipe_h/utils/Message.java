@@ -1,6 +1,6 @@
 package splendor_equipe_h.utils;
 
-//import static splendor_equipe_h.Controleur.langue;
+import static splendor_equipe_h.Controleur.langue;
 
 public enum Message
 {
@@ -44,8 +44,6 @@ public enum Message
     NOT_YOUR_TURN("Ce n'est pas votre tour !", "It's not your turn !"),
 
     ;
-
-    public static final String langue="FR";
 
     private String libFrancais;
     private String libAnglais;

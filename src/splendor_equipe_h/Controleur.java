@@ -14,16 +14,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.io.*;
+import java.awt.Dimension;
 
 public class Controleur
 {
+
+    public static int tailleMaxHeight;
+    public static int tailleMaxWidth ;
+
+    public static int screenHeight;
+    public static int screenWidth;
+
+    public static double echelleHeight;
+    public static double echelleWidth;
 
     public static String langue;
 
     private Jeu metier;
 
-    private FramePlateau      framePlateau;
-    private FrameDebug        frameDebug;
+    private FramePlateau framePlateau;
+    private FrameDebug frameDebug;
     private List<FrameJoueur> tabFrameJoueurs;
 
     private boolean changementMetier;
@@ -31,8 +41,29 @@ public class Controleur
     private boolean forcedEndGame;
     private boolean finDuTour;
 
+    static 
+    {
+        Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        Controleur.screenHeight = (int) dimension.getHeight();
+        Controleur.screenWidth  = (int) dimension.getWidth();
+        if (Controleur.screenHeight == 864)
+            Controleur.tailleMaxHeight = 864;
+        else
+            Controleur.tailleMaxHeight = 1080;
+
+        if (Controleur.screenWidth == 1536)
+            Controleur.tailleMaxWidth = 1536;
+        else
+            Controleur.tailleMaxWidth = 1920;
+
+        Controleur.echelleHeight = (Controleur.screenHeight * 1.0 / Controleur.tailleMaxHeight);
+        Controleur.echelleWidth  = (Controleur.screenWidth  * 1.0 / Controleur.tailleMaxWidth );
+    }
     public Controleur()
     {
+        System.out.println(Controleur.screenHeight  + " " + Controleur.screenWidth );
+        System.out.println(Controleur.echelleHeight + " " + Controleur.echelleWidth);
+
         new FrameLancement(this);
 
 
