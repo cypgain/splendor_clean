@@ -26,8 +26,6 @@ public enum Message
 
     ERR_PRISE_JETON_INVALIDE("Vous n'avez pas le droit de prendre cette combinaison de jetons", "You are not allowed to take this tokens combination"),
 
-    ERR_JETON("Vous n'avez pas assez de jetons","You do not have enough chips"),
-
     ERR_JETON_FULL("Vous possédez déjà trop de jetons", "You already have max tokens"),
 
     ERR_NOT_ENOUGH_JETON("Vous n'avez pas assez de jetons", "You do not have enough chips"),
