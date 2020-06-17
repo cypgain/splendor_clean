@@ -30,10 +30,10 @@ public class Controleur
     public static double echelleWidth;
 
     public static final Color COULEUR_TEXTE = Color.YELLOW;
-    public static final Color COULEUR_FOND = Color.DARK_GRAY;
+    public static final Color COULEUR_FOND  = new Color(43,58,75);
     public static final Color COULEUR_CHOIX = Color.RED;
 
-    public static String langue;
+    public static String langue = "FR";
 
     private Jeu metier;
 
@@ -64,10 +64,9 @@ public class Controleur
         Controleur.echelleHeight = (Controleur.screenHeight * 1.0 / Controleur.tailleMaxHeight);
         Controleur.echelleWidth  = (Controleur.screenWidth  * 1.0 / Controleur.tailleMaxWidth );
     }
+    
     public Controleur()
     {
-        System.out.println(Controleur.screenHeight  + " " + Controleur.screenWidth );
-        System.out.println(Controleur.echelleHeight + " " + Controleur.echelleWidth);
 
         new FrameLancement(this);
 
@@ -263,7 +262,12 @@ public class Controleur
     private void quitterLaPartie(Joueur winner)
     {
         JOptionPane.showMessageDialog(this.framePlateau, Message.WINNER.getLib().replace("{NUM}", "" + winner.getNum()));
-        System.exit(0);
+        this.framePlateau.dispose();
+        for (FrameJoueur frameJoueur : this.tabFrameJoueurs) 
+        {
+            frameJoueur.dispose();
+        }
+        new FrameLancement(this);
     }
 
     private boolean finDePartie()

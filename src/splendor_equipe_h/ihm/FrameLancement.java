@@ -5,6 +5,7 @@ import java.awt.*;
 
 import splendor_equipe_h.Controleur;
 import splendor_equipe_h.ihm.listeners.framelancement.GererBoutons;
+import splendor_equipe_h.utils.Message;
 import splendor_equipe_h.utils.SplendorFont;
 
 @SuppressWarnings("serial")
@@ -28,7 +29,7 @@ public class FrameLancement extends JFrame
     {
         this.controleur = controleur;
 
-        this.setTitle("Lancement");
+        this.setTitle(Message.LANCEMENT.getLib());
         this.setSize(300,300);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -42,12 +43,12 @@ public class FrameLancement extends JFrame
         this.panelPrincipal.setBackground(Controleur.COULEUR_FOND);
         this.cbxLangue       = new JComboBox<>(new String[] { "FR", "ENG" });
         this.cbxNombreJoueur = new JComboBox<>(new Integer[] { 2, 3, 4 });
-        this.btnRegles       = new JButton("Règles du jeu");
-        this.btnValider      = new JButton("Valider votre choix");
-        this.lblJoueurs      = new JLabel("Langue",JLabel.CENTER);
+        this.btnRegles       = new JButton(Message.LANCEMENT_RULES.getLib());
+        this.btnValider      = new JButton(Message.LANCEMENT_VALIDER.getLib());
+        this.lblJoueurs      = new JLabel(Message.LANCEMENT_PLAYER.getLib(), JLabel.CENTER);
         this.lblJoueurs.setForeground(Controleur.COULEUR_TEXTE);
         this.lblJoueurs.setFont(SplendorFont.SEGOE_SMALL.getFont());
-        this.lblLangue       = new JLabel("Nombre de joueurs", JLabel.CENTER);
+        this.lblLangue       = new JLabel(Message.LANCEMENT_LANGUE.getLib(), JLabel.CENTER);
         this.lblLangue.setForeground(Controleur.COULEUR_TEXTE);
         this.lblLangue.setFont(SplendorFont.SEGOE_SMALL.getFont());
 

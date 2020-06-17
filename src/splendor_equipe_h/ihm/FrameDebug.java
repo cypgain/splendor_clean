@@ -47,11 +47,11 @@ public class FrameDebug extends JFrame implements ActionListener
         this.panelPrinc = new JPanel(new GridLayout(15, 1));
         this.panelPrinc.setBackground(Controleur.COULEUR_FOND);
 
-        this.lblDebug = new JLabel("Menu debug", JLabel.CENTER);
+        this.lblDebug = new JLabel(Message.DEBUG_MENU.getLib(), JLabel.CENTER);
         this.lblDebug.setFont(SplendorFont.SEGOE_SMALL.getFont());
         this.lblDebug.setForeground(Controleur.COULEUR_TEXTE);
 
-        this.lblScenario = new JLabel("Scénario :", JLabel.CENTER);
+        this.lblScenario = new JLabel(Message.DEBUG_SCENARIO.getLib(), JLabel.CENTER);
         this.lblScenario.setFont(SplendorFont.SEGOE_SMALL.getFont());
         this.lblScenario.setForeground(Controleur.COULEUR_TEXTE);
 
@@ -75,26 +75,26 @@ public class FrameDebug extends JFrame implements ActionListener
 
         this.cbxScenario = new JComboBox<>(scenarios);
 
-        this.btnCharger = new JButton("Charger");
+        this.btnCharger = new JButton(Message.DEBUG_CHARGER.getLib());
         this.btnCharger.addActionListener(this);
 
-        this.btnSauvegarder = new JButton("Sauvegarder");
+        this.btnSauvegarder = new JButton(Message.DEBUG_SAUVER.getLib());
         this.btnSauvegarder.addActionListener(this);
 
-        this.btnPasserTour = new JButton("Passer le tour du joueur actuel");
+        this.btnPasserTour = new JButton(Message.DEBUG_PASS.getLib());
         this.btnPasserTour.addActionListener(this);
 
-        this.btnJetonInfini = new JButton("Donner max de jeton au joueur actuel");
+        this.btnJetonInfini = new JButton(Message.DEBUG_MAX_JETON.getLib());
         this.btnJetonInfini.addActionListener(this);
 
-        this.btnModifierJetons = new JButton("Modifier jetons du joueur actuel");
+        this.btnModifierJetons = new JButton(Message.DEBUG_EDIT_JETON.getLib());
         this.btnModifierJetons.addActionListener(this);
 
-        this.btnLancement2J = new JButton("Relancer une partie à 2 joueurs");
+        this.btnLancement2J = new JButton(Message.DEBUG_NEW_2P.getLib());
         this.btnLancement2J.addActionListener(this);
-        this.btnLancement3J = new JButton("Relancer une partie à 3 joueurs");
+        this.btnLancement3J = new JButton(Message.DEBUG_NEW_3P.getLib());
         this.btnLancement3J.addActionListener(this);
-        this.btnLancement4J = new JButton("Relancer une partie à 4 joueurs");
+        this.btnLancement4J = new JButton(Message.DEBUG_NEW_4P.getLib());
         this.btnLancement4J.addActionListener(this);
 
         this.panelPrinc.add(this.lblDebug);
@@ -124,17 +124,17 @@ public class FrameDebug extends JFrame implements ActionListener
     {
         if(e.getSource() == this.btnSauvegarder)
         {
-            String nom = (String) JOptionPane.showInputDialog(this, Message.ACTION_SAVE_NOM_SCENARIO.getLib(), "Sauvegarde", JOptionPane.PLAIN_MESSAGE, null, null, "");
+            String nom = (String) JOptionPane.showInputDialog(this, Message.ACTION_SAVE_NOM_SCENARIO.getLib(), Message.SAUVEGARDE.getLib(), JOptionPane.PLAIN_MESSAGE, null, null, "");
 
             if (!(this.controleur.sauvegarder(nom)))
             {
-                JOptionPane.showMessageDialog(this, Message.ERR_SAUVEGARDE_NOM_SCENARIO.getLib(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, Message.ERR_SAUVEGARDE_NOM_SCENARIO.getLib(), Message.ERR.getLib(), JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             this.cbxScenario.addItem(nom);
 
-            JOptionPane.showMessageDialog(this, Message.ACTION_SAVE_SCENARIO.getLib(), "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, Message.ACTION_SAVE_SCENARIO.getLib(), Message.INFORMATION.getLib(), JOptionPane.INFORMATION_MESSAGE);
         }
         else if(e.getSource() == this.btnCharger)
         {
@@ -143,11 +143,11 @@ public class FrameDebug extends JFrame implements ActionListener
 
             if (!(this.controleur.charger(this.cbxScenario.getSelectedItem().toString())))
             {
-                JOptionPane.showMessageDialog(this, "Erreur chargement fichier", "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, Message.ERR_CHARGER.getLib(), Message.ERR.getLib(), JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            JOptionPane.showMessageDialog(this, "Scenario chargé avec succès", "Information", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, Message.CHARGER_SUCCESS, Message.INFORMATION.getLib(), JOptionPane.INFORMATION_MESSAGE);
         }
         else if (e.getSource() == this.btnPasserTour)
         {
@@ -201,19 +201,19 @@ class FrameDebugValeurJeton extends JFrame implements ActionListener
         this.panelPrincipal = new JPanel(new BorderLayout());
         this.panelPrincipal.setBackground(Controleur.COULEUR_FOND);
 
-        this.lblTexte = new JLabel("Entrez les nouvelles valeurs", JLabel.CENTER);
+        this.lblTexte = new JLabel(Message.DEBUG_EDIT_JETON.getLib(), JLabel.CENTER);
         this.lblTexte.setForeground(Controleur.COULEUR_TEXTE);
         this.lblTexte.setFont(SplendorFont.SEGOE_SMALL.getFont());
 
         this.panelTxtField = new JPanel(new GridLayout(2, 6, 20, 20));
 
         this.lblJeton = new JLabel[6];
-        this.lblJeton[0] = new JLabel("Vert");
-        this.lblJeton[1] = new JLabel("Blanc");
-        this.lblJeton[2] = new JLabel("Bleu");
-        this.lblJeton[3] = new JLabel("Noir");
-        this.lblJeton[4] = new JLabel("Rouge");
-        this.lblJeton[5] = new JLabel("Or");
+        this.lblJeton[0] = new JLabel(Message.JETON_VERT  .getLib());
+        this.lblJeton[1] = new JLabel(Message.JETON_BLANC .getLib());
+        this.lblJeton[2] = new JLabel(Message.JETON_BLEU  .getLib());
+        this.lblJeton[3] = new JLabel(Message.JETON_MARRON.getLib());
+        this.lblJeton[4] = new JLabel(Message.JETON_ROUGE .getLib());
+        this.lblJeton[5] = new JLabel(Message.JETON_JAUNE .getLib());
 
         for (JLabel lblJ : this.lblJeton)
         {
@@ -221,7 +221,7 @@ class FrameDebugValeurJeton extends JFrame implements ActionListener
             lblJ.setFont(SplendorFont.SEGOE_SMALL.getFont());
         }
 
-        this.btnValider = new JButton("Valider");
+        this.btnValider = new JButton(Message.DEBUG_VALIDER.getLib());
         this.btnValider.addActionListener(this);
 
         this.txtValeurJeton = new JTextField[6];
