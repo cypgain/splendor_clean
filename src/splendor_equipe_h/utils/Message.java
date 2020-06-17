@@ -26,27 +26,27 @@ public enum Message
 
     ERR_PRISE_JETON_INVALIDE("Vous n'avez pas le droit de prendre cette combinaison de jetons", "You are not allowed to take this tokens combination"),
 
-    ERR_JETON("Vous n'avez pas assez de jetons","You do not have enough chips"),
+    ERR_JETON("Vous n'avez pas assez de jetons","You don't have enough tokens"),
 
-    ERR_JETON_FULL("Vous possédez déjà trop de jetons", "You already have max tokens"),
+    ERR_JETON_FULL("Vous possédez déjà trop de jetons", "You already have enough tokens"),
 
-    ERR_NOT_ENOUGH_JETON("Vous n'avez pas assez de jetons", "You do not have enough chips"),
+    ERR_NOT_ENOUGH_JETON("Vous n'avez pas assez de jetons", "You don't have enough tokens"),
 
     ERR_RESERVATION("Vous ne pouvez pas reserver cette carte", "You can't book this card"),
 
     ERR_PDF("Fichier introuvable ou incompatible", "File not found or not compatible"),
 
     CHOIX_NOBLE("Veuillez choisir le noble que vous souhaitez prendre", "Please select the noble you want"),
-    CHOIX_DEPOSER_JETON("Vous devez deposer {NUM} ou tous vos Jetons choisis", "You must put {NUM} or all the choosen token back"),
+    CHOIX_DEPOSER_JETON("Vous devez deposer {NUM} ou plusieurs des Jetons choisis", "You must leave {NUM} or some of the tokens choosed"),
 
     FRAME_JETON("Jetons", "Tokens"),
 
     BOUTON_VALIDER_NOBLE("Selectionner ce noble", "Select this noble"),
     BOUTON_DEPOSER_JETON("Déposer ces jetons", "Put back these tokens"),
 
-    WINNER("Le joueur {NUM} a gagné la partie", "Player's {NUM} has won the game"),
+    WINNER("Le joueur {NUM} a gagné la partie", "Player's {NUM} won the game"),
 
-    ERR_SAUVEGARDE_NOM_SCENARIO("Vous n'avez pas entré de nom", "You didn't enter a name"),
+    ERR_SAUVEGARDE_NOM_SCENARIO("Vous n'avez pas entré de nom", "You didn't entered a name"),
 
     ACTION_SAVE_NOM_SCENARIO("Veuillez entrer le nom du scénario", "Please enter the name of the script"),
 
