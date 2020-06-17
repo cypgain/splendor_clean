@@ -33,7 +33,7 @@ public class GererBoutons implements ActionListener
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(this.frameJoueur, Message.ERR_JETON.getLib());
+                    JOptionPane.showMessageDialog(this.frameJoueur, Message.ERR_NOT_ENOUGH_JETON.getLib());
                     return;
                 }
 
