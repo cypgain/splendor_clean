@@ -1,4 +1,5 @@
 Il s'agit de la version finale de notre projet Splendor.
+
 Toutes les fonctionnalités sont présentes dont:
 
 Jeu:

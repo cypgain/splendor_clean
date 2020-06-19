@@ -147,7 +147,7 @@ public class FrameDebug extends JFrame implements ActionListener
                 return;
             }
 
-            JOptionPane.showMessageDialog(this, Message.CHARGER_SUCCESS, Message.INFORMATION.getLib(), JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, Message.CHARGER_SUCCESS.getLib(), Message.INFORMATION.getLib(), JOptionPane.INFORMATION_MESSAGE);
         }
         else if (e.getSource() == this.btnPasserTour)
         {
